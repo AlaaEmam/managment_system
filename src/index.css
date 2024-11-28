@@ -1,0 +1,23 @@
+.login {
+    background-image: url('assets/bg.svg');
+    background-size: covecontainr;
+    background-position: center center;
+}
+
+.form-bg{background: rgba(49, 89, 81, 0.9);
+}
+
+.form-bg ::placeholder {
+    color: #ffffff !important;
+    opacity: 1; /* Firefox */
+  }
+
+  .form-bg label{ color: rgba(239, 155, 40, 1);
+  }
+
+  .btn-yellow{background-color: #EF9B28 !important; color:#ffffff;}
+
+  .form-bg .form-control:focus{ box-shadow: none !important; border-color: #ef9b28;}
+
+  .form-bg span {border-color:#EF9B28 !important ;}
+  .form-bg i{cursor: pointer;  z-index: 555;}

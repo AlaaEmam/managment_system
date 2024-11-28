@@ -32,8 +32,8 @@ function App() {
       element: <AuthLayout />,
       errorElement: <NotFound />,
       children: [
-        { index: true, element: <Login  /> },
-        { path: 'login', element: <Login /> },
+        { index: true, element: <Login/> },
+        { path: 'login', element: <Login/> },
         { path: 'register', element: <Registration /> },
         { path: 'verifyAccount', element: <VerifyAccount /> },
         { path: 'forget-Pass', element: <ForgetPassword /> },
@@ -56,6 +56,7 @@ function App() {
         { path: 'projectsData', element: <ProjectsData/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },
+
       ]
     }
   ])
@@ -63,8 +64,9 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
       <RouterProvider router={Routes}></RouterProvider>
+      <ToastContainer />
+
     </>
   )
 }

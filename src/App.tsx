@@ -20,6 +20,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import VerifyAccount from './modules/Auth/components/VerifyAccount/VerifyAccount'
 import { ToastContainer } from 'react-toastify'
 import { AuthContext } from './context/AuthContext'
+import Header from './modules/Shared/components/Header/Header'
 
 function App() {
   const  LoginData  = useContext(AuthContext);
@@ -37,6 +38,8 @@ function App() {
         { path: 'verifyAccount', element: <VerifyAccount /> },
         { path: 'forget-Pass', element: <ForgetPassword /> },
         { path: 'reset-pass', element: <ResetPass /> },
+        { path: 'header', element: <Header/> },
+
       ]
     },
     {

@@ -1,0 +1,221 @@
+.primary-color{
+  background-color: #EF9B28 ;
+}
+
+.floating-form  {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    background-color: #314a59d4;
+    width: 1025px;
+    margin-inline: -76px;
+    height: 80vh;
+    height: 70vh;
+    padding: 15px 55px;
+    border-radius: 15px ;
+}
+.logo-container{
+  text-align: center;
+}
+.img-fluid{
+  max-width: 100%;
+  height: auto;
+  width: 31%;
+}
+.auth-text-header{
+  line-height: 0.1;
+  color: #EF9B28 ;
+  position: relative;
+  font-weight: 700;
+}
+
+.auth-text-header::first-letter {
+  display: inline-block; 
+  border-bottom: 3px solid; 
+
+}
+
+
+  @media (min-width: 1200px) {
+    .form-inputs .username {
+      order: 1; /* Username input first */
+    }
+  
+    .form-inputs .email {
+      order: 2; /* Email input second */
+    }
+  
+    .form-inputs .phone {
+      order: 3; /* Phone number input third */
+    }
+  
+    .form-inputs .password {
+      order: 4; /* New password input fourth */
+    }
+  
+    .form-inputs .confirm-password {
+      order: 5; /* Confirm password input fifth */
+    }
+  
+    .form-inputs .country {
+      order: 6; /* Country input last */
+    }
+  }
+.profile-image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-inline: auto;
+  background-color: #f1f1f1;
+  margin-block: 25px;
+}
+.btn:hover {
+  background-color: #ffb044;
+  border-color: #fe9300;
+}
+
+.profile-image .input-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 4px;
+  top: 31%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+
+.profile-image .profile-image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-image .icon-profile {
+  position: absolute;
+  top: 65px;
+  left: 65px;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #315951;
+  color: #EF9B28;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 16px;
+}
+
+/****  floating-Lable style start ****/
+.floating-label {
+  position: relative;
+  margin-bottom: 20px;
+}
+.floating-input {
+  font-size: 14px;
+  padding: 4px 4px;
+  display: block;
+  width: 100%;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+.floating-input:focus{
+  outline: none;
+  border-bottom: 2px solid #EF9B28;
+}
+
+label {
+  color: #999;
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 5px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.floating-input:focus ~ label,
+.floating-input:not(:placeholder-shown) ~ label {
+  top: -18px;
+  font-size: 14px;
+  color: #EF9B28;
+}
+
+
+/* active state */
+.floating-input:focus ~ .bar:before,
+.floating-input:focus ~ .bar:after {
+  width: 50%;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.floating-textarea {
+  min-height: 30px;
+  max-height: 260px;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* highlighter */
+.highlight {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  top: 15%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+.floating-input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* animation */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #EF9B28;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #EF9B28;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #EF9B28;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}

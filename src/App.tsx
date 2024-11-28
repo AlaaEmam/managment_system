@@ -2,6 +2,10 @@ import { useContext, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import AuthLayout from './modules/Shared/components/AuthLayout/AuthLayout'
 import NotFound from './modules/Shared/components/NotFound/NotFound'
 import Login from './modules/Auth/components/Login/Login'
@@ -34,7 +38,7 @@ function App() {
         { index: true, element: <Login  /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Registration /> },
-        { path: 'verifyAccount', element: <VerifyAccount /> },
+        { path: 'verification', element: <VerifyAccount /> },
         { path: 'forget-Pass', element: <ForgetPassword /> },
         { path: 'reset-pass', element: <ResetPass /> },
       ]

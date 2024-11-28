@@ -15,3 +15,12 @@ export const EmailValidation = {
       message: "At least 6 characters: UPPER/lowercase, numbers and special characters",
     },
   };
+
+  export const PhoneNumberValidation ={
+
+      pattern: {
+        value: /^01[0-9]{9}$/,
+        message: 'Phone number must start with 01 and contain 11 digits.'
+      }
+
+  }

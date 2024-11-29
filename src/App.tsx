@@ -42,6 +42,7 @@ function App() {
 
       ]
     },
+
     {
       path: 'dashboard',
       element:<ProtectedRoute loginData={LoginData}>  {/* تمرير loginData هنا */}

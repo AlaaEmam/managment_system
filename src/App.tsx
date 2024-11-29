@@ -33,15 +33,15 @@ function App() {
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Registration /> },
         { path: 'verifyAccount', element: <VerifyAccount /> },
-        { path: 'forget-Pass', element: <ForgetPassword /> },
-        { path: 'reset-pass', element: <ResetPass /> },
+        { path: 'forget-Password', element: <ForgetPassword /> },
+        { path: 'reset-password', element: <ResetPass /> },
       ]
     },
     {
       path: 'dashboard',
       element:<ProtectedRoute loginData={LoginData}>  {/* تمرير loginData هنا */}
 
-        <MasterLayout />
+        <MasterLayout loginData={LoginData}/>
         </ProtectedRoute> ,
       errorElement: <NotFound />,
       children: [

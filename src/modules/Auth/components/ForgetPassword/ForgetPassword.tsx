@@ -17,7 +17,7 @@ export default function ForgetPassword() {
   const onSubmit:SubmitHandler<FormData>= async (data)=>{
     try{
       let response=await axiosInstance.post<ApiResponse>(AUTHURLS.forgetUrl, data);
-      navigate('/reset-pass', {state: data.email});
+      navigate('/reset-password', {state: data.email});
       // console.log(response)
 
     }catch(error){

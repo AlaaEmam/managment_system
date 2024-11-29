@@ -1,7 +1,5 @@
 import { useContext, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
 import AuthLayout from './modules/Shared/components/AuthLayout/AuthLayout'
 import NotFound from './modules/Shared/components/NotFound/NotFound'
 import Login from './modules/Auth/components/Login/Login'

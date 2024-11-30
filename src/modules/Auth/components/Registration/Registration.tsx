@@ -9,8 +9,6 @@ import axios from 'axios';
 import { AUTHURLS, requestHeader } from './../../../../constants/URLS';
 import { EmailValidation, PasswordValidation, PhoneNumberValidation } from './../../../../constants/validations';
 
- const defaultAvatar = "../../../../assets/defaultavatar.jpg"; // Ensure this path is correct
-
 interface FormData {
   userName: string;
   email: string;
@@ -72,7 +70,7 @@ export default function Registration() {
                 onSubmit={handleSubmit(onSubmit)}
                 className="floating-form col-lg-12 col-sm-12"
               >
-                <div className="title mt-4">
+                <div className="mt-4">
                   <p className="fw-light fs-7 text-white">
                     Welcome Back to Project Management System PMS.
                   </p>
@@ -154,7 +152,7 @@ export default function Registration() {
                   {/* Second Column */}
                   <div className="col-md-12 col-lg-6">
                     {/* Email */}
-                    <div className="floating-label    rounded-2 email">
+                    <div className="floating-label">
                     <span className="highlight"></span>
                       <input
                         type="text"

@@ -12,7 +12,7 @@ export default function Navbar({loginData}:Props) {
     <>
       <div className="d-flex justify-content-between align-items-center">
         <div>
-          <img className='dash-logo ' src={dashLogo} alt="" />
+          <img className='dash-logo' src={dashLogo} alt="" />
         </div>
 
         <div>

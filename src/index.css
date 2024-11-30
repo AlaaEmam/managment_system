@@ -64,8 +64,8 @@ button:focus-visible {
   }
 }
 .dash-logo{
-  width: 160px;
-  height: 120px;
+  width: 180px;
+  height: 140px;
 }
 
 
@@ -88,7 +88,7 @@ button:focus-visible {
   margin-top: 5rem;
   border-radius: 2rem;
   background-color: rgba(239, 155, 40, 1);
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .btn-yellow:hover{

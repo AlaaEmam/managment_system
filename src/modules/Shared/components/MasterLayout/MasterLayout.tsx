@@ -5,13 +5,14 @@ interface MasterLayoutProps {
   loginData: any; 
 }
 export default function MasterLayout({loginData}:MasterLayoutProps):any {
-  return (
+  return (<>
+    <Navbar loginData={loginData}/>
     <div className='d-flex'>
       <div className="w-100">
-        <Navbar loginData={loginData}/>
         <Outlet/>
       
       </div>
     </div>
+  </>
   )
 }

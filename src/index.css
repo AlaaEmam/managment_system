@@ -21,24 +21,23 @@ a {
 a:hover {
   color: #535bf2;
 }
-
-body {
+/* body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  } */
+  
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+  
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -46,9 +45,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -65,4 +62,66 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+.dash-logo{
+  width: 180px;
+  height: 180px;
+}
+
+
+.project-logo{
+  width:200px;
+  height: 100px;
+  margin-left: 10rem;
+}
+.avatar-img{
+  width: 80px;
+  height: 80px;
+}
+
+
+/* Auth  */
+.auth-background{
+  background-color: rgba(14, 56, 47, 1);
+}
+.btn-yellow{
+  margin-top: 5rem;
+  border-radius: 2rem;
+  background-color: rgba(239, 155, 40, 1);
+  transition: all 0.5s;
+}
+
+.btn-yellow:hover{
+  background-color: rgb(140, 82, 2);
+  color: rgb(229, 229, 229);
+}
+
+
+.forget-password{
+  font-size: 18px;
+  color:white;
+  background-color: rgba(49, 89, 81, 0.5);
+}
+
+.forget-password h3{
+  font-weight: bold;
+  color: rgba(239, 155, 40, 1);
+}
+
+.forget-password input{
+  border: none;
+  border-bottom: solid 0.5px white;
+  background-color: rgba(49, 89, 81, 0.5);
+}
+.forget-password input::placeholder {
+  color: white;
+}
+.eye-btn{
+  color: white;
+  border: none;
+  background-color: rgba(49, 89, 81, 0.5);
+}
+.forget-password label{
+  color: rgba(239, 155, 40, 1);
+  margin-top: 1rem;
 }

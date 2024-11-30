@@ -1,4 +1,3 @@
-import React from 'react'
 import Logo from '../../../../assets/logo.png';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';

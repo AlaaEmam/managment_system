@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react'
-
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 import AuthLayout from './modules/Shared/components/AuthLayout/AuthLayout'
 import NotFound from './modules/Shared/components/NotFound/NotFound'
 import Login from './modules/Auth/components/Login/Login'
@@ -33,15 +35,15 @@ function App() {
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Registration /> },
         { path: 'verifyAccount', element: <VerifyAccount /> },
-        { path: 'forget-Password', element: <ForgetPassword /> },
-        { path: 'reset-password', element: <ResetPass /> },
+        { path: 'forget-Pass', element: <ForgetPassword /> },
+        { path: 'reset-pass', element: <ResetPass /> },
       ]
     },
     {
       path: 'dashboard',
       element:<ProtectedRoute loginData={LoginData}>  {/* تمرير loginData هنا */}
 
-        <MasterLayout loginData={LoginData}/>
+        <MasterLayout />
         </ProtectedRoute> ,
       errorElement: <NotFound />,
       children: [

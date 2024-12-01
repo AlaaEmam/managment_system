@@ -2,9 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import styles from "./ChangePassword.module.css";
-import { AUTHURLS, requestHeader } from "../../../../constants/URLS";
+import { AUTHURLS, axiosInstance }  from "../../../../constants/URLS";
 import { PasswordValidation } from "../../../../constants/validations";
 
 // Define the form data type
@@ -32,13 +31,9 @@ const ChangePassword: React.FC = () => {
         return;
       }
 
-      await axios.put(AUTHURLS.changePassUrl,
+      await axiosInstance.put<{message:string}>(AUTHURLS.changePassUrl,
         data,
-        {
-          headers: requestHeader
-           ,
-        }
-      );
+     );
 
       toast.success("Password changed successfully!");
       navigate("/dashboard");

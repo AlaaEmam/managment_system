@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../../../context/AuthContext";
 import { AxiosResponse } from "axios";
 import { AUTHURLS } from "../../../../constants/URLS";
+import { Outlet } from 'react-router-dom'
 import {
   EmailValidation,
   PasswordValidation,

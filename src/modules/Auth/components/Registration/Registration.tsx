@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { AUTHURLS, requestHeader } from './../../../../constants/URLS';
+import { AUTHURLS } from './../../../../constants/URLS';
 import { EmailValidation, PasswordValidation, PhoneNumberValidation } from './../../../../constants/validations';
 import PasswordInput from './../PasswordInput/PasswordInput';
 
@@ -36,9 +36,7 @@ export default function Registration() {
     try {
       const response = await axios.post<{ message: string }>(
         AUTHURLS.registerUrl,
-        data,
-        { headers: requestHeader }
-      );
+        data);
       console.log(response.data.message);
       navigate('/verification');
       toast.success(response.data.message);

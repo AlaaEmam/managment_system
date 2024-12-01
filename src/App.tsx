@@ -2,6 +2,8 @@ import { useContext, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css'
 
 import AuthLayout from './modules/Shared/components/AuthLayout/AuthLayout'
@@ -52,7 +54,7 @@ function App() {
       path: 'dashboard',
       element:<ProtectedRoute loginData={LoginData}>  {/* تمرير loginData هنا */}
 
-        <MasterLayout loginData={LoginData}/>
+        <MasterLayout/>
         </ProtectedRoute> ,
       errorElement: <NotFound />,
       children: [

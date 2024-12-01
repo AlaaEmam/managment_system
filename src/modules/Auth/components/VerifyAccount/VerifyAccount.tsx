@@ -2,7 +2,7 @@ import Logo from '../../../../assets/logo.png';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AUTHURLS, requestHeader } from './../../../../constants/URLS';
+import { AUTHURLS } from './../../../../constants/URLS';
 import { EmailValidation } from '../../../../constants/validations';
 import axios from 'axios';
 
@@ -25,9 +25,7 @@ export default function VerifyAccount() {
     try {
       const response = await axios.post<{ message: string }>(
         AUTHURLS.verifyAccountUrl,
-        data,
-        { headers: requestHeader }
-      );
+        data);
       
       // Safely access the message
       const message = response.data?.message;

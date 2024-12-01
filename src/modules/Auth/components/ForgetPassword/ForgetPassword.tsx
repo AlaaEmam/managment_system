@@ -34,7 +34,8 @@ export default function ForgetPassword() {
     // console.log(data);
   }
   return (
-    <div className='forget-password px-5 py-5 rounded-4'>
+    <div className='bg-container forget-password px-5 py-5 rounded-4'>
+  
       <div className='title'>  
         <span>welcome to PMS</span>
         <h3>Forget Password</h3>

@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./ChangePassword.module.css";
+import { AUTHURLS, requestHeader } from "../../../../constants/URLS";
+import { PasswordValidation } from "../../../../constants/validations";
 
 // Define the form data type
 interface ChangePasswordFormData {
@@ -30,14 +32,11 @@ const ChangePassword: React.FC = () => {
         return;
       }
 
-      await axios.put(
-        "https://upskilling-egypt.com:3003/api/v1/Users/ChangePassword",
+      await axios.put(AUTHURLS.changePassUrl,
         data,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+          headers: requestHeader
+           ,
         }
       );
 
@@ -104,7 +103,7 @@ const ChangePassword: React.FC = () => {
                     type="password"
                     placeholder="Confirm your New Password"
                     className="form-control border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"
-                    {...register("confirmNewPassword", { required: "Please confirm your New Password" })}
+                    {...register("confirmNewPassword", PasswordValidation)}
                   />
                   {errors.confirmNewPassword && (
                     <div className="text-danger fs-6">

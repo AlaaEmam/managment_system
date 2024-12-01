@@ -1,18 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../assets/PMS.svg";
-import { useForm } from "react-hook-form";
+import { Message, SubmitHandler, useForm } from "react-hook-form";
 import { axiosInstance, user } from "../../../../services/urlApi";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../../context/AuthContext";
+import { AxiosResponse } from "axios";
+import { AUTHURLS } from "../../../../constants/URLS";
+import {
+  EmailValidation,
+  PasswordValidation,
+} from "../../../../constants/validations";
+
+interface loginDataInterface {
+  email: string;
+  password: string;
+}
 
 export default function Login() {
-  let { saveLoginData } = useContext(AuthContext);
-
-  interface loginData {
-    email: string;
-    password: string;
-  }
+  //  const { saveLoginData}   = useContext(AuthContext);
 
   const [isPaswordVisble, setIsPaswordVisble] = useState(false);
 
@@ -20,26 +26,27 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors, isSubmitting },
-  } = useForm();
+    formState: { errors ,isSubmitting },
+  } = useForm<loginDataInterface>();
 
-  const onSubmit = async (data: loginData) => {
+  const onSubmit: SubmitHandler<loginDataInterface> = async (data) => {
     try {
-      const response = await axiosInstance.post(user.login, data);
-      console.log(response);
+      const response = await axiosInstance.post<{ message: string }>(
+        AUTHURLS.loginUrl,
+        data
+      );
+      console.log("res", response);
       toast.success("login succeed");
       navigate("/Dashboard");
-      localStorage.setItem("token", response.data.token);
-      saveLoginData();
-    } catch (error) {
-      toast.error(error.response.data.message);
+      // localStorage.setItem("token", response?.data?.token);
+    } catch (error: any) {
+      toast.error(error.response?.data.message);
     }
   };
 
-  useEffect(() => {
-    toast.play();
-  }, []);
+  // useEffect(() => {
+  //   toast.play();
+  // }, []);
 
   return (
     <>
@@ -59,9 +66,7 @@ export default function Login() {
                       type="email"
                       placeholder="Enter your E-mail"
                       className="form-control  border-top-0 border-end-0 border-start-0  rounded-0 bg-transparent  text-white"
-                      {...register("email", {
-                        required: "Email Address is required",
-                      })}
+                      {...register("email", EmailValidation)}
                     />
                   </div>
                   <div>
@@ -79,9 +84,7 @@ export default function Login() {
                           type={isPaswordVisble ? "text" : "password"}
                           placeholder="Enter your Password"
                           className="form-control  border-top-0 border-end-0 border-start-0  rounded-0 bg-transparent  text-white"
-                          {...register("password", {
-                            required: "password Address is required",
-                          })}
+                          {...register("password", PasswordValidation)}
                         />
                         <button
                           onClick={() => {
@@ -108,9 +111,9 @@ export default function Login() {
                     </div>
                     <div>
                       {errors.password && (
-                        <pan className="text-danger">
+                        <span className="text-danger">
                           {errors.password.message}
-                        </pan>
+                        </span>
                       )}
                     </div>
                   </div>

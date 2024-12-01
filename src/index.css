@@ -1,23 +1,54 @@
+:root {
+    ---yellow_clr: rgba(239, 155, 40, 1);
+    --zaty_clr: rgba(49, 89, 81, 0.9);
+    --White_clr: #ffffff
+}
+
+
+.tst {
+    color: var(--primary-color)
+}
+
+
+
+
+
+
 .login {
     background-image: url('assets/bg.svg');
-    background-size: covecontainr;
+    background-size: cover;
     background-position: center center;
 }
 
-.form-bg{background: rgba(49, 89, 81, 0.9);
+.form-bg {
+    background: var(--zaty_clr);
 }
 
 .form-bg ::placeholder {
-    color: #ffffff !important;
-    opacity: 1; /* Firefox */
-  }
+    color: var(--White_clr) !important;
+    opacity: 1;
+    /* Firefox */
+}
 
-  .form-bg label{ color: rgba(239, 155, 40, 1);
-  }
+.form-bg label {
+    color: var(---yellow_clr);
+}
 
-  .btn-yellow{background-color: #EF9B28 !important; color:#ffffff;}
+.btn-yellow {
+    background-color: var(---yellow_clr) !important;
+    color: var(--White_clr);
+}
 
-  .form-bg .form-control:focus{ box-shadow: none !important; border-color: #ef9b28;}
+.form-bg .form-control:focus {
+    box-shadow: none !important;
+    border-color: var(---yellow_clr);
+}
 
-  .form-bg span {border-color:#EF9B28 !important ;}
-  .form-bg i{cursor: pointer;  z-index: 555;}
+.form-bg span {
+    border-color: var(---yellow_clr) !important;
+}
+
+.form-bg i {
+    cursor: pointer;
+    z-index: 555;
+}

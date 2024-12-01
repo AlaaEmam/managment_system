@@ -1,16 +1,17 @@
 .primary-color{
-  background-color: #EF9B28 ;
+  background-color: var(--primary-color) ;
 }
 
-.floating-form  {
+.floating-form {
   display: flex;
   flex-direction: column;
-  background-color: #314a59d4;
+  background-color: var(--background-color);
   margin: auto;
-  max-width: 1400px;
-  padding: 15px 55px;
-  border-radius: 15px;
+  max-width: 87rem;
+  padding: .9375rem 3.4375rem;
+  border-radius: .9375rem;
 }
+
 .logo-container{
   text-align: center;
 }
@@ -19,67 +20,46 @@
   height: auto;
   width: 31%;
 }
-.auth-text-header{
-  line-height: 0.1;
-  color: #EF9B28 ;
+.auth-text-header {
+  line-height: 0.8;
+  color: var(--primary-color);
   position: relative;
   font-weight: 700;
+  font-size: 1.75rem; /* 28px */
 }
 
 .auth-text-header::first-letter {
   display: inline-block; 
-  border-bottom: 3px solid; 
+  border-bottom: .1875rem solid; 
 
 }
 
 
-  @media (min-width: 1200px) {
-    .form-inputs .username {
-      order: 1; /* Username input first */
-    }
-  
-    .form-inputs .email {
-      order: 2; /* Email input second */
-    }
-  
-    .form-inputs .phone {
-      order: 3; /* Phone number input third */
-    }
-  
-    .form-inputs .password {
-      order: 4; /* New password input fourth */
-    }
-  
-    .form-inputs .confirm-password {
-      order: 5; /* Confirm password input fifth */
-    }
-  
-    .form-inputs .country {
-      order: 6; /* Country input last */
-    }
-  }
+
+
+
 .profile-image {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   border-radius: 50%;
   margin-inline: auto;
   background-color: #f1f1f1;
-  margin-block: 25px;
+  margin-block: 1.5625rem;
 }
 .btn {
   width: 100%;
 }
-.btn:hover {
-  background-color: #ffb044;
-  border-color: #fe9300;
-}
 
+.btn:hover {
+  background-color: var(--hover-background-color);
+  border-color: var(--hover-border-color);
+}
 .profile-image .input-img {
   position: absolute;
   width: 100%;
   height: 100%;
-  left: 4px;
+  left: .25rem;
   top: 31%;
   opacity: 0;
   cursor: pointer;
@@ -96,8 +76,8 @@
 
 .profile-image .icon-profile {
   position: absolute;
-  top: 65px;
-  left: 65px;
+  top: 4.0625rem;
+  left: 4.0625rem;
   width: 40%;
   height: 40%;
   border-radius: 50%;
@@ -108,16 +88,16 @@
   color: #EF9B28;
   cursor: pointer;
   z-index: 2;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
-/****  floating-Lable style start ****/
+/****  floating-label style start ****/
 .floating-label {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 }
 .floating-input {
-  font-size: 14px;
+  font-size: 0.875rem; /* 14px */
   padding: 4px 4px;
   display: block;
   width: 100%;
@@ -130,17 +110,17 @@
 
 .floating-input:focus{
   outline: none;
-  border-bottom: 2px solid #EF9B28;
+  border-bottom: .125rem solid #EF9B28;
 }
 
 label {
-  color: #999;
-  font-size: 14px;
+  color: var(--text-color);
+  font-size: 0.875rem; /* 14px */
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  left: 5px;
-  top: 5px;
+  left: .3125rem;
+  top: .3125rem;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -148,8 +128,8 @@ label {
 
 .floating-input:focus ~ label,
 .floating-input:not(:placeholder-shown) ~ label {
-  top: -18px;
-  font-size: 14px;
+  top: -1.125rem;
+  font-size: .875rem;
   color: #EF9B28;
 }
 
@@ -169,8 +149,8 @@ label {
 }
 
 .floating-textarea {
-  min-height: 30px;
-  max-height: 260px;
+  min-height: 1.875rem;
+  max-height: 16.25rem;
   overflow: hidden;
   overflow-x: hidden;
 }
@@ -220,4 +200,26 @@ label {
     width: 0;
     background: transparent;
   }
+}
+
+
+.floating-label {
+  position: relative; /* Allow absolute positioning of icon */
+}
+
+.floating-input {
+  width: 100%;
+  padding-right: 40px; /* Add padding to avoid text overlapping with the icon */
+}
+
+.icon-showpass {
+  position: absolute;
+  right: 10px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%); /* Center the icon vertically */
+  pointer-events: none; /* Prevent clicks from being captured by the icon */
+}
+
+.icon-showpass:hover {
+  cursor: pointer; /* Show pointer on hover */
 }

@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
-import dashLogo from "../../../../assets/images/dash-logo.png"
-import avatar from "../../../../assets/images/avatar.png"
+import React from 'react'
+
 interface Props {
   loginData:any;
 }
-
 // I changed this.
 
 export default function Navbar({loginData}:Props) {
- 
-  
-  return (
+ return (
     <>
       <div className="d-flex justify-content-between align-items-center">
         <div>

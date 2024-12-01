@@ -1,4 +1,5 @@
 
+
 import Navbar from '../Navbar/Navbar'
 import { Outlet } from 'react-router-dom';
 interface MasterLayoutProps {
@@ -15,5 +16,6 @@ export default function MasterLayout({loginData}:MasterLayoutProps):any {
       </div>
     </div>
   </>
+
   )
 }

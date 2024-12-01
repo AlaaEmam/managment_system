@@ -1,25 +1,7 @@
-import React, { useState } from 'react'
-import dashLogo from "../../../../assets/images/dash-logo.png"
-import avatar from "../../../../assets/images/avatar.png"
-interface Props {
-  loginData:any;
-}
+import React from 'react'
 
-export default function Navbar({loginData}:Props) {
- 
-  
+export default function Navbar() {
   return (
-    <>
-      <div className="d-flex justify-content-between align-items-center">
-        <div>
-          <img className='dash-logo' src={dashLogo} alt="" />
-        </div>
-
-        <div>
-          <img className="avatar-img mx-3 avatar-img" src={avatar} alt="user-img" />
-          <span>{loginData?.userName}</span>
-        </div>
-      </div> 
-    </>
+    <div>Navbar</div>
   )
 }

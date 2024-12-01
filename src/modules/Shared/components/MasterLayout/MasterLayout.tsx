@@ -15,5 +15,5 @@ export default function MasterLayout({loginData}:MasterLayoutProps):any {
       </div>
     </div>
   </>
-  )
-}
+)
+  }

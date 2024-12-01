@@ -28,11 +28,19 @@ export default function VerifyAccount() {
         data,
         { headers: requestHeader }
       );
-      console.log(response.data.message);
-      navigate('/login');
-      toast.success(response.data.message);
+      
+      // Safely access the message
+      const message = response.data?.message;
+      if (message) {
+        console.log(message);
+        navigate('/login');
+        toast.success(message);
+      } else {
+        toast.error('Unexpected response structure');
+      }
     } catch (error: any) {
-      toast.error(error.response?.data.message || 'An error occurred');
+      // Use optional chaining to handle possible undefined properties
+      toast.error(error.response?.data?.message || 'An error occurred');
     }
   };
   return (

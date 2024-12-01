@@ -3,6 +3,16 @@
   margin: 0;
   font-size: "Inter", sans-serif;
 }
+:root {
+  --primary-color: #EF9B28;
+  --background-color: #314a59d4;
+  --text-color: #999;
+  --hover-background-color: #ffb044;
+  --hover-border-color: #fe9300;
+  --dark-background-color: #2c3e50; /* Example for dark mode */
+  --dark-text-color: #ecf0f1; /* Example for dark mode */
+}
+  
 .bg-container {
   height: 100vh;
   width: 100vw;

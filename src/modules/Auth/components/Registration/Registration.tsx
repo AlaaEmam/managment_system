@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { AUTHURLS, requestHeader } from './../../../../constants/URLS';
 import { EmailValidation, PasswordValidation, PhoneNumberValidation } from './../../../../constants/validations';
+import PasswordInput from './../PasswordInput/PasswordInput';
 
 interface FormData {
   userName: string;
@@ -20,14 +21,16 @@ interface FormData {
 
 export default function Registration() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [profileImage, setProfileImage] = useState('');
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm<FormData>();
-  const [showPassword, setShowPassword] = useState(false);
-  const [profileImage, setProfileImage] = useState('');
+
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
@@ -48,6 +51,10 @@ export default function Registration() {
     setShowPassword((prev) => !prev);
   };
 
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prev) => !prev);
+  };
+
   const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -55,7 +62,6 @@ export default function Registration() {
     }
   };
 
-  const password = watch('password'); // To validate confirmPassword against password
 
   return (
     <>
@@ -95,111 +101,92 @@ export default function Registration() {
 
                 <div className="row mb-3 g-3">
                   {/* First Column */}
-                  <div className="col-md-12 col-lg-6">
+                  <div className="col-md-12 col-lg-6 ">
 
                     {/* Username */}
-                    <div className="floating-label rounded-2 username">
+                    <div className="floating-label ">
                       <span className="highlight"></span>
                       <input
                         type="text"
-                        className="floating-input"
+                        className="floating-input "
                         {...register('userName', {
                           required: 'Your Name is required. Please enter your Name.',
                           })}
                         placeholder=""
                       />
                       <label>Your Name</label>
+                      {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
                     </div>
-                    {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
 
-                    {/* Country */}
-                    <div className="floating-label    rounded-2 country">
+                  {/* Email */}
+                  <div className="floating-label email">
                     <span className="highlight"></span>
                       <input
                         type="text"
+                        className="floating-input  "
+                        {...register('email', EmailValidation)}
+                       placeholder=""
+                      />
+                      <label>E-mail</label>
+                      {errors.email && <span className="text-danger">{errors.email.message}</span>}
+                    </div>
+
+                     {/* Phone Number */}
+                     <div className="floating-label  phone">
+                    <span className="highlight"></span>
+                      <input
+                        type="tel"
                         className="floating-input "
+                        {...register('phoneNumber', PhoneNumberValidation)}
+                       placeholder=""
+                      />
+                      <label>Phone Number</label>
+                      {errors.phoneNumber && <span className="text-danger">{errors.phoneNumber.message}</span>}
+                    </div>
+
+                  </div>
+
+                  {/* Second Column */}
+                  <div className="col-md-12 col-lg-6">
+           
+                  {/* Country */}
+                  <div className="floating-label country">
+                    <span className="highlight"></span>
+                      <input
+                        type="text"
+                        className="floating-input  "
                         {...register('country', {
                           required: 'Country is required.',
                         })}
                          placeholder=""
                       />
                       <label>Country</label>
-                    </div>
-                    {errors.country && <span className="text-danger">{errors.country.message}</span>}
+                      {errors.country && <span className="text-danger">{errors.country.message}</span>}
 
-                    {/* Password */}
-                    <div className="floating-label    rounded-2 password">
-                    <span className="highlight"></span>
-                    
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        className="floating-input "
-                        {...register('password', PasswordValidation)}
-                       placeholder=""
-                      />
-                      <label>Password</label>
-                      {/* <span
-                        className="icon-showpass"
-                        onClick={togglePasswordVisibility}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        {showPassword ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
-                      </span> */}
                     </div>
-                    {errors.password && <span className="text-danger">{errors.password.message}</span>}
-                  </div>
 
-                  {/* Second Column */}
-                  <div className="col-md-12 col-lg-6">
-                    {/* Email */}
-                    <div className="floating-label">
-                    <span className="highlight"></span>
-                      <input
-                        type="text"
-                        className="floating-input "
-                        {...register('email', EmailValidation)}
-                       placeholder=""
-                      />
-                      <label>E-mail</label>
-                    </div>
-                    {errors.email && <span className="text-danger">{errors.email.message}</span>}
+                  {/* Password Input */}
+                  <PasswordInput
+                    label="Password"
+                    register={register}
+                    name="password"
+                    errors={errors.password}
+                    showPassword={showPassword}
+                    togglePasswordVisibility={togglePasswordVisibility}
+                    validationRules={PasswordValidation} 
+                  />
 
-                    {/* Phone Number */}
-                    <div className="floating-label    rounded-2 phone">
-                    <span className="highlight"></span>
-                      <input
-                        type="text"
-                        className="floating-input "
-                        {...register('phoneNumber', PhoneNumberValidation)}
-                       placeholder=""
-                      />
-                      <label>Phone Number</label>
-                    </div>
-                    {errors.phoneNumber && <span className="text-danger">{errors.phoneNumber.message}</span>}
+                  {/* Confirm Password Input */}
+                    <PasswordInput
+                      label="Confirm Password"
+                      register={register}
+                      name="confirmPassword"
+                      errors={errors.confirmPassword}
+                      showPassword={showPassword}
+                      togglePasswordVisibility={toggleConfirmPasswordVisibility}
+                      validationRules= {PasswordValidation}
+                    />
 
-                    {/* Confirm Password */}
-                    <div className="floating-label    rounded-2 confirm-password">
-                    <span className="highlight"></span>
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        className="floating-input "
-                        {...register('confirmPassword', {
-                          required: 'Confirm Password is required.',
-                          validate: (value) =>
-                            value === password || 'Passwords do not match.',
-                        })}
-                         placeholder=""
-                      />
-                       <label>Confirm Password</label>
-                      {/* <span
-                        className="icon-showpass"
-                        onClick={togglePasswordVisibility}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        {showPassword ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
-                      </span> */}
-                    </div>
-                    {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword.message}</span>}
                   </div>
                 </div>
                 <button className="btn primary-color w-100 p-2 mt-4 mb-2 rounded-5">Register</button>

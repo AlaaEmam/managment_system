@@ -5,6 +5,8 @@ interface Props {
   loginData:any;
 }
 
+// I changed this.
+
 export default function Navbar({loginData}:Props) {
  
   

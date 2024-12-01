@@ -1,4 +1,4 @@
-
+import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Outlet } from 'react-router-dom';
 interface MasterLayoutProps {
@@ -9,7 +9,6 @@ export default function MasterLayout({loginData}:MasterLayoutProps):any {
     <Navbar loginData={loginData}/>
     <div className='d-flex'>
       <div className="w-100">
-        
         <Outlet/>
       
       </div>

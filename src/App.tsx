@@ -1,4 +1,8 @@
 import { useContext, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import './index.css'
 
 import AuthLayout from './modules/Shared/components/AuthLayout/AuthLayout'
 import NotFound from './modules/Shared/components/NotFound/NotFound'
@@ -33,9 +37,15 @@ function App() {
         { index: true, element: <Login  /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Registration /> },
+
         { path: 'verifyAccount', element: <VerifyAccount /> },
         { path: 'forget-Password', element: <ForgetPassword /> },
         { path: 'reset-password', element: <ResetPass /> },
+
+        { path: 'verification', element: <VerifyAccount /> },
+        { path: 'forget-Pass', element: <ForgetPassword /> },
+        { path: 'reset-pass', element: <ResetPass /> },
+
       ]
     },
     {

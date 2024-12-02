@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ChangePassword.module.css";
 import { AUTHURLS, axiosInstance }  from "../../../../constants/URLS";
 import { PasswordValidation } from "../../../../constants/validations";
+import Logo from '../../../../assets/logo.png';
 
 // Define the form data type
 interface ChangePasswordFormData {
@@ -47,26 +48,31 @@ const ChangePassword: React.FC = () => {
   };
 
   return (
-    <div className={`container-fluid ${styles.changePasswordContainer}`}>
-      <div className="row justify-content-center align-items-center vh-100">
+   <div className="bg-container ">
+     <div className="container-fluid">
+      <div className="row justify-content-center align-items-center">
         <div className="col-lg-6 col-md-8 col-sm-10">
+        <div className="logo-container">
+                <img className="img-fluid my-3" src={Logo} alt="Logo" />
+          </div>
+
           <div className="pt-3 px-5">
-            <div className="form-bg rounded-2 p-5">
+            <div className="form-background  rounded-2 p-5">
               <form className="text-white" onSubmit={handleSubmit(onSubmit)}>
                 {/* Welcome Text */}
-                <div className="mb-4 text-start">
-                  <p className="mb-0">Welcome to PMS</p>
-                  <h1 className="text-warning">Change Password</h1>
+                <div className="mb-5">
+                  <p className="fw-light fs-7 text-white"> Welcome Back to Project Management System PMS.</p>
+                  <h4 className="auth-text-header">Change Password</h4>
                 </div>
 
-                {/* Old Password */}
+                {/* Old Password input */}
                 <div className="mb-3">
                   <label className="form-label mb-0">Old Password</label>
                   <input
                     type="password"
-                    placeholder="Enter your Old Password"
-                    className="form-control border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"
-                    {...register("oldPassword", { required: "Old Password is required" })}
+                    placeholder="Enter your old Password"
+                    className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"
+                    {...register("oldPassword", PasswordValidation)}
                   />
                   {errors.oldPassword && (
                     <div className="text-danger fs-6">
@@ -109,7 +115,7 @@ const ChangePassword: React.FC = () => {
 
                 <button
                   disabled={isSubmitting}
-                  className="btn btn-yellow rounded-5 mt-5 w-100 my-3"
+                  className="btn btn-color rounded-5 mt-5  w-100 my-3"
                 >
                   {isSubmitting ? "Changing Password..." : "Change Password"}
                 </button>
@@ -119,6 +125,7 @@ const ChangePassword: React.FC = () => {
         </div>
       </div>
     </div>
+   </div>
   );
 };
 

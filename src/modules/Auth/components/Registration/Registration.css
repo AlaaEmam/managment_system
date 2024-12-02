@@ -1,121 +1,29 @@
-.primary-color{
-  background-color: var(--primary-color) ;
-}
-
-.floating-form {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-color);
-  margin: auto;
-  max-width: 87rem;
-  padding: .9375rem 3.4375rem;
-  border-radius: .9375rem;
-}
-
-.logo-container{
-  text-align: center;
-}
-.img-fluid{
-  max-width: 100%;
-  height: auto;
-  width: 31%;
-}
-.auth-text-header {
-  line-height: 0.8;
-  color: var(--primary-color);
-  position: relative;
-  font-weight: 700;
-  font-size: 1.75rem; /* 28px */
-}
-
-.auth-text-header::first-letter {
-  display: inline-block; 
-  border-bottom: .1875rem solid; 
-
-}
-
-
-
-
-
-.profile-image {
-  position: relative;
-  width: 6.25rem;
-  height: 6.25rem;
-  border-radius: 50%;
-  margin-inline: auto;
-  background-color: #f1f1f1;
-  margin-block: 1.5625rem;
-}
-.btn {
-  width: 100%;
-}
-
-.btn:hover {
-  background-color: var(--hover-background-color);
-  border-color: var(--hover-border-color);
-}
-.profile-image .input-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: .25rem;
-  top: 31%;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 1;
-}
-
-
-.profile-image .profile-image-preview {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.profile-image .icon-profile {
-  position: absolute;
-  top: 4.0625rem;
-  left: 4.0625rem;
-  width: 40%;
-  height: 40%;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #315951;
-  color: #EF9B28;
-  cursor: pointer;
-  z-index: 2;
-  font-size: 1rem;
-}
-
-/****  floating-label style start ****/
 .floating-label {
   position: relative;
   margin-bottom: 2.5rem;
 }
 .floating-input {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; 
   padding: 4px 4px;
   display: block;
   width: 100%;
   height: 30px;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #757575;
+  border-bottom: 1px solid var(--gary-color);
   box-sizing: border-box;
+  color:  var(--primary-text-color);
+
 }
 
 .floating-input:focus{
   outline: none;
-  border-bottom: .125rem solid #EF9B28;
+  border-bottom: .125rem solid var(--primary-color);
 }
 
-label {
-  color: var(--text-color);
-  font-size: 0.875rem; /* 14px */
+.floating-form label {
+  color: var(--primary-color);
+  font-size: 0.875rem; 
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -133,27 +41,6 @@ label {
   color: #EF9B28;
 }
 
-
-/* active state */
-.floating-input:focus ~ .bar:before,
-.floating-input:focus ~ .bar:after {
-  width: 50%;
-}
-
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.floating-textarea {
-  min-height: 1.875rem;
-  max-height: 16.25rem;
-  overflow: hidden;
-  overflow-x: hidden;
-}
 
 /* highlighter */
 .highlight {
@@ -173,53 +60,10 @@ label {
   animation: inputHighlighter 0.3s ease;
 }
 
-/* animation */
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: #EF9B28;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@-moz-keyframes inputHighlighter {
-  from {
-    background: #EF9B28;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@keyframes inputHighlighter {
-  from {
-    background: #EF9B28;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-
-
-.floating-label {
-  position: relative; /* Allow absolute positioning of icon */
-}
-
-.floating-input {
-  width: 100%;
-  padding-right: 40px; /* Add padding to avoid text overlapping with the icon */
-}
 
 .icon-showpass {
-  position: absolute;
-  right: 10px; /* Adjust as needed */
-  top: 50%;
-  transform: translateY(-50%); /* Center the icon vertically */
-  pointer-events: none; /* Prevent clicks from being captured by the icon */
+  right: 10px; 
+  top: 15%;
+  transform: translateY(-50%); 
 }
 
-.icon-showpass:hover {
-  cursor: pointer; /* Show pointer on hover */
-}

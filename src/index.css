@@ -1,77 +1,21 @@
-:root {
-    ---yellow_clr: rgba(239, 155, 40, 1);
-    --zaty_clr: rgba(49, 89, 81, 0.9);
-    --White_clr: #ffffff
-}
-
-
-.tst {
-    color: var(--primary-color)
-}
-
-
-
-
-
-
-.login {
-    background-image: url('assets/bg.svg');
-    background-size: cover;
-    background-position: center center;
-}
-
-.form-bg {
-    background: var(--zaty_clr);
-}
-
-.form-bg ::placeholder {
-    color: var(--White_clr) !important;
-    opacity: 1;
-    /* Firefox */
-}
-
-.form-bg label {
-    color: var(---yellow_clr);
-}
-.login {
-  background-image: url('assets/bg.svg');
-  background-size: covecontainr;
-  background-position: center center;
-}
-
-.form-bg{background: rgba(49, 89, 81, 0.9);
-}
-
-.form-bg ::placeholder {
-  color: #ffffff !important;
-  opacity: 1; /* Firefox */
-}
-
-.form-bg label{ color: rgba(239, 155, 40, 1);
-}
-
-.btn-yellow{background-color: #EF9B28 !important; color:#ffffff;}
-
-.form-bg .form-control:focus{ box-shadow: none !important; border-color: #ef9b28;}
-
-.form-bg span {border-color:#EF9B28 !important ;}
-.form-bg i{cursor: pointer;z-index: 555;}
 *{
   padding: 0;
   margin: 0;
   font-size: "Inter", sans-serif;
-
 }
+
 :root {
   --primary-color: #EF9B28;
   --background-color: #314a59d4;
-  --text-color: #999;
-  --hover-background-color: #ffb044;
+  --primary-text-color: #ffffff;
+  --gary-color: #999;
+  --hover-background-color: #fdcc87;
   --hover-border-color: #fe9300;
   --dark-background-color: #2c3e50; /* Example for dark mode */
   --dark-text-color: #ecf0f1; /* Example for dark mode */
 }
 
+/* Auth Background  */
 .bg-container {
   height: 100vh;
   width: 100vw;
@@ -83,88 +27,105 @@
   align-items: center;
   overflow: hidden;
 }
+/* LOGO STYLE */
+.logo-container{
+  text-align: center;
+}
+.img-fluid{
+  max-width: 100%;
+  height: auto;
+  width: 31%;
+}
 
+/* HEADER TEXT STYLE */
+.auth-text-header {
+  line-height: 0.2;
+  color: var(--primary-color);
+  position: relative;
+  font-weight: 700;
+  font-size: 1.75rem; 
+  margin-bottom: 10px;
+}
+.auth-text-header::first-letter {
+  display: inline-block; 
+  border-bottom: .1875rem solid; 
 
-/* STYLE MAHMOUD */
+}
+/* FORM STYLE  */
 
-.dash-logo{
-  width: 180px;
-  height: 180px;
+.form-background {
+ background-color: var(--background-color);
+}
+
+.form-background ::placeholder {
+    color: var(--primary-text-color) !important;
+    opacity: 1;
+}
+
+.btn-color{
+  background-color: var(--primary-color) !important; 
+}
+
+.btn-color:hover {
+  background-color: var(--hover-background-color)  !important;
+  border-color: var(--hover-border-color);
+}
+.form-background .form-control:focus{ 
+  box-shadow: none !important; 
+  border-color: var(--primary-color) ;
+}
+
+.form-background span {
+  border-color: var(--primary-color)  !important ;
+}
+.form-background i{
+  cursor: pointer;
+  z-index: 555;
+}
+
+/* Add Profile in Register  */
+.profile-image {
+  position: relative;
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 50%;
+  margin-inline: auto;
+  background-color: #f1f1f1;
+  margin-block: 1.5625rem;
+}
+
+.profile-image .input-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: .25rem;
+  top: 31%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 
-.project-logo{
-  width:200px;
-  height: 100px;
-  margin-left: 10rem;
-}
-.avatar-img{
-  width: 80px;
-  height: 80px;
+.profile-image .profile-image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-
-/* Auth  */
-.auth-background{
-  background-color: rgba(14, 56, 47, 1);
-}
-.btn-yellow{
-  margin-top: 5rem;
-  border-radius: 2rem;
-  background-color: rgba(239, 155, 40, 1);
-  transition: all 0.5s;
-}
-
-.btn-yellow:hover{
-  background-color: rgb(140, 82, 2);
-  color: rgb(229, 229, 229);
-}
-
-
-.forget-password{
-  font-size: 18px;
-  color:white;
-  background-color: rgba(49, 89, 81, 0.5);
-}
-
-.forget-password h3{
-  font-weight: bold;
-  color: rgba(239, 155, 40, 1);
-}
-
-.forget-password input{
-  border: none;
-  border-bottom: solid 0.5px white;
-  background-color: rgba(49, 89, 81, 0.5);
-}
-.forget-password input::placeholder {
-  color: white;
-}
-.eye-btn{
-  color: white;
-  border: none;
-  background-color: rgba(49, 89, 81, 0.5);
-}
-.forget-password label{
-  color: rgba(239, 155, 40, 1);
-  margin-top: 1rem;
-}
-
-.btn-yellow {
-    background-color: var(---yellow_clr) !important;
-    color: var(--White_clr);
-}
-
-.form-bg .form-control:focus {
-    box-shadow: none !important;
-    border-color: var(---yellow_clr);
-}
-
-.form-bg span {
-    border-color: var(---yellow_clr) !important;
-}
-
-.form-bg i {
-    cursor: pointer;
-    z-index: 555;
+.profile-image .icon-profile {
+  position: absolute;
+  top: 4.0625rem;
+  left: 4.0625rem;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(49, 89, 81, 0.801);
+  color:var(--primary-color);
+  cursor: pointer;
+  z-index: 2;
+  font-size: 1rem;
 }

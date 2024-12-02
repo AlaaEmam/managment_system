@@ -5,52 +5,47 @@ import './Registration.css';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import { AUTHURLS } from './../../../../constants/URLS';
-import { EmailValidation, PasswordValidation, PhoneNumberValidation } from './../../../../constants/validations';
+import { EmailValidation, PasswordValidation, PhoneNumberValidation, UserNameValidation } from './../../../../constants/validations';
 import PasswordInput from './../PasswordInput/PasswordInput';
+import { axiosInstance } from '../../../../services/urlApi';
 
-interface FormData {
-  userName: string;
-  email: string;
-  country: string;
-  phoneNumber: string;
-  password: string;
-  confirmPassword: string;
-}
+
 
 export default function Registration() {
+  interface FormData {
+    userName: string;
+    email: string;
+    country: string;
+    phoneNumber: string;
+    password: string;
+    confirmPassword: string;
+  }
+  interface ApiResponse{
+    message: string;  
+  }
+  
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
   const [profileImage, setProfileImage] = useState('');
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch,
+    formState: { isSubmitting ,errors }
   } = useForm<FormData>();
 
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const response = await axios.post<{ message: string }>(
-        AUTHURLS.registerUrl,
-        data);
+      const response = await axiosInstance.post<ApiResponse>(
+      AUTHURLS.registerUrl,data);
       console.log(response.data.message);
       navigate('/verification');
       toast.success(response.data.message);
     } catch (error: any) {
       toast.error(error.response?.data.message || 'An error occurred');
     }
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword((prev) => !prev);
   };
 
   const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,11 +65,12 @@ export default function Registration() {
               <div className="logo-container">
                 <img className="img-fluid my-3" src={Logo} alt="Logo" />
               </div>
-              <form
+            <div className='col-lg-12 col-sm-12'>
+            <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="floating-form col-lg-12 col-sm-12"
+                className="floating-form form-background rounded-2 py-2 px-5"
               >
-                <div className="mt-4">
+                <div className="my-4">
                   <p className="fw-light fs-7 text-white">
                     Welcome Back to Project Management System PMS.
                   </p>
@@ -107,16 +103,14 @@ export default function Registration() {
                       <input
                         type="text"
                         className="floating-input "
-                        {...register('userName', {
-                          required: 'Your Name is required. Please enter your Name.',
-                          })}
+                        {...register('userName', UserNameValidation)}
                         placeholder=""
                       />
                       <label>Your Name</label>
                       {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
                     </div>
 
-                  {/* Email */}
+                  {/* Email input */}
                   <div className="floating-label email">
                     <span className="highlight"></span>
                       <input
@@ -169,8 +163,8 @@ export default function Registration() {
                     register={register}
                     name="password"
                     errors={errors.password}
-                    showPassword={showPassword}
-                    togglePasswordVisibility={togglePasswordVisibility}
+                    showPassword={isPasswordVisible}
+                    setIsPasswordVisible={setIsPasswordVisible}
                     validationRules={PasswordValidation} 
                   />
 
@@ -180,15 +174,20 @@ export default function Registration() {
                       register={register}
                       name="confirmPassword"
                       errors={errors.confirmPassword}
-                      showPassword={showPassword}
-                      togglePasswordVisibility={toggleConfirmPasswordVisibility}
+                      showPassword={isConfirmPasswordVisible}
+                      setIsPasswordVisible={setIsConfirmPasswordVisible}
                       validationRules= {PasswordValidation}
                     />
 
                   </div>
                 </div>
-                <button className="btn primary-color w-100 p-2 mt-4 mb-2 rounded-5">Register</button>
+                <button 
+                disabled={isSubmitting}
+                className="btn btn-color rounded-5 w-100 my-3">
+                   {isSubmitting ? "Register....... " : " Register"}
+                  </button>
               </form>
+            </div>
             </div>
           </div>
         </div>

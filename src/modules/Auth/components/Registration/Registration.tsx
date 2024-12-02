@@ -28,7 +28,7 @@ export default function Registration() {
   const navigate = useNavigate();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
-  const [profileImage, setProfileImage] = useState('');
+  const [profileImage, setProfileImage] = useState(DefaultProfile); // Set default profile image
   const {
     register,
     handleSubmit,
@@ -51,9 +51,11 @@ export default function Registration() {
   const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setProfileImage(URL.createObjectURL(file)); // Create a URL for the uploaded image
+      const imageUrl = URL.createObjectURL(file); // Create a URL for the uploaded image
+      setProfileImage(imageUrl); // Update the profile image state
     }
   };
+
 
 
   return (
@@ -79,13 +81,18 @@ export default function Registration() {
 
                 {/* Profile Image */}
                 <div className="profile-image">
-                  <img src={DefaultProfile} alt="Profile" className="profile-image-preview" />
+                  <img 
+                  src={profileImage} 
+                  alt="Profile" 
+                  className="profile-image-preview" 
+                  />
                   <input
                     type="file"
                     id="profileImageInput"
                     className="input-img bg-transparent"
                     placeholder=""
                     aria-label="Profile Image"
+                    accept="image/*"
                     onChange={handleProfileImageChange}
                   />
                   <label htmlFor="profileImageInput" className="icon-profile">

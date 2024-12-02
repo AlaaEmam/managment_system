@@ -55,7 +55,7 @@ export default function SideBar() {
           <MenuItem
             active={window.location.pathname === "/usersList"}
             icon={<i className="fa-regular fa-address-card"></i>}
-            component={<NavLink to="/usersList" />}
+            component={<NavLink to="usersList" />}
             className="my-2"
           >
             Users
@@ -63,7 +63,7 @@ export default function SideBar() {
           <MenuItem
             active={window.location.pathname === "/ProjectsList"}
             icon={<i className="fa-regular fa-object-ungroup"></i>}
-            component={<NavLink to="/ProjectsList" />}
+            component={<NavLink to="ProjectsList" />}
             className="my-2"
           >
             Projects
@@ -71,14 +71,13 @@ export default function SideBar() {
           <MenuItem
             active={window.location.pathname === "/tasksList"}
             icon={<i className="fa-regular fa-rectangle-list"></i>}
-            component={<Link to="/tasksList" />}
+            component={<Link to="tasksList" />}
             className="my-2"
           >
             Tasks
           </MenuItem>
         </Menu>
       </Sidebar>
-      ;
     </div>
   );
 }

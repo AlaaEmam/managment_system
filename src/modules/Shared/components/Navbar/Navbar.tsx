@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
-import dashLogo from "../../../../assets/images/dash-logo.png"
-import avatar from "../../../../assets/images/avatar.png"
-interface Props {
-  loginData:any;
-}
+import React, { useContext, useState } from 'react'
+import dashLogo from "../../../../assets/dash-logo.png"
+import avatar from "../../../../assets/avatar.png"
+import './navbar.css'
+import { AuthContext } from '../../../../context/AuthContext';
 
 // I changed this.
 
-export default function Navbar({loginData}:Props) {
- 
-  
+export default function Navbar() {
+  const {LoginData}:any=useContext(AuthContext);
+  console.log(LoginData?.userName)
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
@@ -18,8 +17,8 @@ export default function Navbar({loginData}:Props) {
         </div>
 
         <div>
-          <img className="avatar-img mx-3 avatar-img" src={avatar} alt="user-img" />
-          <span>{loginData?.userName}</span>
+          <img className="avatar-img mx-3" src={avatar} alt="user-img" />
+          <span>{LoginData?.userName}</span>
         </div>
       </div> 
     </>

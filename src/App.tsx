@@ -53,7 +53,7 @@ function App() {
       path: 'dashboard',
       element:<ProtectedRoute loginData={LoginData}>  {/* تمرير loginData هنا */}
 
-        <MasterLayout/>
+        <MasterLayout />
         </ProtectedRoute> ,
       errorElement: <NotFound />,
       children: [

@@ -1,5 +1,5 @@
 .header2 {
-    min-height: 320px;
+    min-height: 35vh;
     border-radius: 10px;
     background-size: cover;
     background-image: url('../../../../assets/home-bg.png');
@@ -10,4 +10,3 @@
     font-size: 2.25rem;
 }
 
-.header2 span{font-size: 1.8rem !important; }

@@ -5,7 +5,9 @@ import './navbar.css'
 import { AuthContext } from '../../../../context/AuthContext';
 
 // I changed this.
-
+interface loginData{
+  userName:string;
+}
 export default function Navbar() {
   const {LoginData}:any=useContext(AuthContext);
   console.log(LoginData?.userName)

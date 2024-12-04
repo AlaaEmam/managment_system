@@ -5,40 +5,41 @@ import './Registration.css';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import axios from 'axios';
-import { AUTHURLS, requestHeader } from './../../../../constants/URLS';
-import { EmailValidation, PasswordValidation, PhoneNumberValidation } from './../../../../constants/validations';
+import { AUTHURLS } from './../../../../constants/URLS';
+import { EmailValidation, PasswordValidation, PhoneNumberValidation, UserNameValidation } from './../../../../constants/validations';
 import PasswordInput from './../PasswordInput/PasswordInput';
+import { axiosInstance } from '../../../../services/urlApi';
 
-interface FormData {
-  userName: string;
-  email: string;
-  country: string;
-  phoneNumber: string;
-  password: string;
-  confirmPassword: string;
-}
+
 
 export default function Registration() {
+  interface FormData {
+    userName: string;
+    email: string;
+    country: string;
+    phoneNumber: string;
+    password: string;
+    confirmPassword: string;
+  }
+  interface ApiResponse{
+    message: string;  
+  }
+  
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [profileImage, setProfileImage] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [profileImage, setProfileImage] = useState(DefaultProfile); // Set default profile image
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch,
+    formState: { isSubmitting ,errors }
   } = useForm<FormData>();
 
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const response = await axios.post<{ message: string }>(
-        AUTHURLS.registerUrl,
-        data,
-        { headers: requestHeader }
-      );
+      const response = await axiosInstance.post<ApiResponse>(
+      AUTHURLS.registerUrl,data);
       console.log(response.data.message);
       navigate('/verification');
       toast.success(response.data.message);
@@ -47,20 +48,14 @@ export default function Registration() {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword((prev) => !prev);
-  };
-
   const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setProfileImage(URL.createObjectURL(file)); // Create a URL for the uploaded image
+      const imageUrl = URL.createObjectURL(file); // Create a URL for the uploaded image
+      setProfileImage(imageUrl); // Update the profile image state
     }
   };
+
 
 
   return (
@@ -72,11 +67,12 @@ export default function Registration() {
               <div className="logo-container">
                 <img className="img-fluid my-3" src={Logo} alt="Logo" />
               </div>
-              <form
+            <div className='col-lg-12 col-sm-12'>
+            <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="floating-form col-lg-12 col-sm-12"
+                className="floating-form form-background rounded-2 py-2 px-5"
               >
-                <div className="mt-4">
+                <div className="my-4">
                   <p className="fw-light fs-7 text-white">
                     Welcome Back to Project Management System PMS.
                   </p>
@@ -85,13 +81,19 @@ export default function Registration() {
 
                 {/* Profile Image */}
                 <div className="profile-image">
-                  <img src={DefaultProfile} alt="Profile" className="profile-image-preview" />
+                  <img 
+                  src={profileImage} 
+                  alt="Profile" 
+                  className="profile-image-preview" 
+                  />
                   <input
+                   autoComplete="off"
                     type="file"
                     id="profileImageInput"
                     className="input-img bg-transparent"
                     placeholder=""
                     aria-label="Profile Image"
+                    accept="image/*"
                     onChange={handleProfileImageChange}
                   />
                   <label htmlFor="profileImageInput" className="icon-profile">
@@ -107,11 +109,10 @@ export default function Registration() {
                     <div className="floating-label ">
                       <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="text"
                         className="floating-input "
-                        {...register('userName', {
-                          required: 'Your Name is required. Please enter your Name.',
-                          })}
+                        {...register('userName', UserNameValidation)}
                         placeholder=""
                         tabIndex={1}
                       />
@@ -119,10 +120,11 @@ export default function Registration() {
                       {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
                     </div>
 
-                  {/* Email */}
+                  {/* Email input */}
                   <div className="floating-label email">
                     <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="text"
                         className="floating-input  "
                         {...register('email', EmailValidation)}
@@ -137,6 +139,7 @@ export default function Registration() {
                      <div className="floating-label  phone">
                     <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="tel"
                         className="floating-input "
                         {...register('phoneNumber', PhoneNumberValidation)}
@@ -156,6 +159,7 @@ export default function Registration() {
                   <div className="floating-label country">
                     <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="text"
                         className="floating-input  "
                         {...register('country', {
@@ -175,8 +179,8 @@ export default function Registration() {
                     register={register}
                     name="password"
                     errors={errors.password}
-                    showPassword={showPassword}
-                    togglePasswordVisibility={togglePasswordVisibility}
+                    showPassword={isPasswordVisible}
+                    setIsPasswordVisible={setIsPasswordVisible}
                     validationRules={PasswordValidation} 
                     tabIndex={5}
                   />
@@ -187,16 +191,21 @@ export default function Registration() {
                       register={register}
                       name="confirmPassword"
                       errors={errors.confirmPassword}
-                      showPassword={showPassword}
-                      togglePasswordVisibility={toggleConfirmPasswordVisibility}
+                      showPassword={isConfirmPasswordVisible}
+                      setIsPasswordVisible={setIsConfirmPasswordVisible}
                       validationRules= {PasswordValidation}
                       tabIndex={6}
                     />
 
                   </div>
                 </div>
-                <button className="btn primary-color w-100 p-2 mt-4 mb-2 rounded-5">Register</button>
+                <button 
+                disabled={isSubmitting}
+                className="btn btn-color rounded-5 w-100 my-3">
+                   {isSubmitting ? "Register....... " : " Register"}
+                  </button>
               </form>
+            </div>
             </div>
           </div>
         </div>

@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useContext } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import './index.css'
 
 import AuthLayout from './modules/Shared/components/AuthLayout/AuthLayout'
 import NotFound from './modules/Shared/components/NotFound/NotFound'
@@ -24,8 +24,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import VerifyAccount from './modules/Auth/components/VerifyAccount/VerifyAccount'
 import { ToastContainer } from 'react-toastify'
 import { AuthContext } from './context/AuthContext'
+import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassword'
+
 
 function App() {
+  
   const  LoginData  = useContext(AuthContext);
 
 
@@ -35,19 +38,23 @@ function App() {
       element: <AuthLayout />,
       errorElement: <NotFound />,
       children: [
-        { index: true, element: <Login  /> },
-        { path: 'login', element: <Login /> },
+        { index: true, element: <Login/> },
+        { path: 'login', element: <Login/> },
         { path: 'register', element: <Registration /> },
         { path: 'verification', element: <VerifyAccount /> },
-        { path: 'forget-Pass', element: <ForgetPassword /> },
-        { path: 'reset-pass', element: <ResetPass /> },
+
+        { path: 'forget-Password', element: <ForgetPassword /> },
+        { path: 'reset-password', element: <ResetPass /> },
+        
+        { path: 'change-password', element: <ChangePassword /> },
       ]
     },
+
     {
       path: 'dashboard',
       element:<ProtectedRoute loginData={LoginData}>  {/* تمرير loginData هنا */}
 
-        <MasterLayout />
+        <MasterLayout/>
         </ProtectedRoute> ,
       errorElement: <NotFound />,
       children: [
@@ -57,6 +64,7 @@ function App() {
         { path: 'projectsData', element: <ProjectsData/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },
+
       ]
     }
   ])
@@ -64,8 +72,9 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
       <RouterProvider router={Routes}></RouterProvider>
+      <ToastContainer />
+
     </>
   )
 }

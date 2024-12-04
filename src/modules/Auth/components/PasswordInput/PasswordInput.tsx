@@ -10,6 +10,7 @@ interface PasswordInputProps {
   showPassword: boolean;
   togglePasswordVisibility: () => void;
   validationRules: any;
+  tabIndex:any;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -19,6 +20,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   errors,
   showPassword,
   togglePasswordVisibility,
+  tabIndex,
 }) => {
   return (
     <div className="floating-label">
@@ -28,6 +30,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         className="floating-input"
         {...register(name, PasswordValidation)}
         placeholder=""
+        tabIndex={tabIndex}
       />
       <label>{label}</label>
       <span

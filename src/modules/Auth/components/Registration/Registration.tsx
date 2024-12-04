@@ -113,6 +113,7 @@ export default function Registration() {
                           required: 'Your Name is required. Please enter your Name.',
                           })}
                         placeholder=""
+                        tabIndex={1}
                       />
                       <label>Your Name</label>
                       {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
@@ -126,6 +127,7 @@ export default function Registration() {
                         className="floating-input  "
                         {...register('email', EmailValidation)}
                        placeholder=""
+                       tabIndex={2}
                       />
                       <label>E-mail</label>
                       {errors.email && <span className="text-danger">{errors.email.message}</span>}
@@ -139,6 +141,7 @@ export default function Registration() {
                         className="floating-input "
                         {...register('phoneNumber', PhoneNumberValidation)}
                        placeholder=""
+                       tabIndex={3}
                       />
                       <label>Phone Number</label>
                       {errors.phoneNumber && <span className="text-danger">{errors.phoneNumber.message}</span>}
@@ -159,6 +162,7 @@ export default function Registration() {
                           required: 'Country is required.',
                         })}
                          placeholder=""
+                         tabIndex={4}
                       />
                       <label>Country</label>
                       {errors.country && <span className="text-danger">{errors.country.message}</span>}
@@ -174,6 +178,7 @@ export default function Registration() {
                     showPassword={showPassword}
                     togglePasswordVisibility={togglePasswordVisibility}
                     validationRules={PasswordValidation} 
+                    tabIndex={5}
                   />
 
                   {/* Confirm Password Input */}
@@ -185,6 +190,7 @@ export default function Registration() {
                       showPassword={showPassword}
                       togglePasswordVisibility={toggleConfirmPasswordVisibility}
                       validationRules= {PasswordValidation}
+                      tabIndex={6}
                     />
 
                   </div>

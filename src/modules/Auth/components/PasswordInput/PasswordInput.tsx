@@ -24,6 +24,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
     <div className="floating-label">
       <span className="highlight"></span>
       <input
+       autoComplete="off"
         type={showPassword ? 'text' : 'password'}
         className="floating-input"
         {...register(name, PasswordValidation)}

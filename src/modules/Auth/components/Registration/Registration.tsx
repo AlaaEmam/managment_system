@@ -87,6 +87,7 @@ export default function Registration() {
                   className="profile-image-preview" 
                   />
                   <input
+                   autoComplete="off"
                     type="file"
                     id="profileImageInput"
                     className="input-img bg-transparent"
@@ -108,6 +109,7 @@ export default function Registration() {
                     <div className="floating-label ">
                       <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="text"
                         className="floating-input "
                         {...register('userName', UserNameValidation)}
@@ -121,6 +123,7 @@ export default function Registration() {
                   <div className="floating-label email">
                     <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="text"
                         className="floating-input  "
                         {...register('email', EmailValidation)}
@@ -134,6 +137,7 @@ export default function Registration() {
                      <div className="floating-label  phone">
                     <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="tel"
                         className="floating-input "
                         {...register('phoneNumber', PhoneNumberValidation)}
@@ -152,6 +156,7 @@ export default function Registration() {
                   <div className="floating-label country">
                     <span className="highlight"></span>
                       <input
+                       autoComplete="off"
                         type="text"
                         className="floating-input  "
                         {...register('country', {

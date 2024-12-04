@@ -69,6 +69,7 @@ const ChangePassword: React.FC = () => {
                 <div className="mb-3">
                   <label className="form-label mb-0">Old Password</label>
                   <input
+                    autoComplete="off"
                     type="password"
                     placeholder="Enter your old Password"
                     className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"
@@ -85,6 +86,7 @@ const ChangePassword: React.FC = () => {
                 <div className="mb-3">
                   <label className="form-label mb-0">New Password</label>
                   <input
+                   autoComplete="off"
                     type="password"
                     placeholder="Enter your New Password"
                     className="form-control border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"
@@ -101,6 +103,7 @@ const ChangePassword: React.FC = () => {
                 <div className="mb-3">
                   <label className="form-label mb-0">Confirm New Password</label>
                   <input
+                   autoComplete="off"
                     type="password"
                     placeholder="Confirm your New Password"
                     className="form-control border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"

@@ -65,6 +65,7 @@ export default function ResetPass() {
                 <div className='mt-4 mb-3'>
                   <label className="form-label mb-0">Email </label>
                     <input 
+                     autoComplete="off"
                     type="email" 
                     className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white" 
                     placeholder="Enter your E-mail" 
@@ -80,6 +81,7 @@ export default function ResetPass() {
               <div className='mb-3'>
               <label className="form-label mb-0">OTP Verification</label>
                 <input 
+                 autoComplete="off"
                 type="text" 
                 className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white" 
                 placeholder="Enter your OTP Code" 
@@ -94,6 +96,7 @@ export default function ResetPass() {
               <label className="form-label mb-0">New Password</label>
                 <div className="input-group d-flex justify-content-center align-items-center">
                 <input 
+                 autoComplete="off"
                 type={isPasswordVisible ? "text" : "password"}  
                 className="form-control border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"  
                 placeholder="Enter your New Password" 
@@ -131,6 +134,7 @@ export default function ResetPass() {
                 <label className="form-label mb-0">Confirm Password</label>
                     <div className="input-group d-flex justify-content-center align-items-center">
                       <input 
+                       autoComplete="off"
                       type={isConfirmPasswordVisible ? "text" : "password"}  
                       className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white" 
                       placeholder="Enter your New Password" 

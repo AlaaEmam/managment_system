@@ -60,7 +60,7 @@ function App() {
         { index: true, element: <Dashboard  /> },
         { path: 'tasksData', element: <TasksData/> },
         { path: 'tasksList', element: <TasksList/> },
-        { path: 'projectsData', element: <ProjectsData/> },
+        { path: 'projectsData/:projectId', element: <ProjectsData/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },
 

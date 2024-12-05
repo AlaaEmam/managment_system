@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from '../ProjectsAddList.module.css'
-import { axiosInstance, PROJECTSURLS, USERSSURLS } from '../../../../constants/URLS';
+import { axiosInstance, PROJECTSURLS,  } from '../../../../constants/URLS';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../context/AuthContext';
+import DeleteConfirmation from '../../../Shared/components/DeleteConfirmation/DeleteConfirmation';
 
 
 interface projectData{
@@ -17,15 +18,23 @@ interface projectData{
 export default function ProjectsList() {
   let {loginData}:any=useContext(AuthContext);
   let [projectsList, setProjectsList]=useState([]);
+  const [selectedId, setSelectedId]=useState(0);
   const [nameValue, setNameValue]=useState('');
   
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id:number) =>{ 
+    setSelectedId(id)
+    setShow(true)
+  };
+  
   const getAllProjects=async(pageNo:number, pageSize:number, name:string=''): Promise<void>=>{
     try{
       let response=await axiosInstance.get(PROJECTSURLS.getAll,
         {params:{pageSize:pageSize, pageNumber:pageNo, name}}
       );
       
+      console.log(loginData?.userGroup);
       console.log(response.data.data);
 
       setProjectsList(response.data.data);
@@ -35,6 +44,17 @@ export default function ProjectsList() {
     }
   }
   
+  let deleteProject=() =>{
+    try{
+      let response=axiosInstance.delete(PROJECTSURLS.deleteUrl(selectedId));
+      // console.log(response);
+      getAllProjects(1, 10)
+    }catch(error){
+      console.log(error)
+    }
+    // alert(selectedId)
+    handleClose();
+  }
 
   const getNameValue=(input: React.ChangeEvent<HTMLInputElement>)=>{
     // console.log(input.target.value);
@@ -50,10 +70,14 @@ export default function ProjectsList() {
     <div className={styles['bg-project']}>
       <div className='d-flex bg-white  justify-content-between align-items-center'>
         <h1 className={styles['title-project']}>Projects</h1>
+        {loginData?.userGroup ==='Manager'?
         <Link to="/dashboard/projectsData" className={styles["add-project"]}>+ Add New Project</Link>
+        :""
+        }
       </div>
       
-      
+      <DeleteConfirmation show={show} handleClose={handleClose} onDelete={deleteProject}>Project</DeleteConfirmation>  
+
       <div className={styles["wrapper"]}>
           <div className="col-md-6">
             
@@ -84,7 +108,18 @@ export default function ProjectsList() {
                       <td>{project.description}</td>
                       <td>{project.task.length}</td>
                       <td>{project.creationDate}</td>
-                      <td></td>
+                      {loginData?.userGroup === 'Manager' ? (
+                        <td>
+                            <i className="bi bi-trash-fill text-danger fs-5"
+                            onClick={()=>handleShow(project.id)} aria-hidden="true"></i>
+
+                            <Link to={`${project?.id}`}>
+                              <i className="bi bi-pencil-square text-warning fs-5" aria-hidden="true"></i>
+                            </Link> 
+                          </td>):<td>
+                          {/* <i className="bi bi-heart-fill text-danger "
+                            onClick={()=>addToFav(recipe.id)} aria-hidden="true"></i> */}
+                        </td>}
                     </tr>
                       
                     )}

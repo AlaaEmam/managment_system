@@ -55,7 +55,7 @@ export default function ForgetPassword() {
               {/* Email input */}
               
               <div className='my-5'>
-              <label className="form-label mb-0">Email </label>
+              <label className="form-label text-white mb-0">Email </label>
                 <input 
                 type="email" 
                 className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white" 

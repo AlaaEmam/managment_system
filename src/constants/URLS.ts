@@ -5,8 +5,15 @@ export const BASE_IMG_URL = `https://upskilling-egypt.com:3003`;
 
 //I changed this
 
-export  const axiosInstance=axios.create({baseURL, 
-  headers:{Authorization:localStorage.getItem("token")} })
+export const axiosInstance = axios.create({
+  baseURL,
+  headers: { Authorization: localStorage.getItem("token") },
+});
+
+export const requestHeader = {
+  headers: { Authorization: `${localStorage.getItem("token")}` },
+};
+export const privateAxiosInstance = axios.create({ baseURL });
 
 export const AUTHURLS = {
   loginUrl: `/Users/Login`,
@@ -18,18 +25,22 @@ export const AUTHURLS = {
 };
 
 export const PROJECTSURLS = {
-    getAll: `/Project/manager`,
-    addUrl: `/Project`,
-   // deleteUrl(id):`/Project/${id}`,
+  getAll: `/Project/manager`,
+  addUrl: `/Project`,
+  // deleteUrl(id):`/Project/${id}`,
 };
 
 export const TASKSURLS = {
-    getAll: `/Task/manager`,
-    addUrl: `/Task`,
-    updateUrl: (id: string) => `/Task/${id}`,
-}
+  getAll: `/Task/manager`,
+  addUrl: `/Task`,
+  updateUrl: (id: string) => `/Task/${id}`,
+};
 
 export const USERSSURLS = {
-    getUsersUrl: `/Users/Manager`,
-    toggleStatusUrl: (id: string) => `/Users/${id}`,
-}
+  getUsersUrl: (p: number, n: number) =>
+    `/Users/Manager?pageSize=${p}&pageNumber=${n}`,
+  toggleStatusUrl: (id: number) => `/Users/${id}`,
+  getUserById: (id: number) => `/Users/${id}`,
+  filteruser: (name: string, p: number, n: number) =>
+    `/Users/?userName=${name}&pageSize=${p}&pageNumber=${n}`
+};

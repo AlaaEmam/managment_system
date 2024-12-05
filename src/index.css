@@ -1,7 +1,9 @@
 :root {
     ---yellow_clr: rgba(239, 155, 40, 1);
     --zaty_clr: rgba(49, 89, 81, 0.9);
-    --White_clr: #ffffff
+    --White_clr: #ffffff;
+    --bg_gray: #F5F5F5;
+
 }
 
 

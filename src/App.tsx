@@ -50,6 +50,8 @@ function App() {
         { path: 'reset-pass', element: <ResetPass /> },
 
         { path: 'change-pass', element: <ChangePassword /> },
+        { path: 'test', element: <UsersList/> },
+
       ]
     },
 
@@ -57,7 +59,7 @@ function App() {
       path: 'dashboard',
       element:<ProtectedRoute loginData={LoginData}>  {/* تمرير loginData هنا */}
 
-        <MasterLayout/>
+        <MasterLayout />
         </ProtectedRoute> ,
       errorElement: <NotFound />,
       children: [

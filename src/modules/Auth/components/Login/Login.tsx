@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../../../context/AuthContext";
 import { AxiosResponse } from "axios";
 import { AUTHURLS } from "../../../../constants/URLS";
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 import {
   EmailValidation,
   PasswordValidation,
@@ -17,37 +17,33 @@ interface loginDataInterface {
   email: string;
   password: string;
 }
-
 export default function Login() {
-  //  const { saveLoginData}   = useContext(AuthContext);
-
   const [isPaswordVisble, setIsPaswordVisble] = useState(false);
-
   const navigate = useNavigate();
+  const {saveLoginData}=useContext(AuthContext)
   const {
     register,
     handleSubmit,
-    formState: { errors ,isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm<loginDataInterface>();
 
   const onSubmit: SubmitHandler<loginDataInterface> = async (data) => {
     try {
-      const response = await axiosInstance.post<{ message: string }>(
+      const response = await axiosInstance.post<{ token: string }>(
         AUTHURLS.loginUrl,
         data
       );
       console.log("res", response);
+      saveLoginData()
       toast.success("login succeed");
-      navigate("/Dashboard");
-      // localStorage.setItem("token", response?.data?.token);
+      navigate("/dashboard");
+     localStorage.setItem("token", response?.data.token);
     } catch (error: any) {
       toast.error(error.response?.data.message);
     }
   };
 
-  // useEffect(() => {
-  //   toast.play();
-  // }, []);
+
 
   return (
     <>

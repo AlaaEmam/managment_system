@@ -17,7 +17,6 @@ import MasterLayout from './modules/Shared/components/MasterLayout/MasterLayout'
 import Dashboard from './modules/Dashboard/components/Dashboard/Dashboard'
 import TasksList from './modules/Tasks/components/TasksList/TasksList'
 import TasksData from './modules/Tasks/components/TasksData/TasksData'
-import ProjectsData from './modules/Projects/components/ProjectsData/ProjectsData'
 import ProjectsList from './modules/Projects/components/ProjectsList/ProjectsList'
 import UsersList from './modules/Users/components/UsersList/UsersList'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -61,7 +60,6 @@ function App() {
         { index: true, element: <Dashboard  /> },
         { path: 'tasksData', element: <TasksData/> },
         { path: 'tasksList', element: <TasksList/> },
-        { path: 'projectsData', element: <ProjectsData/> },
         { path: 'ProjectsList/:projectId', element: <ProjectForm/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },

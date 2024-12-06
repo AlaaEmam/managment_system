@@ -20,8 +20,9 @@ export const AUTHURLS = {
 export const PROJECTSURLS = {
     getAll: `/Project/manager`,
     addUrl: `/Project`,
-    deleteUrl:(id:number)=>`/Project/${id}`,
-    updateUrl: (id: number) => `/Project/${id}`,
+    getUrl: (id:string) => `/Project/${id}`,
+    deleteUrl:(id:string)=>`/Project/${id}`,
+    updateUrl: (id: string) => `/Project/${id}`,
 };
 
 export const TASKSURLS = {

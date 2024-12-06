@@ -8,47 +8,51 @@ import { toast } from 'react-toastify';
 
 
 export default function ProjectsData() {
-  const params =useParams();
-  const navigate=useNavigate();
-  const projectId=params.projectId;
-  const isNewproject=projectId ==="new-project";
-  let { register, setValue, getValues,
-    formState:{isSubmitting, errors}, 
-    handleSubmit}=useForm<FormData>({mode:'onChange'})
+  // const params =useParams();
+  // const navigate=useNavigate();
+  // const projectId=params.projectId;
+  // const isNewproject=projectId ==="new-project";
+  // let { register, setValue, getValues,
+  //   formState:{isSubmitting, errors}, 
+  //   handleSubmit}=useForm<FormData>({mode:'onChange'})
    
-    interface FormData{
-      title:string;
-      description:string;
-    }
+  //   interface FormData{
+  //     title:string;
+  //     description:string;
+  //   }
 
-    interface ApiResponse{
-      message: string;  
-    }
+  //   interface ApiResponse{
+  //     message: string;  
+  //   }
     
     
-    const onSubmitHandler:SubmitHandler<Record<string, any>>=async(data)=>{
-      console.log(data);
+  //   const onSubmitHandler:SubmitHandler<Record<string, any>>=async(data)=>{
+  //     console.log(data);
       
-      const formData = new FormData();    
+  //     const formData = new FormData();    
       
-      formData.append('title', data?.title);
-      formData.append('description', data?.description);
+  //     formData.append('title', data?.title);
+  //     formData.append('description', data?.description);
   
-      try{
-        const response=await axiosInstance.post<ApiResponse>(PROJECTSURLS.addUrl, formData);
-        console.log(response);
-        toast.success("project added");
-        navigate("/dashboard/projectsList")
-      }catch(error){
-        toast.error("failed to add project");
-        console.log(error)
-      }
+  //     try{
+  //       const response=await axiosInstance.post<ApiResponse>(PROJECTSURLS.addUrl, data);
+  //       console.log(response);
+  //       toast.success("project added");
+  //       navigate("/dashboard/projectsList")
+  //     }catch(error){
+  //       toast.error("failed to add project");
+  //       console.log(error)
+  //     }
   
-    }
+  //   }
+
+  //   React.useEffect(()=>{
+      
+  //   })
   
   return (
     <div className={styles['bg-project']}>
-      <div className='d-flex bg-white flex-column'>
+      {/* <div className='d-flex bg-white flex-column'>
         <Link to="/dashboard/projectsList" className={styles["view-project"]}>
           {`${'<'}`} View All Projects
         </Link>
@@ -81,7 +85,7 @@ export default function ProjectsData() {
         </div>
 
 
-      </form>
+      </form> */}
     </div>
   )
 }

@@ -25,6 +25,7 @@ import VerifyAccount from './modules/Auth/components/VerifyAccount/VerifyAccount
 import { ToastContainer } from 'react-toastify'
 import { AuthContext } from './context/AuthContext'
 import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassword'
+import ProjectForm from './modules/Projects/components/ProjectForm/ProjectForm';
 
 
 function App() {
@@ -60,7 +61,8 @@ function App() {
         { index: true, element: <Dashboard  /> },
         { path: 'tasksData', element: <TasksData/> },
         { path: 'tasksList', element: <TasksList/> },
-        { path: 'projectsData/:projectId', element: <ProjectsData/> },
+        { path: 'projectsData', element: <ProjectsData/> },
+        { path: 'ProjectsList/:projectId', element: <ProjectForm/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },
 

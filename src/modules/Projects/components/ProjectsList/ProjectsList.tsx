@@ -18,12 +18,14 @@ interface projectData{
 export default function ProjectsList() {
   let {loginData}:any=useContext(AuthContext);
   let [projectsList, setProjectsList]=useState([]);
-  const [selectedId, setSelectedId]=useState(0);
-  const [nameValue, setNameValue]=useState('');
   
-  const [show, setShow] = useState(false);
+  const [arrayOfPages, setArrayOfPages]=useState<number[]>([]);
+  const [selectedId, setSelectedId]=useState<string>('0');
+  const [nameValue, setNameValue]=useState<string>('');
+  
+  const [show, setShow] = useState<boolean>(false);
   const handleClose = () => setShow(false);
-  const handleShow = (id:number) =>{ 
+  const handleShow = (id:string) =>{ 
     setSelectedId(id)
     setShow(true)
   };
@@ -36,6 +38,8 @@ export default function ProjectsList() {
       
       console.log(loginData?.userGroup);
       console.log(response.data.data);
+      setArrayOfPages(Array(response.data.totalNumberOfPages).fill(0).map((_,i)=>i+1));
+      
 
       setProjectsList(response.data.data);
     }catch(error){
@@ -71,7 +75,7 @@ export default function ProjectsList() {
       <div className='d-flex bg-white  justify-content-between align-items-center'>
         <h1 className={styles['title-project']}>Projects</h1>
         {loginData?.userGroup ==='Manager'?
-        <Link to="/dashboard/projectsData" className={styles["add-project"]}>+ Add New Project</Link>
+        <Link to="/dashboard/ProjectsList/new-project" className={styles["add-project"]}>+ Add New Project</Link>
         :""
         }
       </div>
@@ -111,7 +115,7 @@ export default function ProjectsList() {
                       {loginData?.userGroup === 'Manager' ? (
                         <td>
                             <i className="bi bi-trash-fill text-danger fs-5"
-                            onClick={()=>handleShow(project.id)} aria-hidden="true"></i>
+                            onClick={()=>handleShow(String(project.id))} aria-hidden="true"></i>
 
                             <Link to={`${project?.id}`}>
                               <i className="bi bi-pencil-square text-warning fs-5" aria-hidden="true"></i>
@@ -127,6 +131,33 @@ export default function ProjectsList() {
                 </tbody>
               </table> : (<h2>NO DATA</h2>)
             }
+            <nav aria-label="Page navigation example">
+        <ul className="pagination">
+          <li className="page-item">
+            <a className="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span className="sr-only">Previous</span>
+            </a>
+          </li>
+          {arrayOfPages.map((pageNo)=>(
+            
+            <li className="page-item" key={pageNo} 
+            onClick={()=>getAllProjects(pageNo, 3)}>
+              <a className="page-link" >
+                {pageNo}
+              </a>
+            </li>))
+          }
+          
+          
+          <li className="page-item">
+            <a className="page-link"  aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span className="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+        </nav>
           </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ interface loginDataInterface {
 }
 
 export default function Login() {
-  //  const { saveLoginData}   = useContext(AuthContext);
+  const {saveLoginData}:any   = useContext(AuthContext);
 
   const [isPaswordVisble, setIsPaswordVisble] = useState(false);
 
@@ -33,14 +33,15 @@ export default function Login() {
 
   const onSubmit: SubmitHandler<loginDataInterface> = async (data) => {
     try {
-      const response = await axiosInstance.post<{ message: string }>(
+      const response = await axiosInstance.post<{ token: string }>(
         AUTHURLS.loginUrl,
         data
       );
       console.log("res", response);
+      saveLoginData()
       toast.success("login succeed");
       navigate("/Dashboard");
-      // localStorage.setItem("token", response?.data?.token);
+      localStorage.setItem("token", response?.data?.token);
     } catch (error: any) {
       toast.error(error.response?.data.message);
     }

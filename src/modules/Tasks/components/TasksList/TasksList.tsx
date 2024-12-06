@@ -1,7 +1,11 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table';
 import './TasksList.css';
+import SearchBar from './../../../Shared/components/SearchBar/SearchBar';
 
+const handleSearch = (query: string) => {
+  console.log('Search query:', query);
+};
 
 export default function TasksList() {
   return (
@@ -26,19 +30,8 @@ export default function TasksList() {
     
         <div className='background-module'>
 
-      {/* Fillter & Search  */}
-        <div className="mx-4 mb-3 bg-black ">
-            <div className="search-bar input-group mb-1 rounded-pill">
-                    <span className=" search-icon">
-                     <i className="fa-solid fa-magnifying-glass"></i>
-                    </span>
-                    <input 
-                      type="text"
-                      className="form-control rounded-5 pl-2"
-                      placeholder="Search By Title"
-                    />
-            </div>
-        </div>
+      {/* Search  */}
+      <SearchBar onSearch={handleSearch} />
    
           <Table striped bordered hover>
             <thead>
@@ -77,3 +70,6 @@ export default function TasksList() {
     
   )
 }
+
+
+

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from '../ProjectsAddList.module.css'
-import { data, Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { axiosInstance, PROJECTSURLS } from '../../../../constants/URLS';
 import { toast } from 'react-toastify';

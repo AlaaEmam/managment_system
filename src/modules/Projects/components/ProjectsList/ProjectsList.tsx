@@ -30,9 +30,9 @@ export default function ProjectsList() {
     setShow(true)
   };
   
-  const getAllProjects=async(pageNo:number, pageSize:number, name:string=''): Promise<void>=>{
+  const getProjects=async(pageNo:number, pageSize:number, name:string=''): Promise<void>=>{
     try{
-      let response=await axiosInstance.get(PROJECTSURLS.getAll,
+      let response=await axiosInstance.get((loginData?.userGroup==="Manager" ?PROJECTSURLS.getAll:PROJECTSURLS.getEmp),
         {params:{pageSize:pageSize, pageNumber:pageNo, name}}
       );
       
@@ -52,7 +52,7 @@ export default function ProjectsList() {
     try{
       let response=axiosInstance.delete(PROJECTSURLS.deleteUrl(selectedId));
       // console.log(response);
-      getAllProjects(1, 5)
+      getProjects(1, 5)
     }catch(error){
       console.log(error)
     }
@@ -63,12 +63,12 @@ export default function ProjectsList() {
   const getNameValue=(input: React.ChangeEvent<HTMLInputElement>)=>{
     // console.log(input.target.value);
     setNameValue(input.target.value);
-    getAllProjects(1, 4, input.target.value);
+    getProjects(1, 4, input.target.value);
   }
 
 
   useEffect(()=>{
-    getAllProjects(1, 5);
+    getProjects(1, 5);
   },[])
   return (
     <div className={styles['bg-project']}>
@@ -142,7 +142,7 @@ export default function ProjectsList() {
                 {arrayOfPages.map((pageNo)=>(
                   
                   <li className="page-item" key={pageNo} 
-                  onClick={()=>getAllProjects(pageNo, 5)}>
+                  onClick={()=>getProjects(pageNo, 5)}>
                     <a className="page-link" >
                       {pageNo}
                     </a>

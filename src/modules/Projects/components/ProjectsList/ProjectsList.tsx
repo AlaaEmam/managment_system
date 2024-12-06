@@ -52,7 +52,7 @@ export default function ProjectsList() {
     try{
       let response=axiosInstance.delete(PROJECTSURLS.deleteUrl(selectedId));
       // console.log(response);
-      getAllProjects(1, 10)
+      getAllProjects(1, 5)
     }catch(error){
       console.log(error)
     }
@@ -68,7 +68,7 @@ export default function ProjectsList() {
 
 
   useEffect(()=>{
-    getAllProjects(1, 10);
+    getAllProjects(1, 5);
   },[])
   return (
     <div className={styles['bg-project']}>
@@ -131,33 +131,34 @@ export default function ProjectsList() {
                 </tbody>
               </table> : (<h2>NO DATA</h2>)
             }
-            <nav aria-label="Page navigation example">
-        <ul className="pagination">
-          <li className="page-item">
-            <a className="page-link" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span className="sr-only">Previous</span>
-            </a>
-          </li>
-          {arrayOfPages.map((pageNo)=>(
-            
-            <li className="page-item" key={pageNo} 
-            onClick={()=>getAllProjects(pageNo, 3)}>
-              <a className="page-link" >
-                {pageNo}
-              </a>
-            </li>))
-          }
-          
-          
-          <li className="page-item">
-            <a className="page-link"  aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span className="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-        </nav>
+            <nav aria-label="Page navigation example" className='d-flex justify-content-end'>
+              <ul className="pagination">
+                <li className="page-item" >
+                  <a className="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span className="sr-only">Previous</span>
+                  </a>
+                </li>
+                {arrayOfPages.map((pageNo)=>(
+                  
+                  <li className="page-item" key={pageNo} 
+                  onClick={()=>getAllProjects(pageNo, 5)}>
+                    <a className="page-link" >
+                      {pageNo}
+                    </a>
+                  </li>))
+                }
+                
+                
+                <li className="page-item">
+                  <a className="page-link"  aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span className="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+        
           </div>
       </div>
     </div>

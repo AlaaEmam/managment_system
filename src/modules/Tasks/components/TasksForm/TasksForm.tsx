@@ -35,7 +35,7 @@ export default function TaskForm() {
         try {
             if (taskId !== "task-form") {
                 // Update existing task
-                const response = await axios.put(`https://upskilling-egypt.com:3003/api/v1/Task/${taskId}`, data, {
+                const response = await axios.put(`https://upskilling-egypt.com:3003/api/v1/Task/1125`, data, {
                     headers: { 
                         'Authorization': localStorage.getItem("token") 
                     }
@@ -92,17 +92,15 @@ export default function TaskForm() {
                 headers: { Authorization: localStorage.getItem("token") },
             });
 
-            const task = response.data.data;
+            const task = response.data;
             if (task) {
                 setTask(task);
                 console.log(task);
                 // Populate the form fields with the task data
-                setValue("title", task.title || '');
-                setValue("description", task.description || '');
-                setValue("employeeId", task.employee?.id || ''); // Use safe navigation in case employee is undefined
-                setValue("projectId", task.project?.id || ''); // Use safe navigation in case project is undefined
-            } else {
-                toast.error("Task not found.");
+                setValue("title", task?.title );
+                setValue("description", task?.description );
+                setValue("employeeId", task?.employee.id ); 
+                setValue("projectId", task?.project.id ); 
             }
         } catch (error) {
             console.error(error);
@@ -190,7 +188,7 @@ export default function TaskForm() {
                                     <Button className='rounded-5 px-5 py-2 mx-2' variant="outline-dark">Cancel</Button>
                                 </Link>
                                 <Button className='btn btn-color rounded-5 border px-5 py-2 mx-2' disabled={isSubmitting} type="submit">
-                                    {isSubmitting ? "Saving..." : (taskId ? "Update" : "Save")}
+                                    {isSubmitting ? "Saving..." : (taskId ? "Update" : "Submit")}
                                 </Button>
                             </div>
                         </Form>

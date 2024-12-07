@@ -109,23 +109,24 @@ export default function TasksList() {
     setShowDelete(true);
   };
 
-  //Filter with Charater
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
-  const [sortedTasks, setSortedTasks] = useState<Task[]>(tasksList);
-  const handleSort = () => {
-    const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-    setSortDirection(newDirection);
+  // Handle Sort
+  // const [sortedTasks, setSortedTasks] = useState<Task[]>([]);
+  // const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
 
-    const sorted = [...tasksList].sort((a, b) => {
-        if (newDirection === 'asc') {
-            return a.title.localeCompare(b.title);
-        } else {
-            return b.title.localeCompare(a.title);
-        }
-    });
+  // const handleSort = () => {
+  //   const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+  //   setSortDirection(newDirection);
 
-    setSortedTasks(sorted);
-};
+  //   const sorted = [...tasksList].sort((a, b) => {
+  //     if (newDirection === 'asc') {
+  //       return a.title.localeCompare(b.title);
+  //     } else {
+  //       return b.title.localeCompare(a.title);
+  //     }
+  //   });
+
+  //   setSortedTasks(sorted);
+  // };
 
   return (
     <>
@@ -160,19 +161,19 @@ export default function TasksList() {
             <thead>
               <tr>
               <th>Title
-                  <div className='d-inline-grid fw-lighter px-2'>
-                      <i
-                          className="fa-solid fa-angle-up"
-                          onClick={handleSort}
-                          style={{ cursor: 'pointer', color: sortDirection === 'asc' ? 'blue' : 'black' }}
-                      ></i>
-                      <i
-                          className="fa-solid fa-angle-down"
-                          onClick={handleSort}
-                          style={{ cursor: 'pointer', color: sortDirection === 'desc' ? 'blue' : 'black' }}
-                      ></i>
-                  </div>
-              </th>
+              {/* <div className='d-inline-grid fw -lighter px-2'>
+                <i
+                  className="fa-solid fa-angle-up"
+                  onClick={handleSort}
+                  style={{ cursor: 'pointer', color: sortDirection === 'asc' ? 'blue' : 'black' }}
+                ></i>
+                <i
+                  className="fa-solid fa-angle-down"
+                  onClick={handleSort}
+                  style={{ cursor: 'pointer', color: sortDirection === 'desc' ? 'blue' : 'black' }}
+                ></i>
+              </div> */}
+                    </th>
                 <th>Description</th>
                 <th>Status</th>
                 <th>Users Name</th>
@@ -194,9 +195,10 @@ export default function TasksList() {
                       ""
                     }>{task.status}</button>
                     </td>
-                  <td>{task.employee.userName}</td>
-                  <td>{task.project.title}</td>
-                  <td>{task.creationDate}</td>
+                  <td>{task.employee?.userName}</td>
+                  <td>{task.project?.title}</td>
+                  <td>{new Date(task.creationDate).toLocaleDateString()}</td>
+
                   <td>
           
                   <Dropdown>

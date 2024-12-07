@@ -62,7 +62,7 @@ export default function Login() {
                   <div className="mb-3">
                     <label className="form-label mb-0">Email</label>
                     <input
-                     autoComplete="off"
+                   
                       type="email"
                       placeholder="Enter your E-mail"
                       className="form-control border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"

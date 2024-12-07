@@ -22,14 +22,9 @@ height: 100vh;
     border-radius: 8px;
 }
 thead{
-
 --bs-table-bg: rgba(49, 89, 81, 0.7) !important;
 border-color: rgba(49, 89, 81, 0.7) !important;
-
 }
-span .search-icon {
-    position: absolute;
-    z-index: 9999;
-    left: 10px;
-    top: 7px;
+thead tr th{
+    --bs-table-color: #FFFFFF ;
 }

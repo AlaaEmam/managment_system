@@ -59,8 +59,8 @@ function App() {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <Dashboard  /> },
-        { path: 'tasksList/task-form', element: <TaskForm/> },
-        { path: 'tasksList', element: <TasksList/> },
+        { path: 'tasks-list/task-form', element: <TaskForm/> },
+        { path: 'tasks-list', element: <TasksList/> },
         { path: 'projectsData', element: <ProjectsData/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },

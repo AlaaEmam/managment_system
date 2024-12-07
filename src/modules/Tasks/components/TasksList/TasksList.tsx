@@ -7,14 +7,18 @@ import { TASKSURLS } from './../../../../constants/URLS';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import View from '../../../../assets/icons/View.png';
+import Delete from '../../../../assets/icons/delete.png';
+import Edit from '../../../../assets/icons/Edit.png';
+
 
 interface Task {
   id: number;
   title: string;
   status: string;
-  // numUsers: number;
-  // numTasks: number;
-  // dateCreated: string;  // Adjust type based on your API response
+  numUsers: number;
+  numTasks: number;
+  creationDate: string;  // Adjust type based on your API response
 }
 
 export default function TasksList() {
@@ -70,9 +74,9 @@ export default function TasksList() {
                 <tr>
                   <th>Title</th>
                   <th>Status</th>
-                  {/* <th>Num Users</th>
+                  <th>Num Users</th>
                   <th>Num Tasks</th>
-                  <th>Date Created</th> */}
+                  <th>Date Created</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -81,12 +85,20 @@ export default function TasksList() {
                   <tr key={task.id}>
                     <td>{task.title}</td>
                     <td>{task.status}</td>
-                    {/* <td>{task.numUsers}</td>
+                    <td>{task.numUsers}</td>
                     <td>{task.numTasks}</td>
-                    <td>{task.dateCreated}</td> */}
+                    <td>{task.creationDate}</td>
                     <td>
-                      {/* Implement action buttons here */}
-                      <button className='btn btn-action'>Edit</button>
+                    <div className="dropdown">
+                      <div typeof="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i className="fa-solid fa-ellipsis text-success"></i>
+                      </div>
+                      <ul className="dropdown-menu">
+                        <li><Link className="dropdown-item" to={``} ><img src={View} alt="" />View</Link></li>
+                        <li><Link className="dropdown-item" to={`${task?.id}`} ><img src={Edit} alt="" />Edit</Link></li>
+                        <li><Link className="dropdown-item" to={``} ><img src={Delete} alt="" />Delete</Link></li>
+                      </ul>
+                    </div>
                     </td>
                   </tr>
                 ))}

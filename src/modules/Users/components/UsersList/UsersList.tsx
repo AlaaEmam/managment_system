@@ -24,7 +24,6 @@ interface User {
 export default function UsersList() {
   const [state, setState] = useState("activeId");
 
-
   const [show, setShow] = useState(false);
 
   const [userDataById, setUserDataById] = useState<User>({
@@ -35,7 +34,7 @@ export default function UsersList() {
     country: "string",
     phoneNumber: 0,
     isActivated: true,
-  })
+  });
 
   const handleClose = () => setShow(false);
   const getUserById = async (id: number) => {
@@ -109,7 +108,7 @@ export default function UsersList() {
   const getValue: any = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const res = await privateAxiosInstance.get(
       //`https://upskilling-egypt.com:3003/api/v1/Users/?${e.target.value}=${searchValue}`
-      USERSSURLS.filerWithSelect(e.target.value,searchValue),
+      USERSSURLS.filerWithSelect(e.target.value, searchValue),
       requestHeader
     );
     setuserList(res.data.data);
@@ -166,14 +165,11 @@ export default function UsersList() {
         </Modal.Footer>
       </Modal>
 
-
       <div className="bg-white px-5 py-4">
         <div className="bg-white  ">
-            <div className="row ">
-              <h2>
-                users
-              </h2>
-            </div>
+          <div className="row ">
+            <h2>users</h2>
+          </div>
         </div>
       </div>
       <div className="userList p-5">
@@ -259,18 +255,23 @@ export default function UsersList() {
                       <i className="fa-solid fa-ellipsis-vertical dropbtn"></i>
                       <div className="dropdown">
                         <div className="dropdown-content px-4 p-3 rounded-3 shadow">
-                          <span className="d-flex justify-content-between align-items-center">
+                          <span
+                            className="d-flex justify-content-between align-items-center  "
+                            style={{ cursor: "pointer" }}
+                          >
                             <i
                               className="fa-solid fa-lock  pe-1 fa-sm"
                               onClick={() => {
                                 blockUser(user.id);
                               }}
                             ></i>
-                            block
+
+                            {user.isActivated ? "block" : "active"}
                           </span>
                           <span
                             onClick={() => getUserById(user.id)}
                             className=" d-flex justify-content-between align-items-center"
+                            style={{ cursor: "pointer" }}
                           >
                             <i className="fa-regular   fa-eye pe-1 fa-sm"></i>
                             View
@@ -288,8 +289,13 @@ export default function UsersList() {
             <nav>
               <ul className="pagination">
                 {paginationNumber.map((p) => (
-                  <li className="page-item" >
-                    <button onClick={() => getUserList(10, p)} className="page-link">{p}</button>
+                  <li className="page-item">
+                    <button
+                      onClick={() => getUserList(10, p)}
+                      className="page-link"
+                    >
+                      {p}
+                    </button>
                   </li>
                 ))}
               </ul>

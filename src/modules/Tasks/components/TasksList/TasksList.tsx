@@ -10,11 +10,14 @@ import axios from 'axios';
 import View from '../../../../assets/icons/View.png';
 import Delete from '../../../../assets/icons/delete.png';
 import Edit from '../../../../assets/icons/Edit.png';
+import { Dropdown } from 'react-bootstrap';
+import DeleteConfirmation from '../../../Shared/components/DeleteConfirmation/DeleteConfirmation';
 
 
 interface Task {
-  id: number;
+  id: any;
   title: string;
+  description: string;
   status: string;
   numUsers: number;
   numTasks: number;
@@ -26,7 +29,7 @@ export default function TasksList() {
 
   const getTasksList = async () => {
     try {
-      const response = await axios.get(`https://upskilling-egypt.com:3003/api/v1/Task/manager?pageSize=10&pageNumber=1`,
+      const response = await axios.get(`https://upskilling-egypt.com:3003/api/v1/Task/manager`,
         {    headers: {Authorization:localStorage.getItem("token")},}
       );
       console.log(response.data.data);
@@ -46,6 +49,31 @@ export default function TasksList() {
   const handleSearch = (query: string) => {
     console.log('Search query:', query);
     // Implement search logic here
+  };
+
+  //Handle delete 
+  let deleteTask = () =>{
+    try{
+        let response = axios.delete(`https://upskilling-egypt.com:3003/api/v1/Task/1117${selectedId}`,
+          {
+            headers: {Authorization:localStorage.getItem("token")},
+          }
+        );
+        getTasksList();
+        toast.success("Operation completed successfully!");
+      }catch(error){
+        toast.error("An error occurred. Please try again."); // Handle errors
+      }
+      handleCloseDelete();
+  };
+    
+  //Handle Modal Delete
+  const [showDelete, setShowDelete] = useState(false);
+  const [selectedId ,setSelectedId] = useState(0);
+  const handleCloseDelete = () => setShowDelete(false);
+  const handleShowDelete = (id: React.SetStateAction<number>) => {
+    setSelectedId(id);
+    setShowDelete(true);
   };
 
   return (
@@ -73,32 +101,48 @@ export default function TasksList() {
               <thead>
                 <tr>
                   <th>Title</th>
+                  <th>Description</th>
                   <th>Status</th>
-                  <th>Num Users</th>
-                  <th>Num Tasks</th>
+                  <th>Numbers Users</th>
+                  <th>Numbers Project</th>
                   <th>Date Created</th>
-                  <th>Action</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {tasksList.map((task) => (
                   <tr key={task.id}>
                     <td>{task.title}</td>
-                    <td>{task.status}</td>
+                    <th>{task.description}</th>
+                    <td className='text-center'>
+                        <button className={
+                        task.status === "ToDo" ? "status-todo" :
+                        task.status === "InProgress" ? "status-in-progress" :
+                        task.status === "Done" ? "status-done" :
+                        ""
+                      }>{task.status}</button>
+                      </td>
                     <td>{task.numUsers}</td>
                     <td>{task.numTasks}</td>
                     <td>{task.creationDate}</td>
                     <td>
-                    <div className="dropdown">
-                      <div typeof="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i className="fa-solid fa-ellipsis text-success"></i>
-                      </div>
-                      <ul className="dropdown-menu">
-                        <li><Link className="dropdown-item" to={``} ><img src={View} alt="" />View</Link></li>
-                        <li><Link className="dropdown-item" to={`${task?.id}`} ><img src={Edit} alt="" />Edit</Link></li>
-                        <li><Link className="dropdown-item" to={``} ><img src={Delete} alt="" />Delete</Link></li>
-                      </ul>
-                    </div>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="link" id="dropdown-basic" className="text-success">
+                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item as={Link} to={`/view/${task.id}`}>
+                            <img src={View} alt="View" /> View
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to={`/edit/${task.id}`}>
+                            <img src={Edit} alt="Edit" /> Edit
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to={``} onClick={()=> handleCloseDelete(task.id)}>
+                            <img src={Delete} alt="Delete" /> Delete
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </td>
                   </tr>
                 ))}
@@ -107,6 +151,14 @@ export default function TasksList() {
           </div>
         </div>
       </div>
+
+
+      <DeleteConfirmation 
+      deleteItem={'Task'}
+      handleCloseDelete={handleCloseDelete}
+      showDelete={showDelete}
+      deleteFunction={deleteTask}
+      />
     </>
   );
 }

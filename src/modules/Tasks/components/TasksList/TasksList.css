@@ -22,9 +22,36 @@ height: 100vh;
     border-radius: 8px;
 }
 thead{
---bs-table-bg: rgba(49, 89, 81, 0.7) !important;
-border-color: rgba(49, 89, 81, 0.7) !important;
+--bs-table-bg: #315951b3 !important;
+border-color: #315951b3 !important;
 }
 thead tr th{
     --bs-table-color: #FFFFFF ;
+}
+
+.dropdown-toggle::after {
+    border-right: none; 
+    border-left: none; 
+}
+/* In your CSS file */
+td button{
+    border-radius: 18px;
+    padding: 5px 13px;
+    font-weight: 700;
+    border: none;
+}
+.status-todo {
+    background-color: #c3c3c3;
+    color: #292929;
+  
+}
+
+.status-in-progress {
+    background-color: #DEEBFF;
+    color: #0052cc;
+}
+
+.status-done {
+    background-color:#E3FCEF;
+    color:  #006644;
 }

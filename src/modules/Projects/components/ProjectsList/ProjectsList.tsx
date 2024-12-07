@@ -32,7 +32,7 @@ export default function ProjectsList() {
   
   const getProjects=async(pageNo:number, pageSize:number, name:string=''): Promise<void>=>{
     try{
-      let response=await axiosInstance.get((loginData?.userGroup==="Manager" ?PROJECTSURLS.getAll:PROJECTSURLS.getEmp),
+      let response=await axiosInstance.get((loginData?.userGroup=="Manager" ?PROJECTSURLS.getAll:PROJECTSURLS.getEmp),
         {params:{pageSize:pageSize, pageNumber:pageNo, name}}
       );
       

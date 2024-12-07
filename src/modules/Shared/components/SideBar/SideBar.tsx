@@ -71,7 +71,7 @@ export default function SideBar() {
           <MenuItem
             active={window.location.pathname === "/tasksList"}
             icon={<i className="fa-regular fa-rectangle-list"></i>}
-            component={<Link to="/tasksList" />}
+            component={<Link to="tasksList" />}
             className="my-2"
           >
             Tasks

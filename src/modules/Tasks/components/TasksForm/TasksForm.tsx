@@ -119,7 +119,7 @@ export default function TaskForm() {
                 <div className='header-TaskForm'>
                     <Link to='/dashboard/tasks-list'>
                         <div className='d-ruby'>
-                            <i className="fa-solid fa-chevron-left p-2"></i> 
+                            <i className=" fa-solid fa-chevron-left p-2"></i> 
                             <p className='fw-light '>View All Tasks</p>
                         </div>
                     </Link>

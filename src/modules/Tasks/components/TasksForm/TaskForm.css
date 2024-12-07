@@ -5,8 +5,8 @@
 }
 .d-ruby{
     display: ruby;
+    color: black !important;
 }
-
 .form{
     width: 57%;
     margin: auto;

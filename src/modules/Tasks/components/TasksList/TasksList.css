@@ -49,3 +49,8 @@ td button{
     background-color:#E3FCEF;
     color:  #006644;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #212529 !important;
+    background-color: #65aa9c5c !important;
+}

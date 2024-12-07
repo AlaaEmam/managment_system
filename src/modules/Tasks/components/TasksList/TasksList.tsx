@@ -7,12 +7,13 @@ import { TASKSURLS } from './../../../../constants/URLS';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import View from '../../../../assets/icons/View.png';
-import Delete from '../../../../assets/icons/delete.png';
-import Edit from '../../../../assets/icons/Edit.png';
+import View from '../../../../assets/icons/View.svg';
+import Delete from '../../../../assets/icons/delete.svg';
+import Edit from '../../../../assets/icons/Edit.svg';
 import { Button, Dropdown, Modal } from 'react-bootstrap';
 import DeleteConfirmation from '../../../Shared/components/DeleteConfirmation/DeleteConfirmation';
 import NoData from './../../../Shared/components/NoData/NoData';
+import closeButton from '../../../../assets/closeButton.png';
 
 
 
@@ -109,6 +110,16 @@ export default function TasksList() {
     setShowDelete(true);
   };
 
+  //Modal View
+  const [showView, setShowView] = useState<boolean>(false);
+  const [selectedTask, setSelectedTask] = useState<any | null>(null);
+
+  const handleCloseView = () => setShowView(false);
+  const handleShowView = (task: any) => {
+    setSelectedTask(task);
+    setShowView(true);
+  };
+
   // Handle Sort
   // const [sortedTasks, setSortedTasks] = useState<Task[]>([]);
   // const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
@@ -136,6 +147,26 @@ export default function TasksList() {
       showDelete={showDelete}
       deleteFunction={deleteTask}
       /> 
+      
+    {/* View user Modal */}
+    <Modal show={showView} onHide={handleCloseView} centered>
+      <Modal.Header className='d-flex justify-content-between align-items-center'>
+          <h5>View Task Data</h5>
+          <img role="button" src={closeButton} onClick={handleCloseView} alt="Close" />
+      </Modal.Header>
+      <Modal.Body className="text-center">
+          {selectedTask && (
+              <>
+                  <h6 className="mb-3"><strong>Title: </strong>{selectedTask.title}</h6>
+                  <h6 className="mb-3"><strong>Description: </strong>{selectedTask.description}</h6>
+                  <h6 className="mb-3"><strong>Status: </strong>{selectedTask.status} </h6> 
+                  <h6 className="mb-3"><strong>User Name: </strong>{selectedTask.employee?.userName} </h6> 
+                  <h6 className="mb-3"><strong>Project Name: </strong>{selectedTask.project?.title} </h6> 
+                  <h6 className="mb-3"><strong>Date Created: </strong> {new Date (selectedTask.creationDate).toLocaleDateString()}</h6>
+              </>
+          )}
+      </Modal.Body>
+    </Modal>
 
       <div className='bg-gray'>
         <div className='header-module'>
@@ -206,7 +237,7 @@ export default function TasksList() {
                       <i className="fa-solid fa-ellipsis-vertical"></i>
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
-                        <Dropdown.Item as={Link} to={`${task.id}`}>
+                        <Dropdown.Item onClick={() => handleShowView(task)} >
                           <img src={View} alt="View" /> View
                         </Dropdown.Item>
                         <Dropdown.Item as={Link} to={`${task?.id}`}>

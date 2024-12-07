@@ -10,8 +10,9 @@ import axios from 'axios';
 import View from '../../../../assets/icons/View.png';
 import Delete from '../../../../assets/icons/delete.png';
 import Edit from '../../../../assets/icons/Edit.png';
-import { Dropdown } from 'react-bootstrap';
+import { Button, Dropdown, Modal } from 'react-bootstrap';
 import DeleteConfirmation from '../../../Shared/components/DeleteConfirmation/DeleteConfirmation';
+import NoData from './../../../Shared/components/NoData/NoData';
 
 
 interface Task {
@@ -52,32 +53,45 @@ export default function TasksList() {
   };
 
   //Handle delete 
-  let deleteTask = () =>{
-    try{
-        let response = axios.delete(`https://upskilling-egypt.com:3003/api/v1/Task/1117${selectedId}`,
-          {
-            headers: {Authorization:localStorage.getItem("token")},
-          }
-        );
-        getTasksList();
-        toast.success("Operation completed successfully!");
-      }catch(error){
-        toast.error("An error occurred. Please try again."); // Handle errors
+  let deleteTask = async  () =>{
+      if(selectedId !== null){
+        try{
+          let response = await axios.delete(`https://upskilling-egypt.com:3003/api/v1/Task/${selectedId}`,
+            {
+              headers: {Authorization:localStorage.getItem("token")},
+            }
+          );
+          getTasksList();
+          toast.success("Operation completed successfully! ");
+         
+        }catch(error){
+          toast.error("An error occurred. Please try again."); // Handle errors
+        }
       }
       handleCloseDelete();
   };
     
   //Handle Modal Delete
-  const [showDelete, setShowDelete] = useState(false);
-  const [selectedId ,setSelectedId] = useState(0);
+  const [showDelete, setShowDelete] = useState<boolean>(false);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
   const handleCloseDelete = () => setShowDelete(false);
-  const handleShowDelete = (id: React.SetStateAction<number>) => {
+
+  const handleShowDelete = (id: number) => {
     setSelectedId(id);
     setShowDelete(true);
   };
 
+
   return (
     <>
+         <DeleteConfirmation 
+      deleteItem={'Task'}
+      handleCloseDelete={handleCloseDelete}
+      showDelete={showDelete}
+      deleteFunction={deleteTask}
+      /> 
+
       <div className='bg-gray'>
         <div className='header-module'>
           <div>
@@ -97,8 +111,62 @@ export default function TasksList() {
             {/* Search */}
             <SearchBar onSearch={handleSearch} />
 
+            {tasksList.length > 0 ?
             <Table striped bordered hover>
-              <thead>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Numbers Users</th>
+                <th>Numbers Project</th>
+                <th>Date Created</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {tasksList.map((task) => (
+                <tr key={task.id}>
+                  <td>{task.title}</td>
+                  <th>{task.description}</th>
+                  <td className='text-center'>
+                      <button className={
+                      task.status === "ToDo" ? "status-todo" :
+                      task.status === "InProgress" ? "status-in-progress" :
+                      task.status === "Done" ? "status-done" :
+                      ""
+                    }>{task.status}</button>
+                    </td>
+                  <td>{task.numUsers}</td>
+                  <td>{task.numTasks}</td>
+                  <td>{task.creationDate}</td>
+                  <td>
+          
+                  <Dropdown>
+                      <Dropdown.Toggle variant="link" id="dropdown-basic" className="text-success">
+                      <i className="fa-solid fa-ellipsis-vertical"></i>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item as={Link} to={`/view/${task.id}`}>
+                          <img src={View} alt="View" /> View
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                          <img src={Edit} alt="Edit" /> Edit
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleShowDelete(task.id)}>
+                          <img src={Delete} alt="Delete" /> Delete
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table> 
+          : <div>
+              <Table  striped bordered hover>
+                <thead>
                 <tr>
                   <th>Title</th>
                   <th>Description</th>
@@ -109,56 +177,15 @@ export default function TasksList() {
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
-                {tasksList.map((task) => (
-                  <tr key={task.id}>
-                    <td>{task.title}</td>
-                    <th>{task.description}</th>
-                    <td className='text-center'>
-                        <button className={
-                        task.status === "ToDo" ? "status-todo" :
-                        task.status === "InProgress" ? "status-in-progress" :
-                        task.status === "Done" ? "status-done" :
-                        ""
-                      }>{task.status}</button>
-                      </td>
-                    <td>{task.numUsers}</td>
-                    <td>{task.numTasks}</td>
-                    <td>{task.creationDate}</td>
-                    <td>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="link" id="dropdown-basic" className="text-success">
-                        <i className="fa-solid fa-ellipsis-vertical"></i>
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                          <Dropdown.Item as={Link} to={`/view/${task.id}`}>
-                            <img src={View} alt="View" /> View
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to={`/edit/${task.id}`}>
-                            <img src={Edit} alt="Edit" /> Edit
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to={``} onClick={()=> handleCloseDelete(task.id)}>
-                            <img src={Delete} alt="Delete" /> Delete
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
             </Table>
+            <NoData/>
+          </div>
+          }
           </div>
         </div>
       </div>
 
-
-      <DeleteConfirmation 
-      deleteItem={'Task'}
-      handleCloseDelete={handleCloseDelete}
-      showDelete={showDelete}
-      deleteFunction={deleteTask}
-      />
+   
     </>
   );
 }

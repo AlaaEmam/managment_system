@@ -6,3 +6,15 @@
 .d-ruby{
     display: ruby;
 }
+
+.form{
+    width: 57%;
+    margin: auto;
+    margin-top: 6vh;
+}
+.background-module .form-label {
+    color: black;
+}
+.background-module .form-select , .background-module .form-control {
+    color: #b0b7be !important;
+}

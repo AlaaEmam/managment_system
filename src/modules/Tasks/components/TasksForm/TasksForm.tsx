@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import './TaskForm.css';
 import '../TasksList/TasksList.css';
-import { FloatingLabel } from 'react-bootstrap';
+import { Col, FloatingLabel, InputGroup, Row } from 'react-bootstrap';
 import TasksList from './../TasksList/TasksList';
 
 interface TaskFormData {
@@ -88,51 +88,50 @@ export default function TaskForm() {
             <h3 className='fw-bold'>Create New Task</h3>
         </div>
             <div className='container'>
-                <div className='background-module'>
+                <div className='background-module form'>
                     {/* Form  */}
                     <Form onSubmit={handleSubmit(onSubmitHandler)} className='px-5 py-3 mb-3'>
                         <Form.Group className="mb-3" controlId="formGridTitle">
-                            <FloatingLabel controlId="floatingTitle" label="Task Title">
+                        <Form.Label>First name</Form.Label>
                                 <Form.Control 
                                     placeholder="Task Title" 
                                     type="text" 
                                     {...register("title", { required: 'Task Title is required.' })} 
                                 />
-                            </FloatingLabel>
                             <div className='my-1'>
                                 {errors?.title && <span className='text-danger'>{errors.title.message}</span>}
                             </div>
                         </Form.Group>
 
+                        
                         <Form.Group className="mb-3" controlId="formGridDescription">
-                            <FloatingLabel controlId="floatingDescription" label="Description">
+                            <Form.Label>Description</Form.Label>
                                 <Form.Control 
                                     as="textarea" 
                                     placeholder="Description" 
                                     {...register("description", { required: 'Description is required.' })} 
                                 />
-                            </FloatingLabel>
                             {errors.description?.message && <span className='text-danger'>{errors.description.message}</span>}
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formGridEmployee">
-                            <FloatingLabel controlId="floatingSelectEmployee" label="Assign to Employee">
+                        <Row className="mb-3">
+                        <Form.Group  as={Col} md="6" className="mb-3" controlId="formGridEmployee">
+                        <Form.Label>User</Form.Label>
                                 <Form.Select 
                                     {...register("employeeId", { required: 'Employee selection is required.' })} 
                                 >
-                                    <option value="">Choose Employee...</option>
+                                    <option value="">No Users Selected</option>
                                     {employees.map(({ id, name }) => (
                                         <option key={id} value={id}>{name}</option>
                                     ))}
                                 </Form.Select>
-                            </FloatingLabel>
                             <div className='my-1'>
                                 {errors?.employeeId && <span className='text-danger'>{errors.employeeId.message}</span>}
                             </div>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formGridProject">
-                            <FloatingLabel controlId="floatingSelectProject" label="Select Project">
+                        <Form.Group as={Col} md="6" className="mb-3" controlId="formGridProject">
+                        <Form.Label>Project</Form.Label>
                                 <Form.Select 
                                     {...register("projectId", { required: 'Project selection is required.' })} 
                                 >
@@ -141,18 +140,19 @@ export default function TaskForm() {
                                         <option key={id} value={id}>{name}</option>
                                     ))}
                                 </Form.Select>
-                            </FloatingLabel>
                             <div className='my-1'>
                                 {errors?.projectId && <span className='text-danger'>{errors.projectId.message}</span>}
                             </div>
                         </Form.Group>
+                        </Row>
 
-                        <div className='mt-4 d-flex justify-content-end'>
-                            <Link to="/dashboard/tasks">
-                                <Button className='px-5 py-2 mx-2' variant="outline-success">Cancel</Button>
+                      <hr />
+                      <div className='mt-4 d-flex justify-content-sm-between'>
+                            <Link to="/dashboard/tasks-list">
+                                <Button className='rounded-5 px-5 py-2 mx-2' variant="outline-dark">Cancel</Button>
                             </Link>
-                            <Button className='px-5 py-2 mx-2' disabled={isSubmitting} variant="success" type="submit">
-                                {isSubmitting ? "Saving" : "Save"}
+                            <Button className='btn btn-color rounded-5 border px-5 py-2 mx-2' disabled={isSubmitting} type="submit">
+                                {isSubmitting ? "Saving..." : "Save"}
                             </Button>
                         </div>
                     </Form>

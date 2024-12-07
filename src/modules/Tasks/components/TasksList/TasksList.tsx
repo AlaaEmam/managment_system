@@ -14,6 +14,13 @@ import { Button, Dropdown, Modal } from 'react-bootstrap';
 import DeleteConfirmation from '../../../Shared/components/DeleteConfirmation/DeleteConfirmation';
 import NoData from './../../../Shared/components/NoData/NoData';
 
+interface Employee {
+  userName: string;
+}
+
+interface Project {
+  title: string;
+}
 
 interface Task {
   id: any;
@@ -22,12 +29,16 @@ interface Task {
   status: string;
   numUsers: number;
   numTasks: number;
-  creationDate: string;  // Adjust type based on your API response
+  creationDate: string; 
+  project: Project;
+  employee: Employee;
 }
 
 export default function TasksList() {
   const [tasksList, setTasksList] = useState<Task[]>([]);
+  const [counttasks, setCountTasks] = useState<Task[]>([]);
 
+  // Get Tasks
   const getTasksList = async () => {
     try {
       const response = await axios.get(`https://upskilling-egypt.com:3003/api/v1/Task/manager`,
@@ -41,9 +52,24 @@ export default function TasksList() {
     }
   };
 
+  // Get count Tasks
+  const getCountTasks= async () => {
+    try {
+      const response = await axios.get(`https://upskilling-egypt.com:3003/api/v1/Task/count`,
+        {    headers: {Authorization:localStorage.getItem("token")},}
+      );
+      console.log(response.data.data);
+      setCountTasks(response.data.data);
+    } catch (error: any) {
+      console.error(error);
+      toast.error("Failed to fetch tasks."); // Optional: Show toast notification
+    }
+  };
+
   // Fetch tasks on component mount
   useEffect(() => {
     getTasksList();
+    getCountTasks();
   }, []);
 
   // Handle Search
@@ -85,7 +111,7 @@ export default function TasksList() {
 
   return (
     <>
-         <DeleteConfirmation 
+      <DeleteConfirmation 
       deleteItem={'Task'}
       handleCloseDelete={handleCloseDelete}
       showDelete={showDelete}
@@ -137,8 +163,8 @@ export default function TasksList() {
                       ""
                     }>{task.status}</button>
                     </td>
-                  <td>{task.numUsers}</td>
-                  <td>{task.numTasks}</td>
+                  <td>{task.employee.userName}</td>
+                  <td>{task.project.title}</td>
                   <td>{task.creationDate}</td>
                   <td>
           

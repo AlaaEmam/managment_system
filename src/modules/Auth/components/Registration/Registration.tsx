@@ -146,7 +146,7 @@ export default function Registration() {
 
                   {/* Second Column */}
                   <div className="col-md-12 col-lg-6">
-           
+
                   {/* Country */}
                   <div className="floating-label country">
                     <span className="highlight"></span>
@@ -171,7 +171,7 @@ export default function Registration() {
                     errors={errors.password}
                     showPassword={showPassword}
                     togglePasswordVisibility={togglePasswordVisibility}
-                    validationRules={PasswordValidation} 
+                    validationRules={PasswordValidation}
                   />
 
                   {/* Confirm Password Input */}

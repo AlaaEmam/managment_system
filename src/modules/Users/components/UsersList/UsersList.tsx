@@ -24,10 +24,6 @@ interface User {
 export default function UsersList() {
   const [state, setState] = useState("activeId");
 
-  // const userList = async () => {
-  //   const response = await axiosInstance.get(USERSSURLS.getUsersUrl(10,1))
-  //   console.log(response);
-  // };
 
   const [show, setShow] = useState(false);
 
@@ -112,7 +108,8 @@ export default function UsersList() {
   //filterwithselect
   const getValue: any = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const res = await privateAxiosInstance.get(
-      `https://upskilling-egypt.com:3003/api/v1/Users/?${e.target.value}=${searchValue}`,
+      //`https://upskilling-egypt.com:3003/api/v1/Users/?${e.target.value}=${searchValue}`
+      USERSSURLS.filerWithSelect(e.target.value,searchValue),
       requestHeader
     );
     setuserList(res.data.data);
@@ -291,8 +288,8 @@ export default function UsersList() {
             <nav>
               <ul className="pagination">
                 {paginationNumber.map((p) => (
-                  <li className="page-item" onClick={() => getUserList(10, p)}>
-                    <a className="page-link">{p}</a>
+                  <li className="page-item" >
+                    <button onClick={() => getUserList(10, p)} className="page-link">{p}</button>
                   </li>
                 ))}
               </ul>

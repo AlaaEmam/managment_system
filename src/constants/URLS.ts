@@ -42,5 +42,6 @@ export const USERSSURLS = {
   toggleStatusUrl: (id: number) => `/Users/${id}`,
   getUserById: (id: number) => `/Users/${id}`,
   filteruser: (name: string, p: number, n: number) =>
-    `/Users/?userName=${name}&pageSize=${p}&pageNumber=${n}`
+    `/Users/?userName=${name}&pageSize=${p}&pageNumber=${n}`,
+  filerWithSelect:(InputValue:any,searchValue:any)=>`/Users/?${InputValue}=${searchValue}`
 };

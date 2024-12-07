@@ -50,7 +50,6 @@ function App() {
         { path: 'reset-pass', element: <ResetPass /> },
 
         { path: 'change-pass', element: <ChangePassword /> },
-        { path: 'test', element: <UsersList/> },
 
       ]
     },

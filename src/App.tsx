@@ -60,6 +60,7 @@ function App() {
       children: [
         { index: true, element: <Dashboard  /> },
         { path: 'tasks-list/task-form', element: <TaskForm/> },
+        { path: 'tasks-list/:taskId', element: <TaskForm/> },
         { path: 'tasks-list', element: <TasksList/> },
         { path: 'projectsData', element: <ProjectsData/> },
         { path: 'ProjectsList', element: <ProjectsList /> },

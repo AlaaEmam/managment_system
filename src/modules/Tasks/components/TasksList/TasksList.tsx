@@ -14,27 +14,28 @@ import { Button, Dropdown, Modal } from 'react-bootstrap';
 import DeleteConfirmation from '../../../Shared/components/DeleteConfirmation/DeleteConfirmation';
 import NoData from './../../../Shared/components/NoData/NoData';
 
-interface Employee {
-  userName: string;
-}
 
-interface Project {
-  title: string;
-}
-
-interface Task {
-  id: any;
-  title: string;
-  description: string;
-  status: string;
-  numUsers: number;
-  numTasks: number;
-  creationDate: string; 
-  project: Project;
-  employee: Employee;
-}
 
 export default function TasksList() {
+  interface Employee {
+    userName: string;
+  }
+  
+  interface Project {
+    title: string;
+  }
+  
+  interface Task {
+    id: any;
+    title: string;
+    description: string;
+    status: string;
+    numUsers: number;
+    numTasks: number;
+    creationDate: string; 
+    project: Project;
+    employee: Employee;
+  }
   const [tasksList, setTasksList] = useState<Task[]>([]);
   const [counttasks, setCountTasks] = useState<Task[]>([]);
 
@@ -108,6 +109,23 @@ export default function TasksList() {
     setShowDelete(true);
   };
 
+  //Filter with Charater
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
+  const [sortedTasks, setSortedTasks] = useState<Task[]>(tasksList);
+  const handleSort = () => {
+    const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    setSortDirection(newDirection);
+
+    const sorted = [...tasksList].sort((a, b) => {
+        if (newDirection === 'asc') {
+            return a.title.localeCompare(b.title);
+        } else {
+            return b.title.localeCompare(a.title);
+        }
+    });
+
+    setSortedTasks(sorted);
+};
 
   return (
     <>
@@ -141,11 +159,24 @@ export default function TasksList() {
             <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Title</th>
+              <th>Title
+                  <div className='d-inline-grid fw-lighter px-2'>
+                      <i
+                          className="fa-solid fa-angle-up"
+                          onClick={handleSort}
+                          style={{ cursor: 'pointer', color: sortDirection === 'asc' ? 'blue' : 'black' }}
+                      ></i>
+                      <i
+                          className="fa-solid fa-angle-down"
+                          onClick={handleSort}
+                          style={{ cursor: 'pointer', color: sortDirection === 'desc' ? 'blue' : 'black' }}
+                      ></i>
+                  </div>
+              </th>
                 <th>Description</th>
                 <th>Status</th>
-                <th>Numbers Users</th>
-                <th>Numbers Project</th>
+                <th>Users Name</th>
+                <th>Project Name</th>
                 <th>Date Created</th>
                 <th></th>
               </tr>
@@ -172,14 +203,13 @@ export default function TasksList() {
                       <Dropdown.Toggle variant="link" id="dropdown-basic" className="text-success">
                       <i className="fa-solid fa-ellipsis-vertical"></i>
                       </Dropdown.Toggle>
-
                       <Dropdown.Menu>
-                        <Dropdown.Item as={Link} to={`/view/${task.id}`}>
+                        <Dropdown.Item as={Link} to={`${task.id}`}>
                           <img src={View} alt="View" /> View
                         </Dropdown.Item>
-                        <Dropdown.Item>
+                        <Dropdown.Item as={Link} to={`${task?.id}`}>
                           <img src={Edit} alt="Edit" /> Edit
-                        </Dropdown.Item>
+                      </Dropdown.Item>
                         <Dropdown.Item onClick={() => handleShowDelete(task.id)}>
                           <img src={Delete} alt="Delete" /> Delete
                         </Dropdown.Item>

@@ -55,7 +55,7 @@ export default function ForgetPassword() {
               {/* Email input */}
               
               <div className='my-5'>
-              <label className="form-label mb-0">Email </label>
+              <label className="form-label text-white mb-0">Email </label>
                 <input 
                  autoComplete="off"
                 type="email" 

@@ -17,8 +17,10 @@ interface loginDataInterface {
 }
 
 export default function Login() {
+
   // const { saveLoginData } = useContext(AuthContext);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
 
   const navigate = useNavigate();
   const {
@@ -36,6 +38,7 @@ export default function Login() {
       toast.success("Login succeeded");
       localStorage.setItem("token", response.data.token); // حفظ التوكن
       navigate("/Dashboard");
+
     } catch (error: any) {
       toast.error(error.response?.data.message || "Login failed");
     }

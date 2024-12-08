@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
+
 import './Navbar.css'
 import Logo from '../../../../assets/logo-dark.png';
 import DefaultProfile from '../../../../assets/defaultavatar.jpg';
+
 import { AuthContext } from '../../../../context/AuthContext';
 
 // I changed this.
@@ -14,6 +16,7 @@ export default function Navbar() {
 <div className='d-flex justify-content-between align-items-center navbar'>
   <div className="d-flex align-items-center">
     <img className='dash-logo' src={Logo} alt="Logo" />
+
 
   </div>
 
@@ -33,6 +36,7 @@ export default function Navbar() {
     </div>
   </div>
 </div>
+
 
        
     </>

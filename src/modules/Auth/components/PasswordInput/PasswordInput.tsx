@@ -8,7 +8,7 @@ interface PasswordInputProps {
   name: string;
   errors: FieldError | undefined;
   showPassword: boolean;
-  togglePasswordVisibility: () => void;
+  setIsPasswordVisible: React.Dispatch<React.SetStateAction<boolean>>;
   validationRules: any;
 }
 
@@ -18,25 +18,34 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   name,
   errors,
   showPassword,
-  togglePasswordVisibility,
+  setIsPasswordVisible,
 }) => {
   return (
     <div className="floating-label">
       <span className="highlight"></span>
       <input
+       autoComplete="off"
         type={showPassword ? 'text' : 'password'}
         className="floating-input"
         {...register(name, PasswordValidation)}
         placeholder=""
       />
       <label>{label}</label>
-      <span
-        className="icon-showpass"
-        onClick={togglePasswordVisibility}
-        style={{ cursor: 'pointer' }}
+      <button
+        onClick={() => setIsPasswordVisible((prev) => !prev)}
+        onMouseUp={(e) => e.preventDefault()}
+        onMouseDown={(e) => e.preventDefault()}
+        type="button"
+        className="icon-showpass border-0 bg-transparent position-absolute end-0"
       >
-        {showPassword ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
-      </span>
+        <i
+          className={
+            !showPassword
+              ? 'fa-solid fa-eye-slash fa-sm text-white'
+              : 'fa-solid fa-eye fa-sm text-white'
+          }
+        ></i>
+      </button>
       {errors && <span className="text-danger">{errors.message}</span>}
     </div>
   );

@@ -1,0 +1,56 @@
+.header-module{
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    align-items: center;
+    padding-inline: 2.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.background-module{
+    padding-block: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+thead{
+--bs-table-bg: #315951b3 !important;
+border-color: #315951b3 !important;
+}
+thead tr th{
+    --bs-table-color: #FFFFFF ;
+}
+
+.dropdown-toggle::after {
+    border-right: none; 
+    border-left: none; 
+}
+/* In your CSS file */
+td button{
+    border-radius: 18px;
+    padding: 5px 13px;
+    font-weight: 700;
+    border: none;
+}
+.status-todo {
+    background-color: #c3c3c3;
+    color: #292929;
+  
+}
+
+.status-in-progress {
+    background-color: #DEEBFF;
+    color: #0052cc;
+}
+
+.status-done {
+    background-color:#E3FCEF;
+    color:  #006644;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #212529 !important;
+    background-color: #65aa9c5c !important;
+}

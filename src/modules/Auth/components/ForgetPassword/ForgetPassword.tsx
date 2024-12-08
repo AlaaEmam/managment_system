@@ -3,16 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AUTHURLS, axiosInstance} from '../../../../constants/URLS';
 import { EmailValidation } from '../../../../constants/validations';
+import Logo from '../../../../assets/logo.png';
 
-//I changed this
+interface FormData {
+  email: string;
+}
+interface ApiResponse{
+  message: string;  
+}
 
 export default function ForgetPassword() {
-  interface FormData {
-    email: string;
-  }
-  interface ApiResponse{
-    message: string;  
-  }
+
   let navigate=useNavigate();
   const {register, formState:{isSubmitting, errors}, handleSubmit}=useForm<FormData>();
   
@@ -34,28 +35,50 @@ export default function ForgetPassword() {
     // console.log(data);
   }
   return (
-    <div className='bg-container forget-password px-5 py-5 rounded-4'>
-  
-      <div className='title'>  
-        <span>welcome to PMS</span>
-        <h3>Forget Password</h3>
-      </div>
+    <div className='bg-container'>
+      <div className='container-fluid'>
+        <div className="row justify-content-center align-items-center">
+          <div className="col-lg-6 col-md-8 col-sm-10">
+          <div className="logo-container">
+                <img className="img-fluid my-3" src={Logo} alt="Logo" />
+          </div>
+            <div className='pt-3 px-5' >
+              <div className='form-background rounded-2 p-5'>
+              <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mt-4">
+                    <p className="fw-light fs-7 text-white">
+                      Welcome Back to Project Management System PMS.
+                    </p>
+                    <h4 className="auth-text-header">Forget Password</h4>
+                </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>E-mail</label>
-        <div className='input-group mb-3 my-2'>
-          <input type="email" className="form-control" 
-          placeholder="Enter your E-mail" 
-          aria-label="Email" aria-describedby="basic-addon1"
-          {...register('email', EmailValidation)}
-          />
+              {/* Email input */}
+              
+              <div className='my-5'>
+              <label className="form-label text-white mb-0">Email </label>
+                <input 
+                 autoComplete="off"
+                type="email" 
+                className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white" 
+                placeholder="Enter your E-mail" 
+                aria-label="Email" 
+                aria-describedby="basic-addon1"
+                {...register('email', EmailValidation)}
+                />
+              {errors.email && <span className="text-danger ">{errors.email.message}</span>}
+              </div>
+
+              <button disabled={isSubmitting}  
+              className='btn btn-color rounded-5 mt-5  w-100 my-3'>
+                {isSubmitting ? "Verifying": "Verify"}
+              </button>  
+            </form>
+              </div>
+            </div>
+          </div>
         </div>
-        {errors.email && <span className="text-danger ">{errors.email.message}</span>}
-        <button disabled={isSubmitting}  className='btn-yellow w-100 py-2 my-2 
-          text-white rounded-3 border-0'>
-          {isSubmitting ? "Verifying": "Verify"}
-        </button>  
-      </form>
+      </div>
     </div>
   )
 }
+      

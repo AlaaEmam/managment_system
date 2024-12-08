@@ -35,7 +35,7 @@ export default function Login() {
       );
       toast.success("Login succeeded");
       localStorage.setItem("token", response.data.token); // حفظ التوكن
-      navigate("/Dashboard");
+      navigate("/dashboard");
     } catch (error: any) {
       toast.error(error.response?.data.message || "Login failed");
     }

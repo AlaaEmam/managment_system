@@ -8,7 +8,7 @@ export default function MasterLayout() {
     <>
       <div className=" d-flex ">
       <div className="w-100">
-        <Navbar/>
+        {/* <Navbar/> */}
 
       </div>
         <div>

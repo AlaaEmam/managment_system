@@ -10,37 +10,46 @@ export default function SideBar() {
     setCollapsed(!isCollapsed);
   };
   return (
-
-
-
     <div className="container-sidebar">
-      <Sidebar collapsed={isCollapsed} className="vh-100 sideBar_style pt-2">
+      <Sidebar
+        collapsed={isCollapsed}
+        className="pt-5 vh-100 sideBar_style pt-2 position-sticky top-0"
+      >
+        {/* <NavLink to={url} exact activeClassName="activeLink" >dd</NavLink> */}
+
         <Menu
           menuItemStyles={{
-            button: ({ level, active, disabled }) => {
-              // only apply styles on first level elements of the tree
-              if (level === 0)
-                return {
-                  color: disabled ? "red" : "#ffffff",
-                  backgroundColor: active ? " #1F263E" : " #1F263E",
-                };
+            button: {
+              // the active class will be added automatically by react router
+              // so we can use it to style the active menu item
+              [`&.active`]: {
+                //   backgroundColor: '#13395e',
+                color: "#EF9B28",
+              },
+              [`&`]: {
+                //backgroundColor: '#13395e',
+                color: "#ffffff",
+              },
+              //  ['i.active']:{                color: '#dd2121 !important',}
             },
           }}
         >
-          <MenuItem
+          {/* <MenuItem
             icon={
               <i
-                className="fa-solid fa-angle-left position-absolute end-0 px-2 py-2  fa-1x rounded-start-2 bg-warning"
+                className="fa-solid fa-angle-left position-absolute end-0 px-2 py-2   rounded-start-2 bg-warning"
                 onClick={() => {
                   chage();
                 }}
               ></i>
             }
-            component={<NavLink to="/dashboard" />}
-            className="my-2"
-          ></MenuItem>
-
-          <MenuItem
+            component={<NavLink to="/" />}
+            className="position-  my-5 z-3 end-0  bg-transparent firstItem"
+          ></MenuItem> */}
+<i onClick={() => {
+                  chage();
+                }} className="fa-solid fa-chevron-left  rounded-start-3 z-3 position-absolute sidebar_icon"></i>
+          {/* <MenuItem
 
             icon={
               <i
@@ -52,28 +61,55 @@ export default function SideBar() {
             }
             component={<NavLink to="/dashboard" />}
             className="my-2"
-          ></MenuItem>
+          ></MenuItem> */}
 
           <MenuItem
-            icon={<i className="fa-regular fa-address-card"></i>}
-            component={<NavLink to="/users" />}
-            className="my-2"
+                      icon={<i className="fa-solid fa-house"></i>}
+            className="my-2 h6 mt-3"
+            component={<NavLink to="/dashboard" />}
+          >
+            {" "}
+            Home
+          </MenuItem>
+
+          <MenuItem
+            icon={<i className="fa-solid fa-users"></i>}
+            component={<NavLink to="/dashboard/users" />}
+            className="my-2 h6"
           >
             Users
           </MenuItem>
           <MenuItem
-            icon={<i className="fa-regular fa-object-ungroup"></i>}
-            component={<NavLink to="/ProjectsList" />}
-            className="my-2"
+            icon={<i className="fa-solid fa-diagram-project"></i>}
+            component={<NavLink to="/dashboard/projects-list" />}
+            className="my-2 h6"
           >
             Projects
           </MenuItem>
           <MenuItem
-            icon={<i className="fa-regular fa-rectangle-list"></i>}
-            component={<Link to="/tasksList" />}
-            className="my-2"
+            icon={<i className="fa-solid fa-list-check"></i>}
+            component={<NavLink to="/dashboard/tasks-list" />}
+            className="my-2 h6"
           >
             Tasks
+          </MenuItem>
+
+
+          <MenuItem
+            icon={<i className="fa-solid fa-unlock"></i>}
+            component={<NavLink to="/change-password" />}
+            className="my-2 h6"
+          >
+            Change password
+          </MenuItem>
+
+
+          <MenuItem
+            icon={<i className="fa-solid fa-arrow-right-from-bracket"></i>}
+            component={<NavLink to="/Logout" />}
+            className="my-2 h6"
+          >
+            logout
           </MenuItem>
         </Menu>
       </Sidebar>

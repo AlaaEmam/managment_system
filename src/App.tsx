@@ -16,7 +16,6 @@ import ProtectedRoute from './modules/Shared/components/ProtectedRoute/Protected
 import MasterLayout from './modules/Shared/components/MasterLayout/MasterLayout'
 import Dashboard from './modules/Dashboard/components/Dashboard/Dashboard'
 import TasksList from './modules/Tasks/components/TasksList/TasksList'
-import TasksData from './modules/Tasks/components/TasksData/TasksData'
 import ProjectsList from './modules/Projects/components/ProjectsList/ProjectsList'
 import UsersList from './modules/Users/components/UsersList/UsersList'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -25,6 +24,7 @@ import { ToastContainer } from 'react-toastify'
 import { AuthContext } from './context/AuthContext'
 import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassword'
 import ProjectForm from './modules/Projects/components/ProjectForm/ProjectForm';
+import TaskForm from './modules/Tasks/components/TasksForm/TasksForm';
 
 
 function App() {
@@ -59,9 +59,11 @@ function App() {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <Dashboard  /> },
-        { path: 'tasksData', element: <TasksData/> },
         { path: 'tasksList', element: <TasksList/> },
         { path: 'ProjectsList/:projectId', element: <ProjectForm/> },
+        { path: 'tasks-list/task-form', element: <TaskForm/> },
+        { path: 'tasks-list/:taskId', element: <TaskForm/> },
+        { path: 'tasks-list', element: <TasksList/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },
 

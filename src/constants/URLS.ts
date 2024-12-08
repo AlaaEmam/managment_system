@@ -52,7 +52,7 @@ export const PROJECTSURLS = {
 };
 
 export const TASKSURLS = {
-  getAll: `/Task/manager`,
+  getAll: `${baseURL}/Task/manager`,
   addUrl: `/Task`,
   updateUrl: (id: string) => `/Task/${id}`,
 };

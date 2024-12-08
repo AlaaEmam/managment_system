@@ -1,0 +1,17 @@
+.header-TaskForm{
+    background-color: white;
+    line-height: 0.2;
+    padding: 14px 32px;
+}
+.d-ruby{
+    display: ruby;
+    color: black !important;
+}
+.form{
+    width: 57%;
+    margin: auto;
+    margin-top: 6vh;
+}
+.background-module .form-label {
+    color: black;
+}

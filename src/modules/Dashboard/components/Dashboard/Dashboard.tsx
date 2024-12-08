@@ -3,6 +3,7 @@ import Progress from '../../../../assets/icons/progress.svg';
 import Tasks from '../../../../assets/icons/task.svg';
 import Projects from '../../../../assets/icons/projects.svg';
 import DashboardBox from '../DashboardBox/DashboardBox';
+import Header from '../../../Shared/components/Header/Header';
 
 
 export default function Dashboard() {
@@ -43,6 +44,7 @@ const cardsData2 = [
 ];
   return (
       <>
+    <Header/>
     <div className='container'>
       <div className='row d-flex justify-content-around g-4 mx-3'>
         <DashboardBox 

@@ -10,6 +10,9 @@ export default function SideBar() {
     setCollapsed(!isCollapsed);
   };
   return (
+
+
+
     <div className="container-sidebar">
       <Sidebar collapsed={isCollapsed} className="vh-100 sideBar_style pt-2">
         <Menu
@@ -38,7 +41,6 @@ export default function SideBar() {
           ></MenuItem>
 
           <MenuItem
-                      active={window.location.pathname === "/dashboard"}
 
             icon={
               <i
@@ -53,15 +55,13 @@ export default function SideBar() {
           ></MenuItem>
 
           <MenuItem
-            active={window.location.pathname === "/usersList"}
             icon={<i className="fa-regular fa-address-card"></i>}
-            component={<NavLink to="/usersList" />}
+            component={<NavLink to="/users" />}
             className="my-2"
           >
             Users
           </MenuItem>
           <MenuItem
-            active={window.location.pathname === "/ProjectsList"}
             icon={<i className="fa-regular fa-object-ungroup"></i>}
             component={<NavLink to="/ProjectsList" />}
             className="my-2"
@@ -69,7 +69,6 @@ export default function SideBar() {
             Projects
           </MenuItem>
           <MenuItem
-            active={window.location.pathname === "/tasksList"}
             icon={<i className="fa-regular fa-rectangle-list"></i>}
             component={<Link to="/tasksList" />}
             className="my-2"

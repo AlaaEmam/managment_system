@@ -28,6 +28,7 @@ import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassw
 
 
 function App() {
+  
   const  LoginData  = useContext(AuthContext);
 
 
@@ -40,16 +41,12 @@ function App() {
         { index: true, element: <Login/> },
         { path: 'login', element: <Login/> },
         { path: 'register', element: <Registration /> },
+        { path: 'verification', element: <VerifyAccount /> },
 
-        { path: 'verifyAccount', element: <VerifyAccount /> },
         { path: 'forget-Password', element: <ForgetPassword /> },
         { path: 'reset-password', element: <ResetPass /> },
-
-        { path: 'verification', element: <VerifyAccount /> },
-        { path: 'forget-Pass', element: <ForgetPassword /> },
-        { path: 'reset-pass', element: <ResetPass /> },
-
-        { path: 'change-pass', element: <ChangePassword /> },
+        
+        { path: 'change-password', element: <ChangePassword /> },
       ]
     },
 

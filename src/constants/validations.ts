@@ -26,3 +26,20 @@ export const EmailValidation = {
       }
 
   }
+
+  export const OTPValidation =  {
+    required: "OTP is required. Please Enter Your OTP  or Check Your Inbox",
+  }
+
+
+  export const UserNameValidation ={
+      required: 'Your Name is required. Please enter your Name.',
+      minLength: {
+        value: 3,
+        message: 'Your Name must be at least 3 characters long.',
+      },    
+      maxLength:{
+        value: 8,
+        message: 'The userName may not be greater than 8 characters.',                  
+    }
+  }

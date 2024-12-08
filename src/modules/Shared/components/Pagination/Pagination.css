@@ -1,0 +1,32 @@
+.paginationContainer {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid gray ;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.resultText {
+    margin-right: auto;
+}
+.pageInfo{
+    margin: 0 10px;
+
+}
+.button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.btn-showing{
+    /* padding: 4px 15px; */
+    background-color: white;
+    border-radius: 19px;
+    width: 62px;
+    height: 32px;
+    border: 0.1px solid gray;
+    margin-inline: 10px;
+}

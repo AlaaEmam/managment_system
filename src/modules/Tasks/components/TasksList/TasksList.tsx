@@ -14,10 +14,12 @@ import { Button, Dropdown, Modal } from 'react-bootstrap';
 import DeleteConfirmation from '../../../Shared/components/DeleteConfirmation/DeleteConfirmation';
 import NoData from './../../../Shared/components/NoData/NoData';
 import closeButton from '../../../../assets/closeButton.png';
+import Pagination from './../../../Shared/components/Pagination/Pagination';
 
 
 
 export default function TasksList() {
+
   interface Employee {
     userName: string;
   }
@@ -41,10 +43,16 @@ export default function TasksList() {
   const [counttasks, setCountTasks] = useState<Task[]>([]);
 
   // Get Tasks
-  const getTasksList = async () => {
+  const getTasksList = async (pageNo: number, pageSize: number) => {
     try {
       const response = await axios.get(`https://upskilling-egypt.com:3003/api/v1/Task/manager`,
-        {    headers: {Authorization:localStorage.getItem("token")},}
+        {    
+          headers: {Authorization:localStorage.getItem("token")},
+          params: {
+            pageSize: pageSize , 
+            pageNumber: pageNo , 
+          }
+      }
       );
       console.log(response.data.data);
       setTasksList(response.data.data);
@@ -53,26 +61,6 @@ export default function TasksList() {
       toast.error("Failed to fetch tasks."); // Optional: Show toast notification
     }
   };
-
-  // Get count Tasks
-  const getCountTasks= async () => {
-    try {
-      const response = await axios.get(`https://upskilling-egypt.com:3003/api/v1/Task/count`,
-        {    headers: {Authorization:localStorage.getItem("token")},}
-      );
-      console.log(response.data.data);
-      setCountTasks(response.data.data);
-    } catch (error: any) {
-      console.error(error);
-      toast.error("Failed to fetch tasks."); // Optional: Show toast notification
-    }
-  };
-
-  // Fetch tasks on component mount
-  useEffect(() => {
-    getTasksList();
-    getCountTasks();
-  }, []);
 
   // Handle Search
   const handleSearch = (query: string) => {
@@ -89,7 +77,7 @@ export default function TasksList() {
               headers: {Authorization:localStorage.getItem("token")},
             }
           );
-          getTasksList();
+          getTasksList(currentPage, tasksPerPage);
           toast.success("Operation completed successfully! ");
          
         }catch(error){
@@ -102,7 +90,6 @@ export default function TasksList() {
   //Handle Modal Delete
   const [showDelete, setShowDelete] = useState<boolean>(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
-
   const handleCloseDelete = () => setShowDelete(false);
 
   const handleShowDelete = (id: number) => {
@@ -138,6 +125,29 @@ export default function TasksList() {
 
   //   setSortedTasks(sorted);
   // };
+
+
+
+//Handel pagination
+const [tasksPerPage] = useState<number>(6);
+const [totalTasks, setTotalTasks] = useState<number>(0);
+
+const [currentPage, setCurrentPage] = useState(1);
+const totalResults = 102; 
+const resultsPerPage = 10; 
+const totalPages = Math.ceil(totalResults / resultsPerPage);
+
+
+const handlePageChange = (pageNo: number) => {
+  setCurrentPage(pageNo);
+  getTasksList(pageNo, tasksPerPage);
+};
+
+  // Fetch tasks on component mount
+  useEffect(() => {
+    getTasksList(currentPage, tasksPerPage);
+    //getCountTasks();
+  }, [currentPage]);
 
   return (
     <>
@@ -187,72 +197,72 @@ export default function TasksList() {
             {/* Search */}
             <SearchBar onSearch={handleSearch} />
 
-            {tasksList.length > 0 ?
-            <Table striped bordered hover>
-            <thead>
-              <tr>
-              <th>Title
-              {/* <div className='d-inline-grid fw -lighter px-2'>
-                <i
-                  className="fa-solid fa-angle-up"
-                  onClick={handleSort}
-                  style={{ cursor: 'pointer', color: sortDirection === 'asc' ? 'blue' : 'black' }}
-                ></i>
-                <i
-                  className="fa-solid fa-angle-down"
-                  onClick={handleSort}
-                  style={{ cursor: 'pointer', color: sortDirection === 'desc' ? 'blue' : 'black' }}
-                ></i>
-              </div> */}
-                    </th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Users Name</th>
-                <th>Project Name</th>
-                <th>Date Created</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasksList.map((task) => (
-                <tr key={task.id}>
-                  <td>{task.title}</td>
-                  <th>{task.description}</th>
-                  <td className='text-center'>
-                      <button className={
-                      task.status === "ToDo" ? "status-todo" :
-                      task.status === "InProgress" ? "status-in-progress" :
-                      task.status === "Done" ? "status-done" :
-                      ""
-                    }>{task.status}</button>
-                    </td>
-                  <td>{task.employee?.userName}</td>
-                  <td>{task.project?.title}</td>
-                  <td>{new Date(task.creationDate).toLocaleDateString()}</td>
+      {tasksList.length > 0 ?
+      <Table striped bordered hover>
+      <thead>
+        <tr>
+        <th>Title
+        {/* <div className='d-inline-grid fw -lighter px-2'>
+          <i
+            className="fa-solid fa-angle-up"
+            onClick={handleSort}
+            style={{ cursor: 'pointer', color: sortDirection === 'asc' ? 'blue' : 'black' }}
+          ></i>
+          <i
+            className="fa-solid fa-angle-down"
+            onClick={handleSort}
+            style={{ cursor: 'pointer', color: sortDirection === 'desc' ? 'blue' : 'black' }}
+          ></i>
+        </div> */}
+              </th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Users Name</th>
+          <th>Project Name</th>
+          <th>Date Created</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {tasksList.map((task) => (
+          <tr key={task.id}>
+            <td>{task.title}</td>
+            <th>{task.description}</th>
+            <td className='text-center'>
+                <button className={
+                task.status === "ToDo" ? "status-todo" :
+                task.status === "InProgress" ? "status-in-progress" :
+                task.status === "Done" ? "status-done" :
+                ""
+              }>{task.status}</button>
+              </td>
+            <td>{task.employee?.userName}</td>
+            <td>{task.project?.title}</td>
+            <td>{new Date(task.creationDate).toLocaleDateString()}</td>
 
-                  <td>
-          
-                  <Dropdown>
-                      <Dropdown.Toggle variant="link" id="dropdown-basic" className="text-success">
-                      <i className="fa-solid fa-ellipsis-vertical"></i>
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => handleShowView(task)} >
-                          <img src={View} alt="View" /> View
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to={`${task?.id}`}>
-                          <img src={Edit} alt="Edit" /> Edit
-                      </Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleShowDelete(task.id)}>
-                          <img src={Delete} alt="Delete" /> Delete
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table> 
+            <td>
+
+            <Dropdown>
+                <Dropdown.Toggle variant="link" id="dropdown-basic" className="text-success">
+                <i className="fa-solid fa-ellipsis-vertical"></i>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => handleShowView(task)} >
+                    <img src={View} alt="View" /> View
+                  </Dropdown.Item>
+                  <Dropdown.Item as={Link} to={`${task?.id}`}>
+                    <img src={Edit} alt="Edit" /> Edit
+                </Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleShowDelete(task.id)}>
+                    <img src={Delete} alt="Delete" /> Delete
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+      </Table>
           : <div>
               <Table  striped bordered hover>
                 <thead>
@@ -270,10 +280,17 @@ export default function TasksList() {
             <NoData/>
           </div>
           }
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalResults={totalResults}
+            onPageChange={handlePageChange}
+            /> 
           </div>
+
+
         </div>
       </div>
-
    
     </>
   );

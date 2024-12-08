@@ -83,6 +83,9 @@
   z-index: 555;
 }
 
+.form-label{
+  color: var(--primary-color) ;
+}
 /* Add Profile in Register  */
 .profile-image {
   position: relative;

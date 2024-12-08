@@ -58,6 +58,7 @@ interface ApiResponse{
               <div className="floating-label">
                   <span className="highlight"></span>
                     <input
+                     autoComplete="off"
                       type="text"
                       className="floating-input "
                       {...register('email', EmailValidation)}
@@ -71,6 +72,7 @@ interface ApiResponse{
               <div className="floating-label">
               <span className="highlight"></span>
                       <input 
+                       autoComplete="off"
                       type="text" 
                       className="floating-input "
                       {...register('code', OTPValidation)}

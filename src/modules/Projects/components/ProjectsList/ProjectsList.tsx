@@ -18,28 +18,28 @@ interface projectData{
 export default function ProjectsList() {
   let {loginData}:any=useContext(AuthContext);
   let [projectsList, setProjectsList]=useState([]);
-  
+
   const [arrayOfPages, setArrayOfPages]=useState<number[]>([]);
   const [selectedId, setSelectedId]=useState<string>('0');
   const [nameValue, setNameValue]=useState<string>('');
-  
+
   const [show, setShow] = useState<boolean>(false);
   const handleClose = () => setShow(false);
-  const handleShow = (id:string) =>{ 
+  const handleShow = (id:string) =>{
     setSelectedId(id)
     setShow(true)
   };
-  
+
   const getProjects=async(pageNo:number, pageSize:number, name:string=''): Promise<void>=>{
     try{
       let response=await axiosInstance.get((loginData?.userGroup=="Manager" ?PROJECTSURLS.getAll:PROJECTSURLS.getEmp),
         {params:{pageSize:pageSize, pageNumber:pageNo, name}}
       );
-      
+
       console.log(loginData?.userGroup);
       console.log(response.data.data);
       setArrayOfPages(Array(response.data.totalNumberOfPages).fill(0).map((_,i)=>i+1));
-      
+
 
       setProjectsList(response.data.data);
     }catch(error){
@@ -47,7 +47,7 @@ export default function ProjectsList() {
 
     }
   }
-  
+
   let deleteProject=() =>{
     try{
       let response=axiosInstance.delete(PROJECTSURLS.deleteUrl(selectedId));
@@ -71,9 +71,7 @@ export default function ProjectsList() {
     getProjects(1, 5);
   },[])
   return (
-<<<<<<< HEAD
-    <div className="bg-black">ProjectsList</div>
-=======
+   <>
     <div className={styles['bg-project']}>
       <div className='d-flex bg-white  justify-content-between align-items-center'>
         <h1 className={styles['title-project']}>Projects</h1>
@@ -82,15 +80,15 @@ export default function ProjectsList() {
         :""
         }
       </div>
-      
-      <DeleteConfirmation show={show} handleClose={handleClose} onDelete={deleteProject}>Project</DeleteConfirmation>  
+
+      <DeleteConfirmation show={show} handleClose={handleClose} onDelete={deleteProject}>Project</DeleteConfirmation>
 
       <div className={styles["wrapper"]}>
           <div className="col-md-6">
-            
+
             <input type="text"
-            onChange={getNameValue} 
-            placeholder="Search here..." 
+            onChange={getNameValue}
+            placeholder="Search here..."
             className={styles['search-input']}
             />
           </div>
@@ -103,9 +101,9 @@ export default function ProjectsList() {
                     <th scope="col">description</th>
                     <th scope="col">no of tasks</th>
                     <th scope="col">Date created</th>
-                    <th scope="col">Actions</th> 
-                    
-                    
+                    <th scope="col">Actions</th>
+
+
                   </tr>
                 </thead>
                 <tbody>
@@ -122,15 +120,15 @@ export default function ProjectsList() {
 
                             <Link to={`${project?.id}`}>
                               <i className="bi bi-pencil-square text-warning fs-5" aria-hidden="true"></i>
-                            </Link> 
+                            </Link>
                           </td>):<td>
                           {/* <i className="bi bi-heart-fill text-danger "
                             onClick={()=>addToFav(recipe.id)} aria-hidden="true"></i> */}
                         </td>}
                     </tr>
-                      
+
                     )}
-                  
+
                 </tbody>
               </table> : (<h2>NO DATA</h2>)
             }
@@ -143,16 +141,16 @@ export default function ProjectsList() {
                   </a>
                 </li>
                 {arrayOfPages.map((pageNo)=>(
-                  
-                  <li className="page-item" key={pageNo} 
+
+                  <li className="page-item" key={pageNo}
                   onClick={()=>getProjects(pageNo, 5)}>
                     <a className="page-link" >
                       {pageNo}
                     </a>
                   </li>))
                 }
-                
-                
+
+
                 <li className="page-item">
                   <a className="page-link"  aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -161,10 +159,10 @@ export default function ProjectsList() {
                 </li>
               </ul>
             </nav>
-        
+
           </div>
       </div>
     </div>
->>>>>>> 8816d7e747c452a88c3d795c8366a7d6719779b6
+   </>
   )
 }

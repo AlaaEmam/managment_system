@@ -22,9 +22,9 @@ export default function Registration() {
     confirmPassword: string;
   }
   interface ApiResponse{
-    message: string;  
+    message: string;
   }
-  
+
   const navigate = useNavigate();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
@@ -81,10 +81,10 @@ export default function Registration() {
 
                 {/* Profile Image */}
                 <div className="profile-image">
-                  <img 
-                  src={profileImage} 
-                  alt="Profile" 
-                  className="profile-image-preview" 
+                  <img
+                  src={profileImage}
+                  alt="Profile"
+                  className="profile-image-preview"
                   />
                   <input
                    autoComplete="off"
@@ -175,15 +175,9 @@ export default function Registration() {
                     register={register}
                     name="password"
                     errors={errors.password}
-<<<<<<< HEAD
-                    showPassword={showPassword}
-                    togglePasswordVisibility={togglePasswordVisibility}
-                    validationRules={PasswordValidation}
-=======
                     showPassword={isPasswordVisible}
                     setIsPasswordVisible={setIsPasswordVisible}
-                    validationRules={PasswordValidation} 
->>>>>>> 8816d7e747c452a88c3d795c8366a7d6719779b6
+                    validationRules={PasswordValidation}
                   />
 
                   {/* Confirm Password Input */}
@@ -199,7 +193,7 @@ export default function Registration() {
 
                   </div>
                 </div>
-                <button 
+                <button
                 disabled={isSubmitting}
                 className="btn btn-color rounded-5 w-100 my-3">
                    {isSubmitting ? "Register....... " : " Register"}

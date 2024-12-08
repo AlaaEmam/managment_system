@@ -6,20 +6,18 @@ import Navbar from '../Navbar/Navbar'
 export default function MasterLayout() {
   return (
     <>
-      <div className=" d-flex ">
-      <div className="w-100">
-        <Navbar/>
 
-      </div>
-        <div>
-          <div className="position-sticky top-0 vh-100 bg-black">
+
+        <div className=" d-flex">
+
+        <div className="position-sticky top-0 vh-100 ">
             <SideBar />
           </div>
-        </div>
-        <div className="w-100">
+          <div className="w-100">
           <Outlet />
+
+          </div>
         </div>
-      </div>
     </>
   );
 }

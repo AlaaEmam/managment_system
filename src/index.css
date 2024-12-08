@@ -1,3 +1,63 @@
+/* :root {
+    ---yellow_clr: rgba(239, 155, 40, 1);
+    --zaty_clr: rgba(49, 89, 81, 0.9);
+    --White_clr: #ffffff;
+    --bg_gray: #F5F5F5;
+
+}
+
+
+.tst {
+    color: var(--primary-color)
+}
+
+
+
+
+
+
+.login {
+    background-image: url('assets/bg.svg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.form-bg {
+    background: var(--zaty_clr);
+}
+
+.form-bg ::placeholder {
+    color: var(--White_clr) !important;
+    opacity: 1;
+    /* Firefox */
+/* git  */
+
+.form-bg label {
+    color: var(---yellow_clr);
+}
+.login {
+  background-image: url('assets/bg.svg');
+  background-size: covecontainr;
+  background-position: center center;
+}
+
+.form-bg{background: rgba(49, 89, 81, 0.9);
+}
+
+.form-bg ::placeholder {
+  color: #ffffff !important;
+  opacity: 1; /* Firefox */
+}
+
+.form-bg label{ color: rgba(239, 155, 40, 1);
+}
+
+.btn-yellow{background-color: #EF9B28 !important; color:#ffffff;}
+
+.form-bg .form-control:focus{ box-shadow: none !important; border-color: #ef9b28;}
+
+.form-bg span {border-color:#EF9B28 !important ;}
+.form-bg i{cursor: pointer;z-index: 555;} */
 *{
   padding: 0;
   margin: 0;
@@ -44,12 +104,12 @@
   color: var(--primary-color);
   position: relative;
   font-weight: 700;
-  font-size: 1.75rem; 
+  font-size: 1.75rem;
   margin-bottom: 10px;
 }
 .auth-text-header::first-letter {
-  display: inline-block; 
-  border-bottom: .1875rem solid; 
+  display: inline-block;
+  border-bottom: .1875rem solid;
 
 }
 /* FORM STYLE  */
@@ -64,7 +124,7 @@
 }
 
 .btn-color{
-  background-color: var(--primary-color) !important; 
+  background-color: var(--primary-color) !important;
 }
 
 .btn-color:hover {
@@ -72,8 +132,8 @@
   background-color: var(--hover-background-color)  !important;
   border-color: var(--hover-border-color);
 }
-.form-background .form-control:focus{ 
-  box-shadow: none !important; 
+.form-background .form-control:focus{
+  box-shadow: none !important;
   border-color: var(--primary-color) ;
 }
 
@@ -134,9 +194,68 @@
   z-index: 2;
   font-size: 1rem;
 }
+.btn-yellow{
+  margin-top: 5rem;
+  border-radius: 2rem;
+  background-color: rgba(239, 155, 40, 1);
+  transition: all 0.5s;
+}
+
+.btn-yellow:hover{
+  background-color: rgb(140, 82, 2);
+  color: rgb(229, 229, 229);
+}
+
+
+.forget-password{
+  font-size: 18px;
+  color:white;
+  background-color: rgba(49, 89, 81, 0.5);
+}
+
+.forget-password h3{
+  font-weight: bold;
+  color: rgba(239, 155, 40, 1);
+}
+
+.forget-password input{
+  border: none;
+  border-bottom: solid 0.5px white;
+  background-color: rgba(49, 89, 81, 0.5);
+}
+.forget-password input::placeholder {
+  color: white;
+}
+.eye-btn{
+  color: white;
+  border: none;
+  background-color: rgba(49, 89, 81, 0.5);
+}
+.forget-password label{
+  color: rgba(239, 155, 40, 1);
+  margin-top: 1rem;
+}
+
+.btn-yellow {
+    background-color: var(---yellow_clr) !important;
+    color: var(--White_clr);
+}
+
+.form-bg .form-control:focus {
+    box-shadow: none !important;
+    border-color: var(---yellow_clr);
+}
+
+.form-bg span {
+    border-color: var(---yellow_clr) !important;
+}
+
+.form-bg i {
+    cursor: pointer;
+    z-index: 555;
+}
 /* task */
 .bg-gray{
   background-color: #F5F5F5;
   height: 100vh;
   }
-  

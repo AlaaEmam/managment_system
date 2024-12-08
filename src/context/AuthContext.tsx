@@ -26,6 +26,7 @@ export default function AuthContextProvider({ children }: AuthContextProviderPro
       const decodedToken = jwtDecode<LoginData>(token); // تحديد النوع هنا
       setLoginData(decodedToken);
       console.log(decodedToken)
+
     }
   };
 
@@ -40,4 +41,5 @@ export default function AuthContextProvider({ children }: AuthContextProviderPro
       {children}
     </AuthContext.Provider>
   );
+
 }

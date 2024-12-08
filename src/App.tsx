@@ -28,7 +28,7 @@ import TaskForm from './modules/Tasks/components/TasksForm/TasksForm';
 
 
 function App() {
-  
+
   const  LoginData  = useContext(AuthContext);
 
 
@@ -41,12 +41,14 @@ function App() {
         { index: true, element: <Login/> },
         { path: 'login', element: <Login/> },
         { path: 'register', element: <Registration /> },
-        { path: 'verification', element: <VerifyAccount /> },
 
         { path: 'forget-Password', element: <ForgetPassword /> },
         { path: 'reset-password', element: <ResetPass /> },
-        
-        { path: 'change-password', element: <ChangePassword /> },
+
+        { path: 'verification', element: <VerifyAccount /> },
+
+        { path: 'change-pass', element: <ChangePassword /> },
+
       ]
     },
 

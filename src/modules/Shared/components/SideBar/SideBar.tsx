@@ -33,7 +33,7 @@ export default function SideBar() {
                 }}
               ></i>
             }
-            component={<NavLink to="/dashboard" />}
+            // component={<NavLink to="" />}
             className="my-2"
           ></MenuItem>
 

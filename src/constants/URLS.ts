@@ -4,8 +4,17 @@ const baseURL = `https://upskilling-egypt.com:3003/api/v1`;
 export const BASE_IMG_URL = `https://upskilling-egypt.com:3003`;
 
 // إنشاء Axios Instance
-export const axiosInstance = axios.create({ baseURL });
+//export const axiosInstance = axios.create({ baseURL });
 
+export const axiosInstance = axios.create({
+  baseURL,
+  headers: { Authorization: localStorage.getItem("token") },
+});
+
+export const requestHeader = {
+  headers: { Authorization: `${localStorage.getItem("token")}` },
+};
+export const privateAxiosInstance = axios.create({ baseURL });
 // اعتراض الطلبات لإضافة Authorization Header تلقائيًا
 axiosInstance.interceptors.request.use(
   (config) => {
@@ -22,7 +31,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) { 
+    if (error.response?.status === 401) {
       localStorage.removeItem("token"); // إزالة التوكن إذا كان غير صالح
       window.location.href = "/login";  // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
     }
@@ -58,6 +67,11 @@ export const TASKSURLS = {
 };
 
 export const USERSSURLS = {
-  getUsersUrl: `/Users/Manager`,
-  toggleStatusUrl: (id: string) => `/Users/${id}`,
+  getUsersUrl: (p: number, n: number) =>
+    `/Users/Manager?pageSize=${p}&pageNumber=${n}`,
+  toggleStatusUrl: (id: number) => `/Users/${id}`,
+  getUserById: (id: number) => `/Users/${id}`,
+  filteruser: (name: string, p: number, n: number) =>
+    `/Users/?userName=${name}&pageSize=${p}&pageNumber=${n}`,
+  filerWithSelect:(InputValue:any,searchValue:any)=>`/Users/?${InputValue}=${searchValue}`
 };

@@ -71,6 +71,9 @@ export default function ProjectsList() {
     getProjects(1, 5);
   },[])
   return (
+<<<<<<< HEAD
+    <div className="bg-black">ProjectsList</div>
+=======
     <div className={styles['bg-project']}>
       <div className='d-flex bg-white  justify-content-between align-items-center'>
         <h1 className={styles['title-project']}>Projects</h1>
@@ -162,5 +165,6 @@ export default function ProjectsList() {
           </div>
       </div>
     </div>
+>>>>>>> 8816d7e747c452a88c3d795c8366a7d6719779b6
   )
 }

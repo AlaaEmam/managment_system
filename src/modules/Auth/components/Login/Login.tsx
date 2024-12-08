@@ -4,6 +4,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { axiosInstance } from "../../../../services/urlApi";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../../context/AuthContext";
+import { AxiosResponse } from "axios";
+import { AUTHURLS } from "../../../../constants/URLS";
+import { Outlet } from "react-router-dom";
 import Logo from "../../../../assets/logo.png";
 
 import {
@@ -15,7 +18,6 @@ interface loginDataInterface {
   email: string;
   password: string;
 }
-
 export default function Login() {
 
   // const { saveLoginData } = useContext(AuthContext);
@@ -23,6 +25,7 @@ export default function Login() {
 
 
   const navigate = useNavigate();
+  const {saveLoginData}:any=useContext(AuthContext)
   const {
     register,
     handleSubmit,
@@ -32,12 +35,20 @@ export default function Login() {
   const onSubmit: SubmitHandler<loginDataInterface> = async (data) => {
     try {
       const response = await axiosInstance.post<{ token: string }>(
-        "/Users/Login",
+        AUTHURLS.loginUrl,
         data
       );
-      toast.success("Login succeeded");
-      localStorage.setItem("token", response.data.token); // حفظ التوكن
-      navigate("/Dashboard");
+      console.log("res", response);
+      saveLoginData()
+      toast.success("login succeed");
+      navigate("/dashboard");
+     localStorage.setItem("token", response?.data.token);
+      //   "/Users/Login",
+      //   data
+      // );
+      // toast.success("Login succeeded");
+      // localStorage.setItem("token", response.data.token); // حفظ التوكن
+      // navigate("/Dashboard");
 
     } catch (error: any) {
       toast.error(error.response?.data.message || "Login failed");
@@ -65,7 +76,7 @@ export default function Login() {
                   <div className="mb-3">
                     <label className="form-label mb-0">Email</label>
                     <input
-                   
+
                       type="email"
                       placeholder="Enter your E-mail"
                       className="form-control border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white"

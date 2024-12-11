@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import "./SideBar.css";
 export default function SideBar() {
   const [isCollapsed, setCollapsed] = useState(true);
@@ -9,6 +9,13 @@ export default function SideBar() {
     console.log(isCollapsed);
     setCollapsed(!isCollapsed);
   };
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <div className="container-sidebar">
       <Sidebar
@@ -106,7 +113,8 @@ export default function SideBar() {
 
           <MenuItem
             icon={<i className="fa-solid fa-arrow-right-from-bracket"></i>}
-            component={<NavLink to="/Logout" />}
+            //component={<NavLink to="/" />}
+            onClick={logOut}
             className="my-2 h6"
           >
             logout

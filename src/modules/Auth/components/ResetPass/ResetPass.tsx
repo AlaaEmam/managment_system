@@ -63,10 +63,14 @@ export default function ResetPass() {
 
                 {/* Email input */}
                 <div className='mt-4 mb-3'>
-                  <label className="form-label mb-0">Email </label>
+                  <label className="form-label text-white mb-0">Email </label>
                     <input 
+
+                    disabled
+
                      autoComplete="off"
                     type="email" 
+
                     className="form-control  border-top-0 border-end-0 border-start-0 rounded-0 bg-transparent text-white" 
                     placeholder="Enter your E-mail" 
                     aria-label="Email" 
@@ -79,7 +83,7 @@ export default function ResetPass() {
               {/* OTP input */}
               
               <div className='mb-3'>
-              <label className="form-label mb-0">OTP Verification</label>
+              <label className="form-label text-white mb-0">OTP Verification</label>
                 <input 
                  autoComplete="off"
                 type="text" 
@@ -93,7 +97,7 @@ export default function ResetPass() {
               
              {/* PASSWORD  input*/}
               <div className='mb-3'>
-              <label className="form-label mb-0">New Password</label>
+                <label className="form-label text-white mb-0">New Password</label>
                 <div className="input-group d-flex justify-content-center align-items-center">
                 <input 
                  autoComplete="off"
@@ -131,7 +135,7 @@ export default function ResetPass() {
               {/* CONFIRM PASSWORD */}
               
               <div className='mb-3'>
-                <label className="form-label mb-0">Confirm Password</label>
+                <label className="form-label text-white mb-0">Confirm Password</label>
                     <div className="input-group d-flex justify-content-center align-items-center">
                       <input 
                        autoComplete="off"

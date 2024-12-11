@@ -1,27 +1,24 @@
-import React from 'react'
-import SideBar from '../SideBar/SideBar'
-import { Outlet } from 'react-router-dom'
-import Navbar from '../Navbar/Navbar'
-import Header from '../Header/Header'
+import React from "react";
+import SideBar from "../SideBar/SideBar";
+import { Outlet } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 export default function MasterLayout() {
   const showHeader = location.pathname !== '/dashboard/tasksList'
 
   return (
-    <div className="d-flex flex-column">
-      <div className="w-100">
-        <Navbar/>
-      
-      </div>
+    <>
+      <div className=" d-flex">
 
-      <div className="d-flex border-0">
-        <SideBar/>
+        <div className="position-sticky top-0 vh-100 ">
+          <SideBar />
+        </div>
         <div className="w-100">
         {showHeader && <Header />} {/* عرض الـ Header إذا لم يكن في صفحة TaskList */}
         <Outlet/>
+
         </div>
       </div>
-    
-  </div>  
-  )
+    </>
+  );
 }

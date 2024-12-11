@@ -1,0 +1,69 @@
+
+:root {
+
+  --font_gary_clr:#4F4F4F
+
+}
+
+.userList{background-color: var(--bg_gray);}
+.userList thead tr th {
+  background: var(--zaty_clr) !important;
+  color: var(--White_clr) !important;
+  line-height:3rem !important;
+  border:  1px solid #315951E5 ;
+  padding-left: 1rem !important;
+}
+table tr {  line-height:3rem !important; color: var(--font_gary_clr)  ;text-transform: capitalize;}
+table td {padding-left: 1rem !important;color: var(--font_gary_clr)  ;text-transform: capitalize;}
+
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--White_clr);
+  width: auto;
+  z-index: 1;
+  right: 5px;
+}
+
+.dropdown-content span {
+  color: var(--font_gary_clr);
+  padding: 4px 10px;
+  text-decoration: none;
+  display: block;
+  width: auto;
+  text-align: center;
+  transition: all ease-in-out 0.2s;
+  line-height: 28px;
+}
+
+.dropdown-content span:hover {
+  transform: scale(1.2);
+}
+
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.userList .dropdown a{padding: 0;margin: 0 ; text-decoration: none;}
+
+.userList .filterUser{
+  position: absolute;
+  line-height: 3rem;
+  font-size: 0.9rem;
+  color: var(--font_gary_clr) !important;
+  left: 28px;}
+
+  .userList  .form-select {color: var(--font_gary_clr) !important;}

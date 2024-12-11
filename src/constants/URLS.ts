@@ -33,11 +33,17 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("token"); // إزالة التوكن إذا كان غير صالح
-      window.location.href = "/login";  // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
+      window.location.href = "/login"; // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
     }
     return Promise.reject(error);
   }
 );
+
+export const privateAxiosInstance = axios.create({ baseURL });
+
+export const requestHeader = {
+  headers: { Authorization: `${localStorage.getItem("token")}` },
+};
 
 // تعريف الروابط الثابتة
 export const AUTHURLS = {
@@ -51,6 +57,7 @@ export const AUTHURLS = {
 
 export const PROJECTSURLS = {
 
+
     getAll: `/Project/manager`,
     getEmp: `/Project/employee`,
     addUrl: `/Project`,
@@ -62,6 +69,16 @@ export const PROJECTSURLS = {
 
 export const TASKSURLS = {
   getAll: `${baseURL}/Task/manager`,
+  addUrl: `${baseURL}/Task`,
+  updateUrl: (id: string) => `${baseURL}/Task/${id}`,
+  GET_ASSIGNED_TASKS: `${baseURL}/Task`,
+  CHANGE_STATUS: (id: string) => `${baseURL}/Task/${id}/change-status`,
+};
+
+export const USERSSURLS = {
+  getUsersUrl: `${baseURL}/Users/Manager`,
+  toggleStatusUrl: (id: number) => `${baseURL}/Users/${id}`,
+
   addUrl: `/Task`,
   updateUrl: (id: string) => `/Task/${id}`,
   getCount:`/Task/count`
@@ -77,3 +94,10 @@ export const USERSSURLS = {
   filerWithSelect:(InputValue:any,searchValue:any)=>`/Users/?${InputValue}=${searchValue}`,
   userState:`Users/count`
 };
+
+export const axiosInstanc = axios.create({
+  baseURL: baseURL,
+  headers: {
+    Authorization: localStorage.getItem("token"),
+  },
+});

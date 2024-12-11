@@ -35,6 +35,7 @@ export default function AuthContextProvider({ children }: AuthContextProviderPro
       const decodedToken = jwtDecode<LoginData>(token);
       console.log("Decoded Token:", decodedToken); // Check the contents
       setLoginData(decodedToken);
+        // console.log(decodedToken)
     } else {
       console.log("No token found");
     }

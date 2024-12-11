@@ -4,6 +4,8 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 export default function MasterLayout() {
+  const showHeader = location.pathname !== '/dashboard/tasksList'
+
   return (
     <>
       <div className=" d-flex">
@@ -12,7 +14,9 @@ export default function MasterLayout() {
           <SideBar />
         </div>
         <div className="w-100">
-          <Outlet />
+        {showHeader && <Header />} {/* عرض الـ Header إذا لم يكن في صفحة TaskList */}
+        <Outlet/>
+
         </div>
       </div>
     </>

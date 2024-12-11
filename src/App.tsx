@@ -15,7 +15,6 @@ import ResetPass from './modules/Auth/components/ResetPass/ResetPass'
 import ProtectedRoute from './modules/Shared/components/ProtectedRoute/ProtectedRoute'
 import MasterLayout from './modules/Shared/components/MasterLayout/MasterLayout'
 import Dashboard from './modules/Dashboard/components/Dashboard/Dashboard'
-import TasksList from './modules/Tasks/components/TasksList/TasksList'
 import TasksData from './modules/Tasks/components/TasksData/TasksData'
 import ProjectsData from './modules/Projects/components/ProjectsData/ProjectsData'
 import ProjectsList from './modules/Projects/components/ProjectsList/ProjectsList'
@@ -25,6 +24,8 @@ import VerifyAccount from './modules/Auth/components/VerifyAccount/VerifyAccount
 import { ToastContainer } from 'react-toastify'
 import { AuthContext } from './context/AuthContext'
 import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassword'
+import TasksList from './modules/Tasks/components/TasksList/TasksList';
+import TasksListEmploye from './modules/Tasks/components/TasksList/TasksListemploye';
 
 
 function App() {
@@ -61,6 +62,8 @@ function App() {
         { index: true, element: <Dashboard  /> },
         { path: 'tasksData', element: <TasksData/> },
         { path: 'tasksList', element: <TasksList/> },
+        { path: 'tasksListEmploye', element: <TasksListEmploye/> },
+        { path: 'asksListEmploye', element: <TasksListEmploye/> },
         { path: 'projectsData', element: <ProjectsData/> },
         { path: 'ProjectsList', element: <ProjectsList /> },
         { path: 'usersList', element: <UsersList/> },

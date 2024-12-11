@@ -5,6 +5,8 @@ import Navbar from '../Navbar/Navbar'
 import Header from '../Header/Header'
 
 export default function MasterLayout() {
+  const showHeader = location.pathname !== '/dashboard/tasksList'
+
   return (
     <div className="d-flex flex-column">
       <div className="w-100">
@@ -15,8 +17,8 @@ export default function MasterLayout() {
       <div className="d-flex border-0">
         <SideBar/>
         <div className="w-100">
-          <Header/>
-          <Outlet/>
+        {showHeader && <Header />} {/* عرض الـ Header إذا لم يكن في صفحة TaskList */}
+        <Outlet/>
         </div>
       </div>
     

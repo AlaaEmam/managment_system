@@ -69,13 +69,21 @@ export default function SideBar() {
             Projects
           </MenuItem>
           <MenuItem
-            active={window.location.pathname === "/tasksList"}
+            active={window.location.pathname === "/tasksListEmploye"}
             icon={<i className="fa-regular fa-rectangle-list"></i>}
-            component={<Link to="/tasksList" />}
+            component={<Link to="/dashboard/tasksListEmploye" />}
             className="my-2"
           >
             Tasks
           </MenuItem>
+          {/* <MenuItem
+            active={window.location.pathname === "/tasksList"}
+            icon={<i className="fa-regular fa-rectangle-list"></i>}
+            component={<Link to="/dashboard/tasksList" />}
+            className="my-2"
+          >
+            Tasks
+          </MenuItem> */}
         </Menu>
       </Sidebar>
       ;

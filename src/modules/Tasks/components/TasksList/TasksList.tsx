@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export default function TasksList() {
-  return (
-    <div>Tasks List</div>
-  )
+const TasksList = () => {
+    return (
+        <div>
+            
+        </div>
+    );
 }
+
+export default TasksList;

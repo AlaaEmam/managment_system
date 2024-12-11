@@ -21,10 +21,11 @@ import UsersList from './modules/Users/components/UsersList/UsersList'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import VerifyAccount from './modules/Auth/components/VerifyAccount/VerifyAccount'
 import { ToastContainer } from 'react-toastify'
-import { AuthContext } from './context/AuthContext'
+import AuthContextProvider, { AuthContext } from './context/AuthContext'
 import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassword'
 import ProjectForm from './modules/Projects/components/ProjectForm/ProjectForm';
 import TaskForm from './modules/Tasks/components/TasksForm/TasksForm';
+import Navbar from './modules/Shared/components/Navbar/Navbar';
 
 
 function App() {
@@ -78,7 +79,6 @@ function App() {
     <>
       <RouterProvider router={Routes}></RouterProvider>
       <ToastContainer />
-
     </>
   )
 }

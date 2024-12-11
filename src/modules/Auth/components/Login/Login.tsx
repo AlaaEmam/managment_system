@@ -25,7 +25,8 @@ export default function Login() {
 
 
   const navigate = useNavigate();
-  const {saveLoginData}:any=useContext(AuthContext)
+  const {saveLoginData}:any=useContext(AuthContext);
+  
   const {
     register,
     handleSubmit,
@@ -39,7 +40,7 @@ export default function Login() {
         data
       );
       console.log("res", response);
-      saveLoginData()
+      saveLoginData();
       toast.success("login succeed");
       navigate("/dashboard");
      localStorage.setItem("token", response?.data.token);

@@ -73,10 +73,10 @@ export default function SideBar() {
             icon={<i className="fa-regular fa-rectangle-list"></i>}
             component={<Link to="/dashboard/tasksListEmploye" />}
 
-<!--             active={window.location.pathname === "/tasks-list"}
-            icon={<i className="fa-regular fa-rectangle-list"></i>}
-            component={<Link to="tasks-list" />} -->
-            className="my-2"
+          // active={window.location.pathname === "/tasks-list"}
+          //   icon={<i className="fa-regular fa-rectangle-list"></i>}
+          //   component={<Link to="tasks-list" />} 
+          //   className="my-2"
           >
             Tasks
           </MenuItem>

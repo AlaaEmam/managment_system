@@ -25,7 +25,7 @@ import { ToastContainer } from 'react-toastify'
 import AuthContextProvider, { AuthContext } from './context/AuthContext'
 import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassword'
 import TasksList from './modules/Tasks/components/TasksList/TasksList';
-import TasksListEmploye from './modules/Tasks/components/TasksList/TasksListemploye';
+import TasksListEmploye from './modules/Tasks/components/TasksList/TasksListEmploye';
 import ProjectForm from './modules/Projects/components/ProjectForm/ProjectForm';
 import Navbar from './modules/Shared/components/Navbar/Navbar';
 

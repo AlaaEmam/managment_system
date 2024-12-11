@@ -11,10 +11,12 @@ export const axiosInstance = axios.create({
   headers: { Authorization: localStorage.getItem("token") },
 });
 
-export const requestHeader = {
-  headers: { Authorization: `${localStorage.getItem("token")}` },
-};
-export const privateAxiosInstance = axios.create({ baseURL });
+// export const requestHeader = {
+//   headers: { Authorization: `${localStorage.getItem("token")}` },
+// };
+// export const privateAxiosInstance = axios.create({ baseURL });
+
+
 // اعتراض الطلبات لإضافة Authorization Header تلقائيًا
 axiosInstance.interceptors.request.use(
   (config) => {
@@ -75,14 +77,14 @@ export const TASKSURLS = {
   CHANGE_STATUS: (id: string) => `${baseURL}/Task/${id}/change-status`,
 };
 
-export const USERSSURLS = {
-  getUsersUrl: `${baseURL}/Users/Manager`,
-  toggleStatusUrl: (id: number) => `${baseURL}/Users/${id}`,
+// export const USERSSURLS = {
+//   getUsersUrl: `${baseURL}/Users/Manager`,
+//   toggleStatusUrl: (id: number) => `${baseURL}/Users/${id}`,
 
-  addUrl: `/Task`,
-  updateUrl: (id: string) => `/Task/${id}`,
-  getCount:`/Task/count`
-};
+//   addUrl: `/Task`,
+//   updateUrl: (id: string) => `/Task/${id}`,
+//   getCount:`/Task/count`
+// };
 
 export const USERSSURLS = {
   getUsersUrl: (p: number, n: number) =>
@@ -92,7 +94,13 @@ export const USERSSURLS = {
   filteruser: (name: string, p: number, n: number) =>
     `/Users/?userName=${name}&pageSize=${p}&pageNumber=${n}`,
   filerWithSelect:(InputValue:any,searchValue:any)=>`/Users/?${InputValue}=${searchValue}`,
-  userState:`Users/count`
+  userState:`Users/count`,
+  // getUsersUrl: `${baseURL}/Users/Manager`,
+  // toggleStatusUrl: (id: number) => `${baseURL}/Users/${id}`,
+
+  addUrl: `/Task`,
+  updateUrl: (id: string) => `/Task/${id}`,
+  getCount:`/Task/count`
 };
 
 export const axiosInstanc = axios.create({

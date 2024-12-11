@@ -64,6 +64,7 @@ export const TASKSURLS = {
   getAll: `${baseURL}/Task/manager`,
   addUrl: `/Task`,
   updateUrl: (id: string) => `/Task/${id}`,
+  getCount:`/Task/count`
 };
 
 export const USERSSURLS = {
@@ -73,5 +74,6 @@ export const USERSSURLS = {
   getUserById: (id: number) => `/Users/${id}`,
   filteruser: (name: string, p: number, n: number) =>
     `/Users/?userName=${name}&pageSize=${p}&pageNumber=${n}`,
-  filerWithSelect:(InputValue:any,searchValue:any)=>`/Users/?${InputValue}=${searchValue}`
+  filerWithSelect:(InputValue:any,searchValue:any)=>`/Users/?${InputValue}=${searchValue}`,
+  userState:`Users/count`
 };

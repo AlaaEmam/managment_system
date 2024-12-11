@@ -4,7 +4,6 @@
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     height: 300px;
-    width: 600px;
 }
 .header-text {
     position: relative;
@@ -35,11 +34,11 @@
 }
 
 .card {
-    background-color: #E5E6F4;
+    background-color: #3588772b;
     border-radius: 15px;
     padding: 14px;
-    flex: 1 1 calc(33% - 20px); 
-    margin: 10px; 
+    flex: 1 1 calc(33% - 20px);
+    margin: 10px;
     text-align: left;
     border: none;
 }
@@ -62,7 +61,7 @@
     transform: translate(-2%, 14%);
 }
 .color-icon-bg-1{
-    background-color: #CFD1EC;
+    background-color: #acd3cb;
 }
 .color-icon-bg-2{
     background-color: #E4E4BC;
@@ -80,4 +79,3 @@
     font-size: 14px;
     color: #999;
 }
-

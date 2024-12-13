@@ -25,7 +25,6 @@ import VerifyAccount from "./modules/Auth/components/VerifyAccount/VerifyAccount
 import { ToastContainer } from "react-toastify";
 import { AuthContext } from "./context/AuthContext";
 import ChangePassword from "./modules/Auth/components/ChangePassword/ChangePassword";
-import Logout from "./modules/Auth/components/Logout/Logout";
 
 function App() {
   const LoginData = useContext(AuthContext);
@@ -45,7 +44,6 @@ function App() {
         { path: "reset-password", element: <ResetPass /> },
 
         { path: "change-password", element: <ChangePassword /> },
-        { path: "Logout", element: <Logout /> },
       ],
     },
 

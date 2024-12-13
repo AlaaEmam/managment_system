@@ -53,9 +53,12 @@ export default function SideBar() {
             component={<NavLink to="/" />}
             className="position-  my-5 z-3 end-0  bg-transparent firstItem"
           ></MenuItem> */}
-<i onClick={() => {
-                  chage();
-                }} className="fa-solid fa-chevron-left  rounded-start-3 z-3 position-absolute sidebar_icon"></i>
+          <i
+            onClick={() => {
+              chage();
+            }}
+            className="fa-solid fa-chevron-left  rounded-start-3 z-3 position-absolute sidebar_icon"
+          ></i>
           {/* <MenuItem
 
             icon={
@@ -71,7 +74,7 @@ export default function SideBar() {
           ></MenuItem> */}
 
           <MenuItem
-                      icon={<i className="fa-solid fa-house"></i>}
+            icon={<i className="fa-solid fa-house"></i>}
             className="my-2 h6 mt-3"
             component={<NavLink to="/dashboard" />}
           >
@@ -101,7 +104,6 @@ export default function SideBar() {
             Tasks
           </MenuItem>
 
-
           <MenuItem
             icon={<i className="fa-solid fa-unlock"></i>}
             component={<NavLink to="/change-password" />}
@@ -110,10 +112,9 @@ export default function SideBar() {
             Change password
           </MenuItem>
 
-
           <MenuItem
             icon={<i className="fa-solid fa-arrow-right-from-bracket"></i>}
-            //component={<NavLink to="/" />}
+           // component={<NavLink to="/" />}
             onClick={logOut}
             className="my-2 h6"
           >

@@ -1,20 +1,20 @@
-
-:root {
-
-  --font_gary_clr:#4F4F4F
-
-}
-
-.userList{background-color: var(--bg_gray);}
 .userList thead tr th {
-  background: var(--zaty_clr) !important;
-  color: var(--White_clr) !important;
+  background: var(--form-header_color) !important;
+  color: var(--primary-text-color) !important;
   line-height:3rem !important;
-  border:  1px solid #315951E5 ;
+  border:  1px solid var(--form-header_color) ;
   padding-left: 1rem !important;
 }
-table tr {  line-height:3rem !important; color: var(--font_gary_clr)  ;text-transform: capitalize;}
-table td {padding-left: 1rem !important;color: var(--font_gary_clr)  ;text-transform: capitalize;}
+table tr {  
+  line-height:3rem !important; 
+  color: var(--gary-color)  ;
+  text-transform: capitalize;
+}
+table td {
+  padding-left: 1rem !important;
+  color: var(--gary-color)  ;
+  text-transform: capitalize;
+}
 
 .dropbtn {
   padding: 16px;
@@ -30,14 +30,14 @@ table td {padding-left: 1rem !important;color: var(--font_gary_clr)  ;text-trans
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--White_clr);
+  background-color: var(--primary-text-color);
   width: auto;
   z-index: 1;
   right: 5px;
 }
 
 .dropdown-content span {
-  color: var(--font_gary_clr);
+  color: var(--gary-color);
   padding: 4px 10px;
   text-decoration: none;
   display: block;
@@ -57,13 +57,31 @@ table td {padding-left: 1rem !important;color: var(--font_gary_clr)  ;text-trans
   display: block;
 }
 
-.userList .dropdown a{padding: 0;margin: 0 ; text-decoration: none;}
+.userList .dropdown a{
+  padding: 0;
+  margin: 0 ; 
+  text-decoration: none;
+}
 
 .userList .filterUser{
+  margin-block: -3px;
   position: absolute;
   line-height: 3rem;
   font-size: 0.9rem;
-  color: var(--font_gary_clr) !important;
-  left: 28px;}
+  color: var(--gary-color) !important;
+  left: 28px;
+}
 
-  .userList  .form-select {color: var(--font_gary_clr) !important;}
+.userList  .form-select {
+  color: var(--gary-color) !important;
+}
+
+.status-active {
+  background-color: var(--status-active);
+  color: var(--primary-text-color);
+}
+
+.status-Not-Active {
+  background-color: var(--form-header_color);   
+  color: var(--primary-text-color);
+}

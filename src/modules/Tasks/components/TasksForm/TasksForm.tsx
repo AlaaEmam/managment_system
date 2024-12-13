@@ -7,8 +7,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import './TaskForm.css';
 import '../TasksList/TasksList.css';
-import { Col, FloatingLabel, InputGroup, Row } from 'react-bootstrap';
-import TasksList from './../TasksList/TasksList';
+import { Col, Row } from 'react-bootstrap';
 
 interface TaskFormData {
     title: string;
@@ -115,86 +114,86 @@ export default function TaskForm() {
 
     return (
         <>    
- <div className='bg-gray'>
-                <div className='header-TaskForm'>
-                    <Link to='/dashboard/tasks-list'>
-                        <div className='d-ruby'>
-                            <i className=" fa-solid fa-chevron-left p-2"></i> 
-                            <p className='fw-light '>View All Tasks</p>
-                        </div>
-                    </Link>
-                    <h3 className='fw-bold'>{taskId ? "Edit Task" : "Create New Task"}</h3>
-                </div>
-                <div className='container'>
-                    <div className='background-module form'>
-                        <Form onSubmit={handleSubmit(onSubmitHandler)} className='px-5 py-3 mb-3'>
-                            <Form.Group className="mb-3" controlId="formGridTitle">
-                                <Form.Label>Task Title</Form.Label>
-                                <Form.Control 
-                                    placeholder="Task Title" 
-                                    type="text" 
-                                    {...register("title", { required: 'Task Title is required.' })} 
-                                />
+        <div className='bg-gray'>
+            <div className='header-TaskForm'>
+                <Link to='/dashboard/tasks-list'>
+                    <div className='d-ruby'>
+                        <i className=" fa-solid fa-chevron-left p-2"></i> 
+                        <p className='fw-light '>View All Tasks</p>
+                    </div>
+                </Link>
+                <h3 className='fw-bold'>{taskId ? "Edit Task" : "Create New Task"}</h3>
+            </div>
+            <div className='container'>
+                <div className='background-module form'>
+                    <Form onSubmit={handleSubmit(onSubmitHandler)} className='px-5 py-3 mb-3' >
+                        <Form.Group className="mb-3" controlId="formGridTitle">
+                            <Form.Label>Task Title</Form.Label>
+                            <Form.Control 
+                                placeholder="Task Title" 
+                                type="text" 
+                                {...register("title", { required: 'Task Title is required.' })} 
+                            />
+                            <div className='my-1'>
+                                {errors?.title && <span className='text-danger'>{errors.title.message}</span>}
+                            </div>
+                        </Form.Group>
+                        
+                        <Form.Group className="mb-3" controlId="formGridDescription">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control 
+                                as="textarea" 
+                                placeholder="Description" 
+                                {...register("description", { required: 'Description is required.' })} 
+                            />
+                            {errors.description?.message && <span className='text-danger'>{errors.description.message}</span>}
+                        </Form.Group>
+
+                        <Row className="mb-3">
+                            <Form.Group as={Col} md="6" className="mb-3" controlId="formGridEmployee">
+                                <Form.Label>User</Form.Label>
+                                <Form.Select 
+                                    {...register("employeeId", { required: 'Employee selection is required.' })} 
+                                >
+                                    <option value="">No Users Selected</option>
+                                    {employees.map(({ id, userName }) => (
+                                        <option key={id} value={id}>{userName}</option>
+                                    ))}
+                                </Form.Select>
                                 <div className='my-1'>
-                                    {errors?.title && <span className='text-danger'>{errors.title.message}</span>}
+                                    {errors?.employeeId && <span className='text-danger'>{errors.employeeId.message}</span>}
                                 </div>
                             </Form.Group>
-                            
-                            <Form.Group className="mb-3" controlId="formGridDescription">
-                                <Form.Label>Description</Form.Label>
-                                <Form.Control 
-                                    as="textarea" 
-                                    placeholder="Description" 
-                                    {...register("description", { required: 'Description is required.' })} 
-                                />
-                                {errors.description?.message && <span className='text-danger'>{errors.description.message}</span>}
+
+                            <Form.Group as={Col} md="6" className="mb-3" controlId="formGridProject">
+                                <Form.Label>Project</Form.Label>
+                                <Form.Select 
+                                    {...register("projectId", { required: 'Project selection is required.' })} 
+                                >
+                                    <option value="">Choose Project...</option>
+                                    {projects.map(({ id, title }) => (
+                                        <option key={id} value={id}>{title}</option>
+                                    ))}
+                                </Form.Select>
+                                <div className='my-1'>
+                                    {errors?.projectId && <span className='text-danger'>{errors.projectId.message}</span>}
+                                </div>
                             </Form.Group>
+                        </Row>
 
-                            <Row className="mb-3">
-                                <Form.Group as={Col} md="6" className="mb-3" controlId="formGridEmployee">
-                                    <Form.Label>User</Form.Label>
-                                    <Form.Select 
-                                        {...register("employeeId", { required: 'Employee selection is required.' })} 
-                                    >
-                                        <option value="">No Users Selected</option>
-                                        {employees.map(({ id, userName }) => (
-                                            <option key={id} value={id}>{userName}</option>
-                                        ))}
-                                    </Form.Select>
-                                    <div className='my-1'>
-                                        {errors?.employeeId && <span className='text-danger'>{errors.employeeId.message}</span>}
-                                    </div>
-                                </Form.Group>
-
-                                <Form.Group as={Col} md="6" className="mb-3" controlId="formGridProject">
-                                    <Form.Label>Project</Form.Label>
-                                    <Form.Select 
-                                        {...register("projectId", { required: 'Project selection is required.' })} 
-                                    >
-                                        <option value="">Choose Project...</option>
-                                        {projects.map(({ id, title }) => (
-                                            <option key={id} value={id}>{title}</option>
-                                        ))}
-                                    </Form.Select>
-                                    <div className='my-1'>
-                                        {errors?.projectId && <span className='text-danger'>{errors.projectId.message}</span>}
-                                    </div>
-                                </Form.Group>
-                            </Row>
-
-                            <hr />
-                            <div className='mt-4 d-flex justify-content-sm-between'>
-                                <Link to="/dashboard/tasks-list">
-                                    <Button className='rounded-5 px-5 py-2 mx-2' variant="outline-dark">Cancel</Button>
-                                </Link>
-                                <Button className='btn btn-color rounded-5 border px-5 py-2 mx-2' disabled={isSubmitting} type="submit">
-                                    {isSubmitting ? "Saving..." : (taskId ? "Update" : "Submit")}
-                                </Button>
-                            </div>
-                        </Form>
-                    </div>
+                        <hr />
+                        <div className='mt-4 d-flex justify-content-sm-between'>
+                            <Link to="/dashboard/tasks-list">
+                                <Button className='rounded-5 px-5 py-2 mx-2' variant="outline-dark">Cancel</Button>
+                            </Link>
+                            <Button className='btn btn-color rounded-5 border px-5 py-2 mx-2' disabled={isSubmitting} type="submit">
+                                {isSubmitting ? "Saving..." : (taskId ? "Update" : "Submit")}
+                            </Button>
+                        </div>
+                    </Form>
                 </div>
             </div>
+        </div>
         </>
     );
 }

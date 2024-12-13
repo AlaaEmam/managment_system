@@ -43,36 +43,36 @@ export default function TasksList() {
   const [counttasks, setCountTasks] = useState<Task[]>([]);
 
   // Get Tasks
-  const getTasksList = async (pageNo: number, pageSize: number) => {
+  const getTasksList = async (pageNo: number, pageSize: number, searchQuery: string = '') => {
     try {
-      const response = await axios.get(`https://upskilling-egypt.com:3003/api/v1/Task/manager`,
-        {    
-          headers: {Authorization:localStorage.getItem("token")},
-          params: {
-            pageSize: pageSize , 
-            pageNumber: pageNo , 
-          }
-      }
-      );
+      const response = await axiosInstance.get(TASKSURLS.getAll, {
+        headers: { Authorization: localStorage.getItem("token") },
+        params: {
+          pageSize: pageSize,
+          pageNumber: pageNo,
+          search: searchQuery,
+        },
+      });
       console.log(response.data.data);
       setTasksList(response.data.data);
     } catch (error: any) {
       console.error(error);
-      toast.error("Failed to fetch tasks."); // Optional: Show toast notification
+      toast.error("Failed to fetch tasks.");
     }
   };
 
-  // Handle Search
+  // Call getTasksList with the current page and search query
   const handleSearch = (query: string) => {
     console.log('Search query:', query);
-    // Implement search logic here
-  };
+    getTasksList(currentPage, tasksPerPage, query); // Pass the query to the API call
+};
+
 
   //Handle delete 
   let deleteTask = async  () =>{
       if(selectedId !== null){
         try{
-          let response = await axios.delete(`https://upskilling-egypt.com:3003/api/v1/Task/${selectedId}`,
+          let response = await axiosInstance.delete(TASKSURLS.deleteUrl(selectedId.toString()),
             {
               headers: {Authorization:localStorage.getItem("token")},
             }
@@ -107,29 +107,10 @@ export default function TasksList() {
     setShowView(true);
   };
 
-  // Handle Sort
-  // const [sortedTasks, setSortedTasks] = useState<Task[]>([]);
-  // const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
-
-  // const handleSort = () => {
-  //   const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-  //   setSortDirection(newDirection);
-
-  //   const sorted = [...tasksList].sort((a, b) => {
-  //     if (newDirection === 'asc') {
-  //       return a.title.localeCompare(b.title);
-  //     } else {
-  //       return b.title.localeCompare(a.title);
-  //     }
-  //   });
-
-  //   setSortedTasks(sorted);
-  // };
-
 
 
 //Handel pagination
-const [tasksPerPage] = useState<number>(6);
+const [tasksPerPage] = useState<number>(5);
 const [totalTasks, setTotalTasks] = useState<number>(0);
 
 const [currentPage, setCurrentPage] = useState(1);
@@ -146,17 +127,16 @@ const handlePageChange = (pageNo: number) => {
   // Fetch tasks on component mount
   useEffect(() => {
     getTasksList(currentPage, tasksPerPage);
-    //getCountTasks();
   }, [currentPage]);
 
   return (
     <>
-      {/* <DeleteConfirmation 
+      <DeleteConfirmation 
       deleteItem={'Task'}
       handleCloseDelete={handleCloseDelete}
       showDelete={showDelete}
       deleteFunction={deleteTask}
-      />  */}
+      /> 
       
     {/* View user Modal */}
     <Modal show={showView} onHide={handleCloseView} centered>
@@ -178,43 +158,30 @@ const handlePageChange = (pageNo: number) => {
       </Modal.Body>
     </Modal>
 
-      <div className='bg-gray'>
-        <div className='header-module'>
+  <div className='bg-gray'>
+    <div className='header-module'>
           <div>
             <h3 className='fw-bolder'>Tasks</h3>
           </div>
           <div>
          <Link to='task-form'>
-         <button className='btn btn-color rounded'>
+         <button className='btn-color btn-yellow px-3 py-2 mr-2'>
               <i className="fa-solid fa-plus"></i>
               <span className='mx-1'> Add New Task</span>
             </button>
          </Link>
           </div>
-        </div>
-        <div className='container'>
-          <div className='background-module'>
-            {/* Search */}
-            <SearchBar onSearch={handleSearch} />
+    </div>
+
+      <div className='background-module'>
+      {/* Search */}
+      <SearchBar onSearch={handleSearch} />
 
       {tasksList.length > 0 ?
-      <Table striped bordered hover>
+      <Table striped bordered hover size="sm">
       <thead>
         <tr>
-        <th>Title
-        {/* <div className='d-inline-grid fw -lighter px-2'>
-          <i
-            className="fa-solid fa-angle-up"
-            onClick={handleSort}
-            style={{ cursor: 'pointer', color: sortDirection === 'asc' ? 'blue' : 'black' }}
-          ></i>
-          <i
-            className="fa-solid fa-angle-down"
-            onClick={handleSort}
-            style={{ cursor: 'pointer', color: sortDirection === 'desc' ? 'blue' : 'black' }}
-          ></i>
-        </div> */}
-              </th>
+          <th>Title</th>
           <th>Description</th>
           <th>Status</th>
           <th>Users Name</th>
@@ -289,8 +256,8 @@ const handlePageChange = (pageNo: number) => {
           </div>
 
 
-        </div>
-      </div>
+    
+  </div>
    
     </>
   );

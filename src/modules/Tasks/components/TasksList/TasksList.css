@@ -10,11 +10,18 @@
 }
 
 .background-module{
-    padding-block: 10px;
     background: #FFFFFF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 1);
+    margin-inline: 2.5rem;
+    margin-block: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
+
 thead{
 --bs-table-bg: #315951b3 !important;
 border-color: #315951b3 !important;
@@ -29,25 +36,25 @@ thead tr th{
 }
 /* In your CSS file */
 td button{
-    border-radius: 18px;
-    padding: 5px 13px;
-    font-weight: 700;
+    border-radius: 19px;
+    padding: 4px 20px;
+    font-weight: 200;
     border: none;
+    line-height: 1.8;
 }
 .status-todo {
     background-color: #c3c3c3;
     color: #292929;
   
 }
-
 .status-in-progress {
-    background-color: #DEEBFF;
-    color: #0052cc;
+    background-color: #ef9c2890;
+    color: #000000;
 }
 
 .status-done {
-    background-color:#E3FCEF;
-    color:  #006644;
+    background-color: #009247;
+    color: white;
 }
 
 .dropdown-item.active, .dropdown-item:active {

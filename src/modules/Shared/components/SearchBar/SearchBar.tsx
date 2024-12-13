@@ -5,16 +5,14 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }
     const [query, setQuery] = useState('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
-    };
-
-    const handleSearch = () => {
-        onSearch(query);
+        const newQuery = event.target.value;
+        setQuery(newQuery);
+        onSearch(newQuery); // Call onSearch on every change for instant search
     };
 
     return (
         <div className="search-bar">
-            <button onClick={handleSearch} className="search-button">
+            <button onClick={() => onSearch(query)} className="search-button">
               <i className="fas fa-search"></i> 
             </button>
             <input
@@ -24,7 +22,6 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }
                 placeholder="Search By Title..."
                 className="search-input"
             />
-     
         </div>
     );
 };

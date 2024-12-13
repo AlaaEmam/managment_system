@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstanc, privateAxiosInstance, TASKSURLS } from "../../../../constants/URLS";
-import styles from "./TaskEmployee.module.css";
+import styles from "./TasksEmployee.module.css";
 
 export default function TaskEmployee() {
   type Task = {

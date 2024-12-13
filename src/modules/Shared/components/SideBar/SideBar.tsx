@@ -114,7 +114,6 @@ export default function SideBar() {
 
           <MenuItem
             icon={<i className="fa-solid fa-arrow-right-from-bracket"></i>}
-           // component={<NavLink to="/" />}
             onClick={logOut}
             className="my-2 h6"
           >

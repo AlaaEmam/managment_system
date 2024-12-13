@@ -2,5 +2,54 @@
     background-color: #0E382F !important;
     ;
 }
-.css-dip3t8{background-color: transparent !important;}
-.css-1qkeeaw >.ps-menu-button{background-color: transparent !important;}
+
+.css-dip3t8 {
+    background-color: transparent !important;
+}
+
+.css-1qkeeaw>.ps-menu-button {
+    background-color: transparent !important;
+}
+
+.firstItem {
+    width: 30px !important;
+    background-color: transparent
+}
+
+
+
+.css-s3arwh>.ps-menu-button:hover {
+    background-color: transparent !important;
+    color: #EF9B28 !important
+}
+
+.css-s3arwh>.ps-menu-button i {
+    width: 44px;
+    height: 36px;
+    line-height: 36px;
+    transition: all ease-in-out 0.2s;
+    border-radius: 5px;
+
+}
+
+a.ps-menu-button.active span i,
+.css-s3arwh>.ps-menu-button:hover i {
+    background: #EF9B284D !important;
+    width: 44px;
+    height: 36px;
+    transform: scale(1.1);
+    border-radius: 5px;
+}
+
+.sidebar_icon {
+    font-size: 14px;
+    color: #fff;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    width: 16px;
+    height: 32px;
+    text-align: center;
+    background-color: #EF9B28;
+    line-height: 32px;
+}

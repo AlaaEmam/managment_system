@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, NavLink } from "react-router-dom";
 import "./SideBar.css";
+import { AuthContext } from "../../../../context/AuthContext";
+
+
 export default function SideBar() {
   const [isCollapsed, setCollapsed] = useState(true);
+  const loginData = useContext(AuthContext);
 
   const chage = () => {
     console.log(isCollapsed);
@@ -68,26 +72,28 @@ export default function SideBar() {
           >
             Projects
           </MenuItem>
-          <MenuItem
-            active={window.location.pathname === "/tasksListEmploye"}
-            icon={<i className="fa-regular fa-rectangle-list"></i>}
-            component={<Link to="/dashboard/tasksListEmploye" />}
 
-          // active={window.location.pathname === "/tasks-list"}
-          //   icon={<i className="fa-regular fa-rectangle-list"></i>}
-          //   component={<Link to="tasks-list" />} 
-          //   className="my-2"
-          >
-            Tasks
-          </MenuItem>
-          {/* <MenuItem
-            active={window.location.pathname === "/tasksList"}
-            icon={<i className="fa-regular fa-rectangle-list"></i>}
-            component={<Link to="/dashboard/tasksList" />}
-            className="my-2"
-          >
-            Tasks
-          </MenuItem> */}
+          {loginData?.loginData?.roles?.includes("Manager") && (
+           <MenuItem
+           active={window.location.pathname === "/task-employee"}
+           icon={<i className="fa-regular fa-rectangle-list"></i>}
+           component={<Link to="/dashboard/task-employee" />}
+         >
+           Tasks
+         </MenuItem>
+          )}
+          {loginData?.loginData?.roles?.includes("Employee") && (
+          <MenuItem
+          active={window.location.pathname === "/tasks-list"}
+          icon={<i className="fa-regular fa-rectangle-list"></i>}
+          component={<Link to="tasks-list" />} 
+          className="my-2"
+        >
+          Tasks
+        </MenuItem>
+          )}
+
+
         </Menu>
       </Sidebar>
     </div>

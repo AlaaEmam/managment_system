@@ -6,7 +6,7 @@ import DashboardBox from "../DashboardBox/DashboardBox";
 import Header from "../../../Shared/components/Header/Header";
 import { PieChart } from "../PieChart/PieChart";
 
-export default function Dashboard() {
+export default function Dashboard<DashboardBoxProps>() {
   const cardsData = [
     {
       icon: Progress,

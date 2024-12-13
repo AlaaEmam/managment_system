@@ -75,16 +75,9 @@ export const TASKSURLS = {
   updateUrl: (id: string) => `${baseURL}/Task/${id}`,
   GET_ASSIGNED_TASKS: `${baseURL}/Task`,
   CHANGE_STATUS: (id: string) => `${baseURL}/Task/${id}/change-status`,
+  getCount:`/Task/count`
 };
 
-// export const USERSSURLS = {
-//   getUsersUrl: `${baseURL}/Users/Manager`,
-//   toggleStatusUrl: (id: number) => `${baseURL}/Users/${id}`,
-
-//   addUrl: `/Task`,
-//   updateUrl: (id: string) => `/Task/${id}`,
-//   getCount:`/Task/count`
-// };
 
 export const USERSSURLS = {
   getUsersUrl: (p: number, n: number) =>
@@ -95,12 +88,8 @@ export const USERSSURLS = {
     `/Users/?userName=${name}&pageSize=${p}&pageNumber=${n}`,
   filerWithSelect:(InputValue:any,searchValue:any)=>`/Users/?${InputValue}=${searchValue}`,
   userState:`Users/count`,
-  // getUsersUrl: `${baseURL}/Users/Manager`,
-  // toggleStatusUrl: (id: number) => `${baseURL}/Users/${id}`,
-
   addUrl: `/Task`,
   updateUrl: (id: string) => `/Task/${id}`,
-  getCount:`/Task/count`
 };
 
 export const axiosInstanc = axios.create({

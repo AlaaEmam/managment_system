@@ -15,7 +15,6 @@ import ResetPass from './modules/Auth/components/ResetPass/ResetPass'
 import ProtectedRoute from './modules/Shared/components/ProtectedRoute/ProtectedRoute'
 import MasterLayout from './modules/Shared/components/MasterLayout/MasterLayout'
 import Dashboard from './modules/Dashboard/components/Dashboard/Dashboard'
-import TasksData from './modules/Tasks/components/TasksData/TasksData'
 
 import ProjectsList from './modules/Projects/components/ProjectsList/ProjectsList'
 import UsersList from './modules/Users/components/UsersList/UsersList'
@@ -25,9 +24,10 @@ import { ToastContainer } from 'react-toastify'
 import AuthContextProvider, { AuthContext } from './context/AuthContext'
 import ChangePassword from './modules/Auth/components/ChangePassword/ChangePassword'
 import TasksList from './modules/Tasks/components/TasksList/TasksList';
-import TasksListEmploye from './modules/Tasks/components/TasksList/TasksListEmploye';
 import ProjectForm from './modules/Projects/components/ProjectForm/ProjectForm';
 import Navbar from './modules/Shared/components/Navbar/Navbar';
+import TaskForm from './modules/Tasks/components/TasksForm/TasksForm';
+import TaskEmployee from './modules/Tasks/components/TasksEmploye/TaskEmployee';
 
 
 function App() {
@@ -64,15 +64,17 @@ function App() {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <Dashboard  /> },
-        { path: 'tasksList', element: <TasksList/> },
-        { path: 'tasksListEmploye', element: <TasksListEmploye/> },
+      
         { path: 'ProjectsList/:projectId', element: <ProjectForm/> },
+        { path: 'ProjectsList', element: <ProjectsList /> },
+
+       
+        { path: 'tasks-list', element: <TasksList/> },
+        { path: 'task-employee', element: <TaskEmployee/> },
         { path: 'tasks-list/task-form', element: <TaskForm/> },
         { path: 'tasks-list/:taskId', element: <TaskForm/> },
-        { path: 'tasks-list', element: <TasksList/> },
-        { path: 'ProjectsList', element: <ProjectsList /> },
-        { path: 'usersList', element: <UsersList/> },
 
+        { path: 'usersList', element: <UsersList/> },
       ]
     }
   ])

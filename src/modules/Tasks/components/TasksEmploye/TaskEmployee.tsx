@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstanc, privateAxiosInstance, TASKSURLS } from "../../../../constants/URLS";
-import styles from "./TaskList.module.css";
+import styles from "./TaskEmployee.module.css";
 
-export default function TasksListEmploye() {
+export default function TaskEmployee() {
   type Task = {
     id: number;
     title: string;

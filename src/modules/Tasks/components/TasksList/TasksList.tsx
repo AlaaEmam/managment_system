@@ -45,7 +45,7 @@ export default function TasksList() {
   // Get Tasks
   const getTasksList = async (pageNo: number, pageSize: number, searchQuery: string = '') => {
     try {
-      const response = await axiosInstance.get(TASKSURLS.getAll, {
+      const response = await axiosInstance.get(`https://upskilling-egypt.com:3003/api/v1/Task/manager`, {
         headers: { Authorization: localStorage.getItem("token") },
         params: {
           pageSize: pageSize,

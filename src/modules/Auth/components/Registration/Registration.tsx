@@ -39,7 +39,7 @@ export default function Registration() {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       const response = await axiosInstance.post<ApiResponse>(
-      AUTHURLS.registerUrl,data);
+      AUTHURLS.registerUrl,data );
       console.log(response.data.message);
       navigate('/verification');
       toast.success(response.data.message);

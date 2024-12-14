@@ -4,6 +4,7 @@ import axios from 'axios';
 import { AUTHURLS, axiosInstance} from '../../../../constants/URLS';
 import { EmailValidation } from '../../../../constants/validations';
 import Logo from '../../../../assets/logo.png';
+import { toast } from 'react-toastify';
 
 interface FormData {
   email: string;
@@ -27,9 +28,11 @@ export default function ForgetPassword() {
       if (axios.isAxiosError(error)) {
         
         console.error('Error response:', error.response?.data);
-        
+        toast.error(error.response?.data?.message || 'An error occurred');
+
       } else {
         console.error('Unexpected error:', error);
+        
       }
     }
     // console.log(data);
@@ -70,7 +73,7 @@ export default function ForgetPassword() {
 
               <button disabled={isSubmitting}  
               className='btn btn-color rounded-5 mt-5  w-100 my-3'>
-                {isSubmitting ? "Verifying": "Verify"}
+                {isSubmitting ? "Verifying...": "Verify"}
               </button>  
             </form>
               </div>

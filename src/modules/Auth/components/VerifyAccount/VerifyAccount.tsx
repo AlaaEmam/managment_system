@@ -65,7 +65,7 @@ interface ApiResponse{
                       placeholder=""
                     />
                     <label>E-mail</label>
-                    {errors.email && <span className="text-danger">{errors.email.message}</span>}
+                    {errors.email?.message && <span className="text-danger">{errors.email.message}</span>}
                 </div>
 
                  {/* INPUT Verification code */}

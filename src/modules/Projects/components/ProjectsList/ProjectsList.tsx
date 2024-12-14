@@ -10,6 +10,7 @@ import View from '../../../../assets/icons/View.svg';
 import Delete from '../../../../assets/icons/delete.svg';
 import Edit from '../../../../assets/icons/Edit.svg';
 import closeButton from '../../../../assets/closeButton.png';
+import { toast } from 'react-toastify';
 
 interface projectData{
   id: number;
@@ -53,12 +54,19 @@ export default function ProjectsList() {
         
         // Pass selectedId to handleShowDelete
         handleShowDelete(selectedId);
+      toast.success("Operation completed successfully! ");
+        
       } else {
         console.error("Selected ID is null");
+    toast.error("An error occurred. Please try again."); // Handle errors
+        
       }
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred. Please try again."); // Handle errors
+      
     }
+    handleCloseDelete();
   };
 
   const getNameValue=(input: React.ChangeEvent<HTMLInputElement>)=>{

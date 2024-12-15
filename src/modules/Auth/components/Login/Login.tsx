@@ -40,17 +40,10 @@ export default function Login() {
         data
       );
       console.log("res", response);
-      saveLoginData();
       toast.success("login succeed");
       navigate("/dashboard");
-     localStorage.setItem("token", response?.data.token);
-      //   "/Users/Login",
-      //   data
-      // );
-      // toast.success("Login succeeded");
-      // localStorage.setItem("token", response.data.token); // حفظ التوكن
-      // navigate("/Dashboard");
-
+      localStorage.setItem("token", response?.data.token);
+      saveLoginData();
     } catch (error: any) {
       toast.error(error.response?.data.message || "Login failed");
     }

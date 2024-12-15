@@ -66,4 +66,16 @@
   top: 15%;
   transform: translateY(-50%); 
 }
+@media (max-width: 390px) {
 
+.profile-image {
+    width: 4.25rem;
+    height: 4.25rem;
+    margin-block: 0.5625rem;
+}
+.profile-image .icon-profile {
+  top: 3.0625rem;
+  left: 3.0625rem;
+}
+
+}

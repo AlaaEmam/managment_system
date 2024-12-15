@@ -48,7 +48,15 @@
 .auth-text-header::first-letter {
   display: inline-block;
   border-bottom: .1875rem solid;
-
+}
+@media (max-width: 850px) {
+  .auth-text-header {
+    line-height: 1.5;
+  }
+  .auth-text-header::first-letter {
+    display: inline-block;
+    border-bottom: .1875rem solid;
+  }
 }
 /* FORM STYLE  */
 
